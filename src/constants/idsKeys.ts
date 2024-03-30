@@ -1,0 +1,35 @@
+import { validationToDamageTypes, validationToDamageTypesArray, validationToDate, validationToGuardTypes, validationToNumber, validationToNumbersArray, validationToRarityIdentityTypes, validationToSinner, validationToSinTypes,  validationToSinTypesArray,  validationToString, validationToStringsArray, validationToStringsArrayVerticalBar, validationToTier } from "./validations";
+const idsKeys = [
+    { key: 'imgUrl' ,validation:validationToString},  { key: 'sinner' ,validation:validationToSinner},
+    { key: 'nameEN' ,validation:validationToString},  { key: 'nameRU' ,validation:validationToString},  
+    { key: 'rarity',validation:validationToRarityIdentityTypes},
+    { key: 'season' ,validation:validationToNumber},  { key: 'hp' ,validation:validationToNumber},
+    { key: 'hpStun' ,validation:validationToNumbersArray}, { key: 'speed' ,validation:validationToString},
+    { key: 'defence' ,validation:validationToNumber},    { key: 'skillsSin' ,validation:validationToSinTypesArray},
+    { key: 'skillsDmgType',validation:validationToDamageTypesArray },
+    { key: 'sinGuard' ,validation:validationToSinTypes},  
+    { key: 'guardType',validation:validationToGuardTypes }, { key: 'basicCoin' ,validation:validationToNumbersArray},
+    { key: 'growthPerCoin',validation:validationToNumbersArray },
+    { key: 'maxCoinValue',validation:validationToNumbersArray}, { key: 'damage' ,validation:validationToNumbersArray},
+    { key: 'nameSkillEN',validation:validationToStringsArrayVerticalBar },
+    { key: 'nameSkillRU',validation:validationToStringsArrayVerticalBar }, { key: 'countCoin' ,validation:validationToNumbersArray},
+    { key: 'weightCoin',validation:validationToNumbersArray },{ key: 'descriptionCoinEN' ,validation:validationToString},
+    { key: 'descriptionCoinRU' ,validation:validationToString},
+    { key: 'idTier',validation:validationToTier },{ key: 'namePassiveEN',validation:validationToStringsArrayVerticalBar },
+    { key: 'namePassiveRU',validation:validationToStringsArrayVerticalBar },
+    { key: 'sinPassive1',validation:validationToSinTypes },{ key: 'countPassive1',validation:validationToNumber },
+    { key: 'sinPassive2',validation:validationToSinTypes },{ key: 'countPassive2',validation:validationToNumber },
+    { key: 'passive1Condition',validation:validationToString },{ key: 'passive2Condition',validation:validationToString },
+    { key: 'descriptionPassive1EN',validation:validationToString },
+    { key: 'descriptionPassive1RU',validation:validationToString },
+    { key: 'descriptionPassive2EN',validation:validationToString },
+    { key: 'descriptionPassive2RU',validation:validationToString },
+    { key: 'slash',validation:validationToString },
+    { key: 'pierce',validation:validationToString },{ key: 'blunt',validation:validationToString },
+    { key: 'releaseDate',validation:validationToDate },{ key: 'minPossibleDmg',validation:validationToStringsArray },
+    { key: 'maxPossibleDmg',validation:validationToStringsArray },
+    { key: 'isNew',validation:validationToString },{ key: 'sanityInfoEN',validation:validationToString },
+    { key: 'sanityInfoRU',validation:validationToString } 
+
+];
+export {idsKeys}

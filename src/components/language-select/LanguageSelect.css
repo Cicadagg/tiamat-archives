@@ -1,0 +1,82 @@
+.dropdown{
+    color:#AFAEB4;
+    padding: 31.2px ;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    font-size: 24px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: 0.4s;
+}
+.dropdown:hover{
+    color:white;
+}
+.dropdown:hover svg{
+    opacity: 1 ;
+}
+.LanguageSelect{
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+    padding:  0 !important;
+    padding-right:  5px !important;
+    transition: 0.5s;
+    box-sizing: border-box;
+    height: 0 ;
+    max-height: 150px ;
+    gap:4px;
+}
+.LanguageSelect--show{
+    height: 100px ;
+}
+.LanguageSelect li{
+    height: unset !important;
+    min-height: unset !important;
+    color:#AFAEB4;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #333;
+    margin: 0 !important;
+    padding: 10px 10px 10px 29.6px;
+    width: 100% !important;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.4s;
+}
+.LanguageSelect li button{
+    display: flex;
+    gap: 5px;
+}
+.LanguageSelect li:hover{
+    color:white;
+}
+@media (max-width:1000px) {
+    .dropdown{
+        position: relative;
+        transition: 0.4s;
+        font-size: 35px;
+        padding: 41.2px ;
+    }
+    .dropdown span  svg{
+        width: 35px;
+        height: 35px;
+    }
+    .LanguageSelect svg {
+        width: 25px !important;
+        height: 25px !important;
+    }
+    .LanguageSelect{
+        position: absolute;
+        top: 0px;
+        width: 80vw !important;
+        transform-origin: bottom bottom;
+        z-index: 2;
+    }
+    .LanguageSelect--show{
+        top: -80px;
+    }
+    .LanguageSelect li:first-of-type{
+        display: flex !important;
+    }
+}

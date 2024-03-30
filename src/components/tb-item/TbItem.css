@@ -1,0 +1,110 @@
+.tb-item-container{
+    width: 96px;
+    height: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0.8;
+    transition: 0.32s;
+    cursor: pointer;
+    border-radius: 3.2px 3.2px 0 0;
+    position: relative;
+    will-change: scale;
+}
+.tb-item-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: relative; 
+    border-radius: 6.4px 6.4px;
+}
+.tb-item-new{
+    position: absolute;
+    right: 3.84px;
+    top: 3.84px;
+    width: fit-content;
+    padding: 1px 2px;
+    box-sizing: border-box;
+    background-color: rgb(255, 57, 57);
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.tb-item-container .shadow{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6.4px 6.4px;
+}
+.tb-item-container:hover{
+    opacity: 1;
+    transform: scale(1.05);
+}
+.tb-item-container svg {
+    position: absolute;
+    transform: translate(50%,-50%);
+    right: 50%;
+    top: 50%;
+    display: none;
+}
+.tb-item-container:hover svg{
+    display: block;
+}
+.tb-item-rarity{
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    z-index: 101;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    font-size: 10.9152px;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 3.2px;
+    background: rgba(0, 0, 0, 0.32);
+    padding: 1.28px 5.12px 1.28px;
+    margin: 3.84px 0px 0px 3.84px;
+    font-size: 16px;
+    color: var(--OOO-color);
+}
+.tb-item-frame{
+    width: 100%;
+    height: 2.4px;
+    z-index: 102;
+    position: absolute;
+    bottom: 0;
+}
+.tb-item-frame--OOO{
+    background: var(--OOO-frame-color);
+}
+.tb-item-frame--OO{
+    background: var(--OO-frame-color);
+}
+.tb-item-frame--O{
+    background: var(--O-frame-color);
+}
+.tb-item-image{
+    width: 96px;
+    height: 96px;
+}
+.tb-item-name{
+    color: #FFF;
+    font-size: 12.8px;
+    font-weight: 160;
+    margin-bottom: 7.68px;
+    line-height: 15.36px;
+    box-sizing: border-box;
+    text-align: left;
+    padding: 0px 9.6px 0px 9.6px;
+}
+@media(max-width:1000px){
+    .tb-item-container svg {
+        display: block;
+    }
+}

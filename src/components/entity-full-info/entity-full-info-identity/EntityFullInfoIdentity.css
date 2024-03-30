@@ -1,0 +1,209 @@
+.entityFullInfo-stats{
+    width: 100%;
+}
+.entityFullInfo-stats ul{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    color:rgba(255, 255, 255, 0.9);
+    gap: 15px;
+    padding: 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+@media (max-width:1000px) {
+    .statuses-list li .entityFullInfo-tooltip{
+       display: none;
+   }
+}
+.statuses-list{
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+.statuses-list li{
+    cursor: pointer;
+}
+
+.entityFullInfo-stats h2{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    color:rgba(255, 255, 255, 0.9);
+    column-gap: 15px;
+    padding: 2px 5px;
+    margin: 0;
+    font-size: 30px;
+    background-color: #131319;
+    border-radius: 6px;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.entityFullInfo-stats ul li{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 30px;
+}
+.entityFullInfo-stats ul img{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.entityFullInfo-entity{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width:  320px;
+}
+
+.entityFullInfo-img{
+    width:  100%;
+    height: 460px;
+    position: relative;
+    display: flex;
+    margin-bottom: 15px;
+}
+.entityFullInfo-img .shadow {
+    width:  100%;
+    height: 100%;
+}
+.entityFullInfo-tier{
+    width: 90%;
+    justify-content: center;
+    position: absolute;
+    bottom: 12px;
+    left: 5%;
+    display: flex;
+    color: rgba(0, 0, 0, 0.803);
+    font-size: 28px;
+    border-radius: 6px;
+}   
+.entityFullInfo-tier-SSS{
+    background-color: var(--SSS-color);
+}
+.entityFullInfo-tier-SS{
+    background-color: var(--SS-color);
+}
+.entityFullInfo-tier-S{
+    background-color: var(--S-color);
+}
+.entityFullInfo-tier-A{
+    background-color: var(--A-color);
+}
+.entityFullInfo-tier-B{
+    background-color: var(--B-color);
+}
+.entityFullInfo-tier-C{
+    background-color: var(--C-color);
+}
+.resistance--ineff{
+    color:rgba(255, 255, 255, 0.85);
+}
+.resistance--fatal{
+    color:#fe4141;
+}
+.resistance--normal{
+    color:#c8aa80;
+
+}
+.staggers .perCent-special-font {
+    font-size: 26px;
+    opacity: 1;
+}
+.staggers li:nth-of-type(1){
+    color:#e9ca67;
+}
+.staggers li:nth-of-type(2){
+    color:#ff0059;
+}
+.staggers li:nth-of-type(3){
+    color:#229248;
+}
+.entityFullInfo-sinner {
+    position: absolute;
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    object-fit: contain;
+    width: 45px;
+    height: 45px;
+    border-radius: 3.2px;
+    top: 7px;
+    right: 7px;
+}
+.entityFullInfo-rarity {
+    position: absolute;
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 500;
+    border-radius: 3.2px;
+    background: rgba(0, 0, 0, 0.40);
+    padding: 2px 8px 2px 9px;
+    top: 7px;
+    left: 7px;
+    font-size: 36px;
+    color: var(--O-color);
+}
+.entityFullInfo-stats-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+@media (max-width:1200px) {
+    .entityFullInfo-entity{
+        flex-direction: row !important;
+        width: 100% !important;
+    }
+    .entityFullInfo-stats-container{
+       margin-left: 60px;
+    }
+    .entityFullInfo-img{
+        height: 505.5px; 
+        width: 351.652px;
+    }
+}
+@media (max-width:840px) {
+    .entityFullInfo-entity{
+       justify-content: center;
+       align-items: center;
+    }
+    .entityFullInfo-entity{
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .entityFullInfo-stats-container{
+       margin-left: 0px;
+    }
+}
+@media (max-width:600px) {
+    .entityFullInfo-stats{
+        position: relative;
+    }
+    .entityFullInfo-stats ul {
+        position: static;
+    }
+    .statuses-list .tooltip-container  {
+        position: static;
+    }
+   
+}
+@media (max-width:420px) {
+    .entityFullInfo-img{
+        height: 400px; 
+        width: 300px;
+    }
+}

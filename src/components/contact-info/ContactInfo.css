@@ -1,0 +1,139 @@
+.contact-info{
+    color:white;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.contacts-rusLink{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    will-change: scale , opacity;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 24px;
+}
+.contacts-rusLink svg{
+    width: 18px;
+    height: 18px;
+}
+.contacts-rusLink svg path{
+    stroke: #fff;
+}
+.contacts-questionnaire{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    will-change: scale , opacity;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 24px;
+}
+.contacts-questionnaire:hover{
+    transform: scale(1.05);
+    opacity: 1;
+}
+.contacts-questionnaire svg{
+    width: 18px;
+    height: 18px;
+}
+.contacts-questionnaire svg path{
+    stroke: #fff;
+}
+.contact-info h1{
+    font-size: 46px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+.color-blue {
+    color:#3AA1FF;
+}
+.contact-info h2{
+    font-size: 32px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+   
+}
+.discord{
+    position: relative;
+}
+.contacts-honorable-list{
+    margin-left: 150px;
+}
+.contacts-honorable-list h2{
+    font-size: 46px;
+    margin-top: 28px;
+}
+.contacts-honorable-list h3{
+    font-size: 32px;
+    margin-top: 28px;
+
+}
+.contacts-honorable-list ul{
+}
+.contacts-honorable-list li{
+    font-size: 26px;
+    margin-top: 5px;
+    font-weight: 500;
+
+}
+@media (max-width:1200px){
+    .contact-info{
+        flex-direction: column;
+    }
+    .contacts-honorable-list{
+        margin-left: 0px;
+    }
+}
+@keyframes dissappear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}
+.contact-tooltip {
+    display: flex;
+    position: absolute;
+    text-align: center;
+    width: fit-content;
+    background-color: #333;
+    color: #fff;
+    font-size: 14.4px;
+    padding: 4px;
+    border-radius: 4px;
+    z-index: 1000;
+    top: -1.6px;
+    transform: translate(0, -100%);
+    font-weight: 500;
+    opacity: 0;
+}
+
+.contact-tooltip--active {
+    opacity: 1;
+}
+  
+.contact-info button {
+    height: 75px;
+    width: 75px;
+    opacity: 0.8;
+    transition: 0.4s;
+    position: relative;
+    margin-right: 50px;
+    opacity: 1;
+}
+.contact-info button:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+.contact-info button svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
