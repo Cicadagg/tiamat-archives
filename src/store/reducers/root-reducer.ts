@@ -7,6 +7,7 @@ import { statusesReducer } from "./statuses-reducer";
 import { leftMenuReducer } from "./left-menu-reducer";
 import { searchReducer } from "./search-reducer";
 import { mobileModalReducer } from "./mobile-modal-reducer";
+import { mdReducer } from "./md-reducer";
 
 export const rootReducer = combineReducers({
     idsReducer,
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
     statusesReducer,
     leftMenuReducer,
     searchReducer,
-    mobileModalReducer
+    mobileModalReducer,
+    mdReducer
 })
 export type RootState = ReturnType<typeof rootReducer>

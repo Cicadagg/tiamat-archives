@@ -6,7 +6,6 @@ import { LanguageDisclaimer } from "../language-disclaimer/LanguageDisclaimer"
 import { DiscordIconSVG } from "../svg/DiscordIcon"
 import { ExcelIconSVG } from "../svg/ExcelIcon"
 import { ExternalLinkSVG } from "../svg/ExternalLinkSVG"
-import { GitHubIconSVG } from "../svg/GitHub"
 import "./ContactInfo.css"
 export const ContactInfo:React.FC = () =>{
     const {t,i18n} = useTranslation();
@@ -16,7 +15,7 @@ export const ContactInfo:React.FC = () =>{
         triggered:false,
     },{
         id:2,
-        link:"kamikotosss",
+        link:"ritsy.",
         triggered:false,
     }]);
     const [timer , setTimer] = useState<NodeJS.Timeout|null>(null);
@@ -60,63 +59,105 @@ export const ContactInfo:React.FC = () =>{
         </button>
     </article>
 
-    <article className="color-blue">
-        <h2>{t("ContactInfo.creator")}  </h2>
-        <button className="discord" onClick={()=>{
-            const targetID = 2;
-            copyTextToClipboard(targetID);
-            setTooltip(prevTooltip => prevTooltip.map(t => t.id === targetID ? { ...t, triggered: true } : t));
-        }}>
-            <div className={`contact-tooltip ${tooltip.find(t => t.id === 2)?.triggered && "contact-tooltip--active"}`} >{t("ContactInfo.copied")}  </div>
-            <DiscordIconSVG/>
-        </button>
-        <button>
-        <Link to="https://github.com/Kamikotosss" target="_blank">
-            <GitHubIconSVG/>
-        </Link>
-        </button>
-    </article>
-
-    <article style={{
-        marginTop:"24px"
-    }}>
-        <a href={i18n.language === "ru" ? "https://docs.google.com/forms/d/1bRPaej-7flCm1H01xM-OjSXgUs10iej_tiaWNIwOjFI/edit": "https://docs.google.com/forms/d/1Gxsi1emIENdJdDNLd04rD5KytGQRU3UvA-7WHi1DpiY/edit"} className="contacts-questionnaire" target="_blank">
-            {t("ContactInfo.questionnaire")} <ExternalLinkSVG/> 
-        </a>
-    </article>
-
     </div>
     <article className="contacts-honorable-list">
-        <h2>{t("ContactInfo.workers.header")}  </h2>
-        <h3 className="color-blue">{t("ContactInfo.workers1.header")}</h3>
-        <ul>
-            <li>{t("ContactInfo.workers1.1")}</li>
-            <li>{t("ContactInfo.workers1.2")}</li>
-            <li>{t("ContactInfo.workers1.3")}</li>
-            <li>{t("ContactInfo.workers1.4")}</li>
-        </ul>
-        <h3 className="color-blue">{t("ContactInfo.workers2.header")} </h3>
-        <ul>
-            <li>{t("ContactInfo.workers2.1")}</li>
-            <li>{t("ContactInfo.workers2.2")}</li>
-            <li>{t("ContactInfo.workers2.3")}</li>
-            <li>{t("ContactInfo.workers2.4")} </li>
-            <li> {t("ContactInfo.workers2.5")}</li>
-            <li>{t("ContactInfo.workers2.6")}</li>
-            <li>{t("ContactInfo.workers2.7")}</li>
-            <li>{t("ContactInfo.workers2.9")}</li>
-        </ul>
-        <h3 className="color-blue">{t("ContactInfo.workers3.header")}</h3>
-        <ul>
-            {
-            i18n.language === "ru" && <li>
-                <a href={"https://github.com/Crescent-Corporation/LimbusCompanyBusRUS"} className="contacts-rusLink" target="_blank">
-                    {"Русификатор"} <ExternalLinkSVG/> 
-                </a>
-            </li>
-            }
-            <li>{t("ContactInfo.workers3.1")}</li>
-        </ul>
+        <div className="site-workers">
+            <h2>{t("ContactInfo.workers.header")}</h2>
+            <h3 className="color-blue">{t("ContactInfo.workers1.header")}</h3>
+            <ul>
+                <li>{t("ContactInfo.workers1.1")}</li>
+            </ul>
+            <h3 className="color-blue">{t("ContactInfo.workers2.header")}</h3>
+            <ul className="librarian-patron">
+                <li>{t("ContactInfo.workers2.patron1")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.1")}</li>
+                    </ul>
+                </li>
+                {/* <li>{t("ContactInfo.workers2.patron2")}
+                <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.2")}</li>
+                    </ul>
+                </li> */}
+                <li>{t("ContactInfo.workers2.patron3")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.3")}</li>
+                    </ul>
+                </li>
+                {/* <li>{t("ContactInfo.workers2.patron4")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.4")}</li>
+                    </ul>
+                </li> */}
+                <li>{t("ContactInfo.workers2.patron5")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.5")}</li>
+                    </ul>
+                </li>
+                <li>{t("ContactInfo.workers2.patron6")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.6")}</li>
+                    </ul>
+                </li>
+                <li>{t("ContactInfo.workers2.patron7")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.7")}</li>
+                    </ul>
+                </li>
+                <li>{t("ContactInfo.workers2.patron8")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.8")}</li>
+                    </ul>
+                </li>
+                <li>{t("ContactInfo.workers2.patron9")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.9")}</li>
+                    </ul>
+                </li>
+                {/* <li>{t("ContactInfo.workers2.patron10")}
+                    <ul className="text-librarian-patron">
+                        <li>{t("ContactInfo.workers2.10")}</li>
+                    </ul>
+                </li> */}
+            </ul>
+        </div>
+        <div className="lost-book-and-sp">
+            <h3 className="color-blue">{t("ContactInfo.workers3.header")}</h3>
+            <ul>
+                <li>{t("ContactInfo.workers3.1")}</li>
+                <li>{t("ContactInfo.workers3.2")}</li>
+                <li>{t("ContactInfo.workers3.3")}</li>
+                <li>{t("ContactInfo.workers3.4")}</li>
+            </ul>
+            <h3 className="color-blue">{t("ContactInfo.workers4.header")}</h3>
+            <ul>
+                {
+                i18n.language === "ru" && <li>
+                    <a href={"https://github.com/Crescent-Corporation/LimbusCompanyBusRUS"} className="contacts-rusLink" target="_blank">
+                        {"Русификатор"} <ExternalLinkSVG/> 
+                    </a>
+                </li>
+                }
+                <li>{t("ContactInfo.workers4.1")}</li>
+                <ul>
+                    <li>
+                        <a href={"https://www.youtube.com/@CHACHENWAGENTV"} className="contacts-rusLink" target="_blank">
+                            {"YouTube"} <ExternalLinkSVG/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href={"https://www.twitch.tv/devochkavolshebnicayufule"} className="contacts-rusLink" target="_blank">
+                            {"Twitch"} <ExternalLinkSVG/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href={"https://t.me/chachenwagentv"} className="contacts-rusLink" target="_blank">
+                            {"Telegram"} <ExternalLinkSVG/>
+                        </a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
     </article>
     </section>
 }

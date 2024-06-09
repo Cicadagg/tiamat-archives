@@ -8,12 +8,16 @@ import { LanguageSelect } from "../language-select/LanguageSelect";
 import { ContactSVG } from "../svg/ContactSVG";
 import { EGOSVG } from "../svg/EGOSVG";
 import { GLLSVG } from "../svg/GLLSVG";
+import { GraditudeSVG } from "../svg/GraditudeSVG";
+import { QuestionnaireSVG } from "../svg/QuestionnaireSVG";
 import { IdentitiesSVG } from "../svg/IdentitiesSVG";
 import { InfoSvg } from "../svg/InfoSVG";
 import { StatusesPageSVG } from "../svg/StatusesPageSVG";
 import { TeamBuilderSVG } from "../svg/TeamBuilderSVG";
 import { TierListSVG } from "../svg/TierListSVG";
+import { MirrorDungeonSVG } from "../svg/MirrorDungeonSVG";
 import "./LeftMenu.css"
+
 export const LeftMenu:React.FC = () => {
     const location = useLocation();
     const {t,i18n} = useTranslation();
@@ -21,7 +25,7 @@ export const LeftMenu:React.FC = () => {
     const isCurrentLocation = (route:string)=>{
         try{
             const splited = location.pathname.split("/");
-            return splited[2].includes(route) && (splited.length === 3 || route === "tierlist");
+            return splited[2].includes(route) && (splited.length === 3 || ["tierlist","mirror-dungeon"].includes(route));
         } catch (err){
             
         }
@@ -29,13 +33,16 @@ export const LeftMenu:React.FC = () => {
     }
     const navLang = locales.some(l => l.locale === i18n.language) ? i18n.language : "en";
     const links = [
-        {to:`/${navLang}/tierlist/identities`,route:`tierlist` ,name:t('LeftMenu.tierlist'),SVG:TierListSVG},
-        {to:`/${navLang}/teambuilder`,route:`teambuilder` ,name:t('LeftMenu.teambuilder'),SVG:TeamBuilderSVG},
-        {to:`/${navLang}/identities`,route:`identities` ,name:t('LeftMenu.identities'),SVG:IdentitiesSVG},
-        {to:`/${navLang}/ego`,route:`ego` ,name:t('LeftMenu.ego'),SVG:EGOSVG},
-        {to:`/${navLang}/statuses`,route:`statuses` ,name:t('LeftMenu.statuses'),SVG:StatusesPageSVG},
-        {to:`/${navLang}/aboutgame`,route:`aboutgame` ,name:t('LeftMenu.aboutgame'),SVG:InfoSvg},
-        {to:`/${navLang}/contact`,route:`contact` ,name:t('LeftMenu.contact'),SVG:ContactSVG},
+        {to:`/${navLang}/graditude`,route:`graditude`,name:t('LeftMenu.graditude'),SVG:GraditudeSVG},
+        {to:`/${navLang}/tierlist/identities`,route:`tierlist`,name:t('LeftMenu.tierlist'),SVG:TierListSVG},
+        {to:`/${navLang}/teambuilder`,route:`teambuilder`,name:t('LeftMenu.teambuilder'),SVG:TeamBuilderSVG},
+        {to:`/${navLang}/identities`,route:`identities`,name:t('LeftMenu.identities'),SVG:IdentitiesSVG},
+        {to:`/${navLang}/ego`,route:`ego`,name:t('LeftMenu.ego'),SVG:EGOSVG},
+        {to:`/${navLang}/mirror-dungeon/events`,route:`mirror-dungeon`,name:t('LeftMenu.mirror_dungeon'),SVG:MirrorDungeonSVG},
+        {to:`/${navLang}/statuses`,route:`statuses`,name:t('LeftMenu.statuses'),SVG:StatusesPageSVG},
+        {to:`/${navLang}/aboutgame`,route:`aboutgame`,name:t('LeftMenu.aboutgame'),SVG:InfoSvg},
+        {to:`/${navLang}/contact`,route:`contact`,name:t('LeftMenu.contact'),SVG:ContactSVG},
+        {to: (i18n.language == "ru") ? `https://docs.google.com/forms/d/1bRPaej-7flCm1H01xM-OjSXgUs10iej_tiaWNIwOjFI/edit` : `https://docs.google.com/forms/d/1Gxsi1emIENdJdDNLd04rD5KytGQRU3UvA-7WHi1DpiY/edit`,route:`feedback`,name:t('LeftMenu.feedback'),SVG:QuestionnaireSVG}
     ];
     
     const [hasRendered, setHasRendered] = useState(false);
@@ -66,7 +73,7 @@ export const LeftMenu:React.FC = () => {
                                     <Link 
                                     onClick={(e) => {
                                         if (isCurrentRouteLocation ) e.preventDefault(); 
-                                    }} 
+                                    }}
                                     className={(isCurrentRouteLocation ? "left-menu-route--active":"")} 
                                     to={to}>
                                         <SVG active={isCurrentRouteLocation}/>

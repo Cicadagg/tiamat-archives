@@ -1,4 +1,4 @@
-import React, { useEffect, useTransition } from "react";
+import React, { useEffect} from "react";
 import { TierList } from "../components/tier-list/TierList";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { TierListNav } from "../components/tier-list-nav/TierListNav";
@@ -16,7 +16,6 @@ const getQuaryByParam = (param:string) => {
     return ["ego","statuses"];
 }
 export const TierListPage:React.FC = () => {
-    const location = useLocation();
     const {i18n} = useTranslation();
     const params = useParams();
     const type = params['type'] || "redirect";

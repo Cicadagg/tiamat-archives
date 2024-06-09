@@ -1,7 +1,12 @@
 {
     "MainInfo": {
         "headerTitle":"Great Limbus Library is a fan site and database",
-        "headerDescription":"developed by the community, dedicated to Limbus Company."
+        "headerDescription":"developed by the community, dedicated to Limbus Company.",
+        "headerDescription2":"If You want to keep up with the news about site updates,",
+        "headerDescription3":"You can go to the ",
+        "headerDescription4":"SITE SUPPORT",
+        "headerDescription5":" section and go from there to Boosty,",
+        "headerDescription6":"the latest news is published there for free."
     },
     "EntitySection": {
         "new" : "Recently Released Identities and EGOs"
@@ -34,16 +39,21 @@
         "2":"Improving team builder functionality",
         "3":"General improvements to the site's interface and content",
         "header":"Site Improvement Plans",
-        "contactUs":"If you have ideas or suggestions, please contact us"
+        "contactUs":"If you have ideas or suggestions, please click on the ",
+        "contactUs2":"QUESTIONNAIRE",
+        "contactUs3":" section and fill out the 'Full questionnaire on Great Limbus Library'."
     },
     "LeftMenu":{
+        "graditude":"SITE SUPPORT",
         "tierlist":"TIER LIST",
         "teambuilder":"TEAM BUILDER",
         "identities":"IDENTITIES",
         "ego":"EGO",
         "statuses":"STATUSES",
         "aboutgame":"ABOUT THE GAME",
-        "contact":"OUR CONTACTS"
+        "contact":"OUR CONTACTS",
+        "mirror_dungeon":"MIRROR DUNGEON",
+        "feedback":"QUESTIONNAIRE"
     },
     "TierListPage":{
         "title":"Tier List",
@@ -106,7 +116,7 @@
         "title":"Team Builder",
         "header":"Team Builder"
     },
-    "TbSins.header": "Energy",
+    "TbSins.header": "Sins",
     "TbTags": {
         "header": "Statuses",
         "empty": "The list of statuses is empty, add Identity or EGO to any slot"
@@ -124,8 +134,8 @@
         "empty": "No available EGO. Try disabling some filters."
     },
     "TbInfo": {
-        "energyConsumption": "Energy Consumption",
-        "energyGain": "Energy Gain",
+        "energyConsumption": "Sins Consumption",
+        "energyGain": "Sins Gain",
         "ids": "Identities",
         "ego": "EGO"
     },
@@ -163,8 +173,8 @@
         "officialLinks": "Official Links",
         "header": "About the Game",
         "text": {
-            "1": "is an indie horror role-playing video game for Microsoft Windows and mobile devices using iOS or Android, developed and published by South Korean studio",
-            "2": " It was released worldwide on February 26, 2023. The game is set in the same dystopian, hyper-capitalist world known only as 'The City', where all of Project Moon's other works take place, including Lobotomy Corporation, Library of Ruina, and a webcomic titled Leviathan, but takes place some time after the events of all those stories."
+            "1": "incorporates a variety of gameplay mechanics, ranging from turn-based combat to collecting, management, and roguelike elements. The game was developed and published by a South Korean indie studio.",
+            "2": " The game was released worldwide on February 26, 2023. The events of the game take place in a dystopian, hypercapitalistic world known as 'the City', where the events of previous works by 'Project Moon' also unfold, namely: Lobotomy Corporation, Library of Ruina, webcomic Leviathan, and novel Distortion Detective. The game's action takes place some time after the events of all these stories. The game features Gacha elements, allowing players to spend real money to acquire Lunacy (in-game currency) or tickets used to acquire new Sinners' Identities or E.G.O. The in-game story is presented through a visual novel, as in the two predecessor games."
         }
     },
     "ContactPage.title": "Contact",
@@ -177,25 +187,58 @@
         "questionnaire":"Full questionnaire on Great Limbus Library",
         "workers1": {
             "header": "Library Heads:",
-            "1": "Ritsy",
-            "2": "The Cyan Sunset as Carmen",
-            "3": "hgjrtu as the most sane tier list maker",
-            "4": "Kamikotosss"
+            "1": "Ritsy"
         },
         "workers2": {
-            "header": "Book Hunters (Fixers):",
-            "1": "Klinch as a Average Grade 9 Fixer",
-            "2": "ManulGod",
-            "3": "Knightey as 앤젤라의 개 and personal Watson and NEET",
-            "4": "Sir Alonne as weakest PM minmaxer",
-            "5": "turbae_carissimus",
-            "6": "morj. as the hardest worker (real)",
-            "7": "Vicissitude as a gift",
-            "9": "Licht & Ruchi as Workers for one Day"
+            "header": "Patron Librarians:",
+            "patron1":"[Floor of General Works]",
+            "patron2":"[Floor of History]",
+            "patron3":"[Floor of Technological Sciences]",
+            "patron4":"[Floor of Literature]",
+            "patron5":"[Floor of Art]",
+            "patron6":"[Floor of Natural Sciences]",
+            "patron7":"[Floor of Language]",
+            "patron8":"[Floor of Social Sciences]",
+            "patron9":"[Floor of Philosophy]",
+            "patron10":"[Floor of Religion]",
+            "1":"Klinch as a Average Grade 9 Fixer",
+            "2":"Unawakened",
+            "3":"Sir Alonne в роли слабейшего ПМ минмаксера",
+            "4":"Unawakened",
+            "5":"morj. as the hardest worker (real)",
+            "6":"turbae_carissimus",
+            "7":"Knightey as 앤젤라의 개 and personal Watson and NEET",
+            "8":"The Cyan Sunset as Carmen",
+            "9":"hgjrtu as the most sane tier list maker",
+            "10":"Unawakened"
         },
         "workers3": {
+        "header": "Lost Books:",
+        "1": "Kamikotosss",
+        "2": "ManulGod",
+        "3": "Vicissitude as a gift",
+        "4": "Licht & Ruchi as Workers for one Day"
+        },
+        "workers4": {
             "header": "Special Thanks:",
             "1": "CHACHENWAGEN TV"
+        }
+    },
+    "GraditudePage.title":"Graditudes",
+    "GraditudeInfo":{
+        "text-donation":{
+            "header":"Support Information",
+            "text1":"Our project needs Your support to expand its functionality.",
+            "text2":"The Boosty platform is available for donations. This platform is widely used in our country and is not particularly widespread abroad. If you are not familiar with it, we hasten to reassure you, registration on it is possible using a Google account. The Boosty sets a goal, for which fundraising is ongoing right now.",
+            "text3":"Maecenas are people who supported our project during its most difficult time, when it most needed outside help.",
+            "links.header": "Link for Support"
+        },
+        "donator.header":"An Auction of the Ring",
+        "patrons1":{
+            "header":"Our Maecenas"
+        },
+        "patrons2":{
+            "header":"Our Patrons"
         }
     },
     "DisclaimerBanner.1": " - is a fan site and database developed by the community dedicated to the game ",
@@ -242,7 +285,7 @@
         "damageType": "Damage Type",
         "sin": "Sin",
         "maxCoin": "Maximum Coin Value (Base)",
-        "coinCondition": "Maximum Coin Value considering Skill and Combat Passive conditions",
+        "coinCondition": "Maximum Coin Value considering Skill and Combat Passive conditions [In Clash]",
         "defenceLevel": "Defence Level",
         "offenceLevel": "Offence Level",
         "minPotencial": "Minimum Potential Damage of the skill (calculations by Sir Alonne)",
@@ -270,7 +313,7 @@
         }
     },
     "SkillCoinDescription.clickToSeeDescription":"Click to see description",
-    "SEOHelmet.keywords": "GLL, GreatLimbusLibrary, Limbus, Wiki, Database, Great Limbus Library, Limbus Company, Gacha, Tier List, Faust, Don Quixote, Yi Sang, Ryoshu, Mersault, Hong Lu, HeathCliff, Ishmael, Rodion, Sinclair, Outis, Gregor",
+    "SEOHelmet.keywords": "GLL, GreatLimbusLibrary, Limbus, Wiki, Database, Great Limbus Library, Limbus Company, Gacha, Tier List, Лимбус, Тир лист, Faust, Don Quixote, Yi Sang, Ryoshu, Mersault, Hong Lu, HeathClif, Ishmael, Rodion, Sinclair, Outis, Gregor, Тирлист, Гача, Лимбус Компани, Персонажи, Гайды, Ивенты, Новости, Фансайт, ЭГО, Индентичности, Грешинки, Ультимейты, Пассивки, Статусы, Тимбилдер, Сравнение, Команда, Отряд, Ивенты, ГЛЛ, Фауст, Сайт по Лимбус, Лимбус Сайт, Сайт лимбус компани, Сайт Limbus, Сайт по Limbus, Сайт Limbus Company, Сайт, Вики, Вики Limbus Company, Вики Limbus, Википедия, лимбус компани, тир лист лимбус компани, лимбус, лимбус компани тир лист, лимбус компани русификатор, лимбус компани вики, русификатор лимбус компани, лимбус компани персонажи, лимбус компани тирлист, тир лист лимбус, дон кихот лимбус, лимбус тир лист, грехи лимбус компани, лимбус библиотека",
     "SEOHelmet.description": "Great Limbus Library is a fan site and community-driven database dedicated to the Limbus Company game. Guides, Identities, EGOs, News, Events, Tier Lists, and Team Builder.",
     "SkillCoinDescription" : {
         "[onhit]" : "[On Hit] ",
@@ -292,6 +335,7 @@
         "[tailsattackend]" : "[Tails Attack End] ",
         "[failedkill]" : "[Failed Kill] ",
         "[critattackend]" : "[Crit Attack End] ",
+        "[turnend]" : "[Turn End] ",
         "fc" : " Final Power",
         "bc" : " Base Power",
         "cg" : " Coin Power",
@@ -321,11 +365,14 @@
     },
     "EntityFullInfoSanity":{
         "PanicEffects":"Panic Effects",
-        "FactorsIncreasingSanity":"Factors Increasing Sanity",
-        "FactorsDecreasingSanity":"Factors Decreasing Sanity"
+        "FactorsIncreasingSanity":"Base Factors Increasing Sanity",
+        "FactorsDecreasingSanity":"Base Factors Decreasing Sanity"
     },
     "TierListDisclaimer":{
         "header":"Disclaimer"
+    },
+    "RestRoomDisclaimer":{
+        "header":"EGO Gift Fusion Details"
     },
     "FiltersSection":{
         "O":"0",
@@ -357,5 +404,47 @@
         "pride":"Pride",
         "envy":"Envy"
 
-    }
+    },
+    "FiltersSectionMd.header":"Keywords",
+    "MirrorDungeonNav":{
+        "rest-stops":"Rest Stop",
+        "gifts":"EGO Gifts",
+        "events":"Events"
+    },
+    "GiftsList":{
+        "Gifts":"EGO Gifts",
+        "SELECTED":"SELECTED",
+        "tier":" Tier"
+    },
+    "GiftsHeader":{
+        "description":"Selected EGO Gift Description",
+        "obtain":"Way to Obtain:",
+        "buy":"Buying Cost:",
+        "sell":"Selling Cost:",
+        "craft":"Used to Craft:",
+        "additionalInfo":"Selected EGO Gift Additional Info",
+        "name":"Selected EGO Gift name"
+    },
+    "Gift":{
+        "img":"Selected EGO Gift Image"
+    },
+    "MDEventOption":{
+        "combat_header":"Combat Encounter!",
+        "check":"Check: ",
+        "advantage":"Advantage: ",
+        "no_advantage":"No Advantage: ",
+        "check_failed":"Check Failed",
+        "check_passed":"Check Passed"
+    },
+    "MirrorDungeonPage":{
+        "title_rs":"Rest Stops Mirror Dungeon",
+        "title_events":"Events Mirror Dungeon",
+        "title_gifts":"EGO Gifts Mirror Dungeon",
+        "header":"Mirror Dungeon"
+    },
+    "GiftItem":{
+        "info":"Select to View the Info",
+        "crafts":"Fused EGO Gifts"
+    },
+    "FiltersSection.none":"Keywordless"
 }

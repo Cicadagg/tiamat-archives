@@ -67,7 +67,7 @@ export const ItemIdentityInfo:React.FC<ItemIdentityInfoInterface> = ({entity}) =
                                 </div>
                             </div>
                             )
-                    })
+                    })  
                 }
             </div>
             <span className={["item-identity-info-tier-rankID", `item-identity-info-tier-rank--${idTier}`].join(" ")} >{idTier}</span>

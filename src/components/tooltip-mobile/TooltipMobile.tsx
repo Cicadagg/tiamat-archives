@@ -13,8 +13,8 @@ export const TooltipMobile: React.FC<ITooltipMobileProps> = ({ image, text ,head
             {
                 (!!header || !!image) && <>
                 <span className='TooltipMobile-header'>
-                    {!!image ? image : <></>}
                     {!!header ? header : ""}
+                    {!!image ? image : <></>}
                 </span>
                 <hr />
                 </>

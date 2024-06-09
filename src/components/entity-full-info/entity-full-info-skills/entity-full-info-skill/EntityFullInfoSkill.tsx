@@ -14,7 +14,7 @@ interface IEntityFullInfoProps {
     skill:ISkill;
 }
 export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,skill}) => {
-    const {imgUrl,countCoin,basicCoin,weightCoin,growthPerCoin,damage,maxCoinValue,maxPossibleDmg,minPossibleDmg} = identity;
+    const {imgUrl,countCoin,basicCoin,weightCoin,growthPerCoin,damage,maxCoinValue,fullMaxCoinValue,maxPossibleDmg,minPossibleDmg} = identity;
     const {t,i18n} = useTranslation();
     
     const nameSkillKey = `nameSkill${i18n.language.toUpperCase()}` as keyof typeof identity;
@@ -42,10 +42,12 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
     const maxCoinImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.png`} alt={`${imgUrl}`}/>;
 
     const maxCoinWithConditionValue = maxCoinValue[skill.index];
+    const fullMaxCoinWithConditionValue = fullMaxCoinValue[skill.index];
     const maxCoinWithConditionTooltip = t("EntityFullInfoSkill.coinCondition");
     const maxCoinWithConditionImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinCondition.png`} alt={`max coin with condition`}/>;
 
-    const attackDefLevelValue = damage[skill.index];
+    const maxLvlIdentity = 45; // Максимальный уровень Идентичности
+    const attackDefLevelValue = maxLvlIdentity + damage[skill.index];
     const attackDefLevelTooltip = skill.index === 3 && t("EntityFullInfoSkill.defenceLevel") || t("EntityFullInfoSkill.offenceLevel");
     const attackDefLevelImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${ skill.index !== 3 && `damage` || `evadeDef1`}.png`} alt={`attack/defence level`}/>;
 
@@ -171,7 +173,7 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
                                 ()=>{
                                     handleMobileTooltipClick(<TooltipMobile 
                                         text={maxCoinWithConditionTooltip}
-                                        header={`${maxCoinWithConditionValue}`}
+                                        header={`${maxCoinWithConditionValue}[${fullMaxCoinWithConditionValue}]`}
                                         image={maxCoinWithConditionImgHTML}
                                     />
                                     )
@@ -179,6 +181,7 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
                             }
                             className={`${'skill-atk'} tooltip-container`} >
                                 {maxCoinWithConditionValue}
+                                {t('[')}{fullMaxCoinWithConditionValue}{t(']')}
                                 {maxCoinWithConditionImgHTML}
                                 <span className={`${'entityFullInfo-tooltip'}`} >{maxCoinWithConditionTooltip}</span>
                             </div>

@@ -24,6 +24,10 @@
    margin: 0;
    animation: AppearAnimationH1 1s ease;
 }
+.support-link {
+    color:#3AA1FF;
+}
+
 @keyframes AppearAnimationH1 {
     0% {
         opacity: 0;

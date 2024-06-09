@@ -1,0 +1,200 @@
+.graditude-info{
+    color:white;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.graditude-rusLink{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    will-change: scale , opacity;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 24px;
+}
+
+.graditude-rusLink svg{
+    width: 18px;
+    height: 18px;
+}
+
+.graditude-rusLink svg path{
+    stroke: #fff;
+}
+
+.graditude-rightSide{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    will-change: scale , opacity;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 24px;
+}
+
+.graditude-rightSide:hover{
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.graditude-rightSide svg{
+    width: 18px;
+    height: 18px;
+}
+
+.graditude-rightSide svg path{
+    stroke: #fff;
+}
+
+.graditude-info h1 {
+    font-size: 46px;
+    margin-top: 28px;
+    margin-bottom: 28px; 
+}
+
+.color-blue {
+    color:#3AA1FF;
+}
+.graditude-info h2{
+    font-size: 32px;
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+.graditude-honorable-list h2{
+    font-size: 46px;
+    margin-top: 28px;
+}
+
+.graditude-honorable-list h3{
+    font-size: 32px;
+    margin-top: 28px;
+}
+
+.graditude-honorable-list ul{
+    font-size: 26px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.graditude-honorable-list li{
+    font-size: 26px;
+    margin-top: 5px;
+    font-weight: 500;
+
+}
+
+.graditude-tooltip {
+    display: flex;
+    position: absolute;
+    text-align: center;
+    width: fit-content;
+    background-color: #333;
+    color: #fff;
+    font-size: 14.4px;
+    padding: 4px;
+    border-radius: 4px;
+    z-index: 1000;
+    top: -1.6px;
+    transform: translate(0, -100%);
+    font-weight: 500;
+    opacity: 0;
+}
+
+.graditude-tooltip--active {
+    opacity: 1;
+}
+.donation-link {
+    display: flex;
+}
+.donation-link h1 {
+    font-size: 32px;
+}
+.donation-link a svg {
+    width: 100%;
+    height: 100%;
+}
+
+.graditude-info button {
+    height: 50px;
+    width: 50px;
+    opacity: 1;
+    transition: 0.4s;
+    position: relative;
+    margin-right: 30px;
+}
+.graditude-info button:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+.graditude-info>.content-container>.text-donation>.donation-link>.tinkoff-button svg {
+    width: 100px;
+    height: 100px;
+    transform: translate(-20px,-25px);
+}
+.graditude-info>.content-container>.text-donation>.donation-link>.cloudtips-button a svg {    
+    width: 50px;
+    height: 50px;
+    transform: translate(10px,0px);
+}
+.graditude-info>.content-container>.text-donation>.donation-link>.boosty-button a svg {
+    width: 65px;
+    height: 65px;
+    transform: translate(-5px,-10px);
+}
+.content-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; 
+    width: 100%;
+}
+
+.text-donation {
+    margin-right: 10%;
+}
+
+.text-donation p {
+    font-size: 26px;
+}
+
+.donator-list {
+    flex-shrink: 0; /* Запретить сжиматься элементу */
+    margin-left: auto;
+}
+
+.contact-tooltip--active {
+    opacity: 1;
+}
+
+@media (max-width:1200px){
+    .graditude-info{
+        flex-direction: column;
+    }
+    .content-container{
+        flex-direction: column;
+    }
+    .text-donation {
+        margin-right: 0;
+    }
+    .donator-list {
+        margin-left: 0;
+    }
+    .graditude-honorable-list{
+        margin-left: 0px;
+    }
+}
+@keyframes dissappear {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+}

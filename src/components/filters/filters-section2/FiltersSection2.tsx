@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { tagsIds } from "../../../constants/skillBasedTypes";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { filterChangeTypeAction, filterClearSectionAction } from "../../../store/reducers/filter-reducer";
@@ -12,6 +13,7 @@ import { FilterButton } from "../filter-button/FilterButton";
 export const FiltersSection2:React.FC = () => {
     const statuses = useQueryClient().getQueryData("statuses") as StatusesInterface[]|null;
     const filterState = useTypedSelector(state => state.filterReducer);
+    const location = useLocation().pathname;
     const [isAllFiltersShown,setIsAllFiltersShown] = useState(false);
     const [filterData, setFilterData] = useState<Array<undefined|string>>(tagsIds);
     const dispatch = useDispatch();
@@ -32,6 +34,8 @@ export const FiltersSection2:React.FC = () => {
 
    
     const type = "tags";
+    if(location.includes("/mirror-dungeon")) return null;
+
     return <section className={`filters-section ${isAllFiltersShown && "section-expanded"}`}>
     {filterData.map((subtype)=>{
         let currentType = filterState.types[type];

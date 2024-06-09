@@ -21,6 +21,7 @@ export interface IdentityInterface{
     basicCoin:number[],
     growthPerCoin:number[],
     maxCoinValue:number[],
+    fullMaxCoinValue:number[],
     damage:number[],
 
     nameSkillRU:string[],

@@ -15,8 +15,11 @@ import { IdentityPage } from "../pages/IdentityPage";
 import { ExactPageWrapper } from "../pages/ExactPageWrapper";
 import { EGOPage } from "../pages/EGOPage";
 import { AdminPage } from "../pages/AdminPage";
-import { locales } from "../constants/locales";
 import { TierListPageRedirect } from "../pages/TierListPageRedirect";
+import { GraditudePage } from "../pages/GraditudePage";
+import { MirrorDungeonPage } from "../pages/MirrorDungeonPage";
+import { MirrorDungeonPageRedirect } from "../pages/MirrorDungeonPageRedirect";
+import { EventTestPage } from "../pages/EventTestPage";
 
 export const AppRouter:React.FC = () => {
     
@@ -29,6 +32,11 @@ export const AppRouter:React.FC = () => {
         {
             path:"/test/description",
             element:<AdminPage />,
+            isExact:false,
+        },
+        {
+            path:"/test/event",
+            element:<EventTestPage />,
             isExact:false,
         },
         {
@@ -80,6 +88,21 @@ export const AppRouter:React.FC = () => {
             path:"/contact",
             element:<ContactPage />,
             isExact:true,
+        },
+        {
+            path:"/graditude",
+            element:<GraditudePage />,
+            isExact:true,
+        },
+        {
+            path:"/mirror-dungeon/:type",
+            element:<MirrorDungeonPage />,
+            isExact:true,
+        },
+        {
+            path:"/mirror-dungeon",
+            element:<MirrorDungeonPageRedirect />,
+            isExact:false,
         },
     ]
     const dispatch = useDispatch();

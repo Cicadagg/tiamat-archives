@@ -33,6 +33,7 @@ export type FilterInterface = {
         sinner:SinnerFilterInterface;
         rarityIdentity:SinnerRarityFilterInterface;
         rarityEGO:EGORarityFilterInterface;
+        md:Record<string,boolean>;
     }
 }
 export enum FilterActionTypes {
@@ -69,6 +70,7 @@ const initialTypes = {
     sinner:initStateParam(sinnerTypes),
     rarityIdentity:initStateParam(rarityIdentityTypes),
     rarityEGO:initStateParam(rarityEGOTypes),
+    md:{"none":false},
 }
 const initialState : FilterInterface = {
     types:initialTypes

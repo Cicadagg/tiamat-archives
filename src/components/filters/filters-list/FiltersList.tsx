@@ -42,14 +42,14 @@ export const FiltersList:React.FC = () => {
             visible:true,
             header:t("FiltersList.header.sin")
         },
+       
         {
             type:"dmgType" ,
             imgsFolder:"dmg-type",
             imgExtension:".png",
             data:damageTypes,
-            visible:true,
+            visible:!location.includes("/mirror-dungeon"),
             header:t("FiltersList.header.dmgType")
-
         },
         {
             type:"guardType" ,
@@ -84,7 +84,7 @@ export const FiltersList:React.FC = () => {
             imgExtension:".webp",
             data:sinnerTypes,
             header:t("FiltersList.header.sinner"),
-            visible:true
+            visible:!location.includes("/mirror-dungeon")
 
         },
        

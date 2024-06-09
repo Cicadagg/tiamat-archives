@@ -1,10 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { rarityEGOType } from "../../../constants/types";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { filterChangeTypeAction, filterClearSectionAction } from "../../../store/reducers/filter-reducer";
-import { StatusesInterface } from "../../../store/reducers/statuses-reducer";
 import { EraserSVG } from "../../svg/EraserSvg";
 import { FilterButton } from "../filter-button/FilterButton";
 
@@ -24,7 +22,6 @@ export const FiltersSection:React.FC<{filter:TFilter}> = ({filter}) => {
     const handleFilterChange = (key:string) =>filterChangeTypeAction(dispatch,key);
     const handleClearSection = (section:string) =>  filterClearSectionAction(dispatch,section);
     const {type, data,header} =filter;
-
     return <section className="filters-section">
     
     {data.map((subtype)=>{

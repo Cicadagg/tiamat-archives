@@ -15,6 +15,8 @@ interface IEntityFullInfoProps {
 }
 export const EntityFullInfoSkillEGO:React.FC<IEntityFullInfoProps> = ({ego,skill}) => {
     const {imgUrl,basicCoin,weightCoin,growthPerCoin,maxCoinValue,sanity} = ego;
+    const {coins:coinsCount} = skill;
+    const coins = new Array(coinsCount).fill(1);
     const {t,i18n} = useTranslation();
 
     const nameSkillKey = `nameSkill${i18n.language.toUpperCase()}` as keyof typeof ego;
@@ -29,10 +31,7 @@ export const EntityFullInfoSkillEGO:React.FC<IEntityFullInfoProps> = ({ego,skill
 
     const testDescription = descriptionCoin.includes("|") && descriptionCoin.split("|")[skill.index] || descriptionCoin;
     const attackWeightBuff = getAtackWeightBonusFromDescription([testDescription,descriptionPassive]);
-    const coins = [1];
     const dispatch = useDispatch();
-
-   
 
     const damageGuardType = t("EntityFullInfoSkillEGO.damageType");
     const damageGuardTypeImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${skill.dmgType}.png`} alt={`${skill.dmgType}`}/>;
@@ -43,8 +42,11 @@ export const EntityFullInfoSkillEGO:React.FC<IEntityFullInfoProps> = ({ego,skill
     const sanityTooltip = t("EntityFullInfoSkillEGO.sanity");
     const sanityValue = sanity[skill.index];
     const sanityImgHTML =<img src={`${process.env.PUBLIC_URL}/images/general/sanity.webp`} alt={`sanity`}/>;
-    
-    const maxCoinBaseValue = Math.sign(growthPerCoin[skill.index]) === -1 ? basicCoin[skill.index] : basicCoin[skill.index] + growthPerCoin[skill.index]*1;
+
+    const maxCoinBaseValue = Math.sign(growthPerCoin[skill.index]) === -1 
+    ? basicCoin[skill.index] 
+    : basicCoin[skill.index] + growthPerCoin[skill.index]*coinsCount;
+
     const maxCoinTooltip = t("EntityFullInfoSkillEGO.maxCoin");
     const maxCoinImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.png`} alt={`${imgUrl}`}/>;
 

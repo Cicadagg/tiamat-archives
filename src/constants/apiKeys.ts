@@ -1,24 +1,14 @@
-export const statusesApiKey = '';
-export const statusesAnomaliesApiKey = "";
-export const statusesIdentitiesApiKey = "";
-export const identitiesApiKey = '';
-export const egoApiKey =  '';
+export const statusesApiKey1 = "AIzaSyB0bjz4sw_A73INq0ewh3Z_7yiFoorM0iE";
+export const statusesApiKey2 = "AIzaSyA_8-Q8fg3udmue7axdizvezLYIwlhuajI";
 
-// export const statusesApiKey1 = "AIzaSyBak0WvITcOTZPGw3FaYKbjJ1_n25yUyTg";
-// export const statusesApiKey2 = "AIzaSyAgdW9HVkzD99fkt6jMcsNFpU9gjiwGRT4";
+export const identitiesApiKey1 = 'AIzaSyDMOnVWmBl-KDTT-ZfQuu0dG_Hi2T-k9Po';
+export const identitiesApiKey2 = 'AIzaSyBi4sBIbEPlYl8d-EAsgTC6s0Jeu16460U';
 
-// export const identitiesApiKey1 = 'AIzaSyAn7ed4uO3kbNyz5fD_Upe8_UKYgmtpPO8';
-// export const identitiesApiKey2 = 'AIzaSyCxbgZW_EzkUkHVYYIhC2OvdACTkJU7GJ8';
+export const egoApiKey1 =  'AIzaSyBfHHdv_YAi77X2mvTSp2plvxJR-mSSIJc';
+export const egoApiKey2 =  'AIzaSyDNsa87bdjPOVrxIbLqNhi8DWR4WkyrtAk';
 
-// export const egoApiKey1 =  'AIzaSyAU9-PhHQ5A0i2oyQdXOtyoZaSNgOvPzEo';
-// export const egoApiKey2 =  'AIzaSyBwB8tzP2-s5IXtd54L90IfMHkSh5o5KOE';
+export const md_giftsApiKey1 =  'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
+export const md_giftsApiKey2 =  'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
 
-export const statusesApiKey1 = "AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E";
-export const statusesApiKey2 = "AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E";
-
-export const identitiesApiKey1 = 'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
-export const identitiesApiKey2 = 'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
-
-export const egoApiKey1 =  'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
-export const egoApiKey2 =  'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
-
+export const md_eventsApiKey1 =  'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';
+export const md_eventsApiKey2 =  'AIzaSyC88pAyuOqISK4yXPmulniGHQuqtAyV00E';

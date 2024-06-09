@@ -1,5 +1,13 @@
 import { sinnerTypes ,guardTypes ,damageTypes,rarityEGOTypes,rarityIdentityTypes,sinTypes, tierTypes} from "./skillBasedTypes";
 import { dmgType, guardType, rarityEGOType, rarityIdentityType, sinnerType, sinType } from "./types";
+export const validationToJSON = (a:unknown) => {
+    try{
+        const validatedVal = JSON.parse(a as string);
+        return {validatedVal,isValid:true};
+    }catch(e){
+        return {validatedVal:null,isValid:false};
+    }
+}
 export const validationToNumbersArray = (a:unknown) => {
     let validatedVal:number[] = [];
     let isValid = true;
@@ -132,7 +140,6 @@ export const getValidatedData = (response:unknown[][][],validationKeys:{key:stri
             const row = r[i];
             const item:{[key:string]:unknown} = {};
             if(row.length < validationKeys.length){
-                console.log(`Missing parameters id ${i}`);
                 continue;
             } 
             let isItemValid = true;

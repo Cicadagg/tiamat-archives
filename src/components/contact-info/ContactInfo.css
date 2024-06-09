@@ -63,7 +63,9 @@
     position: relative;
 }
 .contacts-honorable-list{
-    margin-left: 150px;
+    margin-left: 75px;
+    display: flex;
+    flex-direction: row;
 }
 .contacts-honorable-list h2{
     font-size: 46px;
@@ -72,22 +74,39 @@
 .contacts-honorable-list h3{
     font-size: 32px;
     margin-top: 28px;
-
-}
-.contacts-honorable-list ul{
 }
 .contacts-honorable-list li{
     font-size: 26px;
     margin-top: 5px;
     font-weight: 500;
-
 }
-@media (max-width:1200px){
+.librarian-patron li {
+    font-weight: 700;
+}
+.text-librarian-patron li {
+    font-weight: 500;
+    list-style: none;
+}
+.lost-book-and-sp {
+    margin-top: 80.9px;
+    margin-left: 75px;
+}
+@media (max-width:1900px){
     .contact-info{
         flex-direction: column;
     }
     .contacts-honorable-list{
         margin-left: 0px;
+    }
+}
+@media (max-width:1300px){
+    .contacts-honorable-list{
+        flex-direction: column;
+        margin-left: 0px;
+    }
+    .lost-book-and-sp {
+        margin-top: 0;
+        margin-left: 0;
     }
 }
 @keyframes dissappear {

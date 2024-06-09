@@ -12,6 +12,7 @@ import { EyeClosedSVG } from "../svg/EyeClosedSVG";
 import { EyeOpenedSVG } from "../svg/EyeOpenedSVG";
 import { FilterSVG } from "../svg/FilterSVG";
 import { FiltersList } from "./filters-list/FiltersList";
+import { FiltersSectionMd } from "./filters-section-md/FiltersSectionMd";
 import { FiltersSection2 } from "./filters-section2/FiltersSection2";
 import "./Filters.css";
 
@@ -58,7 +59,10 @@ export const Filters:React.FC = () => {
                     <div className="filters-modal-wrapper">
                     <FiltersList/>
                     <FiltersSection2/>
-                    </div>)}} className="show-filters btn-filters"><FilterSVG/>{t("Filters.showFilters")} </button>
+                    {location.includes("/mirror-dungeon") && <FiltersSectionMd/>}
+                    </div>)}} className="show-filters btn-filters">
+                        <FilterSVG/>
+                    {t("Filters.showFilters")} </button>
                 <button onClick={()=>filterResetAllAction(dispatch)} className="clear-filters btn-filters"><ClearFilterSVG/>{t("Filters.clearFilters")} </button>
                 {!location.includes("/teambuilder") && <Search/>}
                 </div>
@@ -68,6 +72,7 @@ export const Filters:React.FC = () => {
             filterVisibility === "show" && <article className={"filters-main"}>
                 <FiltersList/>
                 <FiltersSection2/>
+                {location.includes("/mirror-dungeon") && <FiltersSectionMd/>}
             </article>
             }
         </section>

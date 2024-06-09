@@ -24,14 +24,16 @@ export type EGOInterface = {
 
     egoSin: string;
     dmgType: string[];
+
     basicCoin: number[];
     growthPerCoin: number[];
     maxCoinValue: number[];
-
-    nameSkillRU: string[];
-    nameSkillEN: string[];
-
+    countCoin: number[];
     weightCoin:number[];
+
+    nameSkillEN: string[];
+    nameSkillRU: string[];
+
 
     descriptionCoinRU:string;
     namePassiveRU:string;

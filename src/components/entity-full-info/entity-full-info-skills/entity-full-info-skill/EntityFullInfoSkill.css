@@ -96,13 +96,13 @@
     font-weight: bold;
 
 }
-.skill-atk{
-    color:rgba(255, 255, 255, 0.9);
+.skill-atk {
+    color: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
     position: relative;
-    gap:2px;
-    cursor:pointer;
+    gap: 2px;
+    cursor: pointer;
     font-size: 25px;
     font-weight: 500;
     text-decoration: underline 1.5px;
