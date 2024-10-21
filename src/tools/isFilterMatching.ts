@@ -1,9 +1,10 @@
-import { dmgType, sinType } from "../constants/types";
+import { dmgType, guardType, sinType } from "../constants/types";
 import { EGOInterface } from "../store/reducers/ego-reducer";
 import { DmgTypeFilterInterface, FilterInterface, GuardTypeFilterInterface, SinFilterInterface, SinnerFilterInterface } from "../store/reducers/filter-reducer";
 import { IdentityInterface } from "../store/reducers/ids-reducer";
 import { TSearchState } from "../store/reducers/search-reducer";
 import { getStatusesEntityList } from "./getStatusesEntityList";
+import { isGuide } from "./isguide";
 import { isIdentity } from "./isIdentity";
 
 export const isFilterMatching = (filterState:FilterInterface,searchState:TSearchState, entity:IdentityInterface|EGOInterface,locale:string) =>{
@@ -45,9 +46,48 @@ export const isFilterMatching = (filterState:FilterInterface,searchState:TSearch
             if( !(skillsDmgType.includes(key as dmgType)) ) return false;
         }
 
-        const isGuardTypeAny = Object.values(types.guardType).some((value) => value);
-        if (isGuardTypeAny && !types.guardType[guardType as keyof GuardTypeFilterInterface]) return false;
+        for(const key in types.guardType){
+            const value = types.guardType[key as keyof GuardTypeFilterInterface];
+            if(value === false)continue;
+            if( !(guardType.includes(key as guardType)) ) return false;
+        }
 
+    }
+    else if (isGuide(entity)){
+        const {ids, descriptionEn, descriptionRu, nameRu, nameEn, tagsId, date} = entity;
+        /*const statuses = Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassiveEN]));
+        
+        for(const key in types.tags){
+            const value = types.tags[key];
+            if(value === false)continue;
+            if(!statuses.includes(key)) return false;
+        }*/
+        
+        //if((isAnyRarityEGO||isAnyRarityIdentity) && !types.rarityEGO[rarity as keyof typeof types.rarityEGO]) return false;
+
+        /*let activeSins = Object.entries(types.sin).map((value) => {
+            const [sinType , isActive] = value;
+            if(isActive) return sinType;
+        });
+        if(activeSins.length){
+            const typedActiveSins = activeSins as string[];
+            const isActiveSins = typedActiveSins.every((value) => {
+                return entity[value as keyof EGOInterface] !== 0;
+            }) 
+            if(!isActiveSins) return false;
+        } */
+
+        /*for(const key in types.dmgType){
+            const value = types.dmgType[key as keyof DmgTypeFilterInterface];
+            if(value === false) continue;
+            let isValid = false;
+            for(let i = 0 ; i < dmgType.length;i++){
+                const currDmgType = dmgType[i];
+                if( currDmgType === (key as dmgType) ) isValid = true;
+            }
+            if(!isValid) return false;
+        }*/
+        return true;
     }else{
         const {dmgType,descriptionCoinEN,descriptionPassiveEN} = entity;
         const statuses = Object.keys(getStatusesEntityList([descriptionCoinEN,descriptionPassiveEN]));

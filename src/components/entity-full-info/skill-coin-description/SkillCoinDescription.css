@@ -44,6 +44,9 @@
 .condition--clashwin{
   color: orange;
 }
+.condition--clashablecounter{
+  color: orange;
+}
 .condition--combatstart{
   color: rgb(37, 133, 37);
 }

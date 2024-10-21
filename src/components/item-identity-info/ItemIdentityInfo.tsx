@@ -32,11 +32,11 @@ export const ItemIdentityInfo:React.FC<ItemIdentityInfoInterface> = ({entity}) =
     };
     const skills:Tskill[] = [
         ...setupSkills(),
-        {imageUrl:`guard-type/${guardType}` , type:guardType ,count:1 , sin:sinGuard},
+        ...guardType.map((type,i)=>({imageUrl:`guard-type/${type}` , type ,count:1 , sin:sinGuard[i]})),
     ];
    
     const passives = [
-        {imageUrl:`sins/${sinPassive1}` , count:countPassive1 , description: t("ItemIdentityInfo.battlePassive") },
+        {imageUrl:[`sins/${sinPassive1[0]}`,`sins/${sinPassive1[1]}`] , count:[countPassive1[0],countPassive1[1]] , description: t("ItemIdentityInfo.battlePassive") },
         {imageUrl:`sins/${sinPassive2}` , count:countPassive2 , description: t("ItemIdentityInfo.supportPassive") },
     ]
     
@@ -57,15 +57,33 @@ export const ItemIdentityInfo:React.FC<ItemIdentityInfoInterface> = ({entity}) =
                 {
                     passives.map(({imageUrl,count,description},index)=>{
                             return(
-                            <div key={`${index}`} className="item-identity-info-tier">
-                                <div className="item-identity-info-tier-description">
-                                    <img src={`${process.env.PUBLIC_URL}/images/${imageUrl}.png`} alt={imageUrl}/>
-                                    {count > 0 && <span>{`x${count}`}</span>}
-                                </div>
-                                <div className="item-identity-info-tier-rank-container">
-                                    <span >{description}</span>
-                                </div>
-                            </div>
+                                    (description == t("ItemIdentityInfo.battlePassive") && count)
+                                    ? <div key={`${index}`} className="item-identity-info-tier">
+                                        <div className="item-identity-info-tier-description">
+                                            <img src={`${process.env.PUBLIC_URL}/images/${imageUrl[0]}.png`} alt={imageUrl[0]}/>
+                                            {count[0] > 0 && <span>{`x${count[0]}`}</span>}
+                                        </div>
+                                        {
+                                            count[1] && <div className="item-identity-info-tier-description">
+                                                <img src={`${process.env.PUBLIC_URL}/images/${imageUrl[1]}.png`} alt={imageUrl[1]}/>
+                                                {count[1] > 0 && <span>{`x${count[1]}`}</span>}
+                                            </div>
+                                        }    
+                                        <div className="item-identity-info-tier-rank-container">
+                                            <span >{description}</span>
+                                        </div>
+
+                                    </div>
+                                    : <div key={`${index}`} className="item-identity-info-tier">
+                                        <div className="item-identity-info-tier-description">
+                                            <img src={`${process.env.PUBLIC_URL}/images/${imageUrl}.png`} alt={imageUrl[0]}/>
+                                            {count[0] > 0 && <span>{`x${count}`}</span>}
+                                        </div>
+                                        <div className="item-identity-info-tier-rank-container">
+                                            <span >{description}</span>
+                                        </div>
+
+                                    </div>
                             )
                     })  
                 }

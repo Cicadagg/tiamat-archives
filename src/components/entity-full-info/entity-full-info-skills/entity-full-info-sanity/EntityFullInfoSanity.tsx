@@ -7,7 +7,7 @@ import './EntityFullInfoSanity.css';
 export const EntityFullInfoSanity:React.FC<{identity:IdentityInterface}> = ({identity}) => {
     const {t,i18n} = useTranslation();
     const {sanityInfoEN,sanityInfoRU} = identity;
-    const panicEffects = t("EntityFullInfoSanity.PanicEffects");
+    const panicEffects = t("EntityFullInfoSanity.PanicTypes");
     const factorsIncreasingSanity = t("EntityFullInfoSanity.FactorsIncreasingSanity");
     const factorsDecreasingSanity = t("EntityFullInfoSanity.FactorsDecreasingSanity");
     const sanityBase = (i18n.language === "ru") ? sanityInfoRU : sanityInfoEN;

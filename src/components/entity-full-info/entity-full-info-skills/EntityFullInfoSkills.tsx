@@ -8,6 +8,7 @@ import { EntityFullInfoSkill } from './entity-full-info-skill/EntityFullInfoSkil
 import "./EntityFullInfoSkills.css"
 interface IEntityFullInfoProps {
     identity:IdentityInterface;
+    maxLvlIdentity:number;
 }
 export interface ISkill {
     index:number;
@@ -19,14 +20,14 @@ export interface ISkill {
 export interface IPassive {
     index:number;
     sin:sinType;
-    count:number;
+    count:string;
     description:string;
     name:string;
     type:string;
     condition:string;
 }
 type TTabType = "skills" | "passives" | "sanity";
-export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity}) => {
+export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity,maxLvlIdentity}) => {
     const {t,i18n} = useTranslation();
     const {skillsDmgType,skillsSin} = identity;
     const [activeTab, setActiveTab] = useState<TTabType>("skills");
@@ -42,17 +43,19 @@ export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity}) 
             type:"attack"
         }
     })
-    skills.push(
-        {
-            index:skills.length,
-            sin:identity.sinGuard as sinType,
-            dmgType:identity.guardType as guardType,
-            resourceCount:0,
-            type:"guard"
-        }
-    )
+    if (identity.sinGuard && identity.guardType) {
+        identity.sinGuard.forEach((sin, index) => {
+            skills.push({
+                index:skills.length,
+                sin,
+                dmgType:identity.guardType[index],
+                resourceCount:0,
+                type:"guard"
+            });
+        });
+    }
     const passives:IPassive[] = [0,1].map((n,index)=>{
-        let k = `sinPassive${n+1}` as keyof typeof identity;
+        let k1 = `sinPassive${n+1}` as keyof typeof identity;
         let k2 = `countPassive${n+1}` as keyof typeof identity;
         let k3 = `descriptionPassive${n+1}${i18n.language.toUpperCase()}` as keyof typeof identity;
         let k4 = `passive${n+1}Condition` as keyof typeof identity;
@@ -60,8 +63,8 @@ export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity}) 
         let type = index === 0 ? t("EntityFullInfoSkills.battlePassive") : t("EntityFullInfoSkills.supportPassive") ;
         return {
             index:index,
-            sin:identity[k] as sinType,
-            count:identity[k2] as number,
+            sin:identity[k1] as sinType,
+            count:identity[k2] as string,
             description:identity[k3] as string,
             name:(identity[k5] as string[])[index],
             condition:identity[k4] as string,
@@ -84,7 +87,7 @@ export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity}) 
             {
                 (activeTab === "skills") && skills.map(
                     (skill,index)=>{
-                        return <EntityFullInfoSkill skill={skill} key={index} identity={identity}/>
+                        return <EntityFullInfoSkill skill={skill} key={index} identity={identity} maxLvlIdentity={maxLvlIdentity}/>
                     }
                 )
             }

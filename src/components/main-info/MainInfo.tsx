@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { LanguageDisclaimer } from "../language-disclaimer/LanguageDisclaimer";
 import { EntitySection } from "./EntitySection/EntitySection";
 import { EventsSection } from "./EventsSection/EventsSection";
+import { NewsSection } from "./NewsSection/NewsSection";
 import { Link } from "react-router-dom"
 import "./MainInfo.css";
 import { NavigationSection } from "./NavigationSection/NavigationSection";
@@ -13,7 +14,7 @@ export const MainInfo:React.FC = () => {
 
     const quickStartLinks = [
         {
-            text:t("MainInfo.headerDescription4"),
+            text:t("MainInfo.headerDescription3"),
             to:`/${i18n.language}/graditude`
         }
     ]
@@ -29,18 +30,13 @@ export const MainInfo:React.FC = () => {
         <section className="main-info" >
             <header className="main-info-header-main">
                     <h1> Great <span>Limbus</span> Library </h1>
-                    <p>
-                        {t(`MainInfo.headerTitle`)}
-                    </p>
-                    <p>
-                        {t(`MainInfo.headerDescription`)}<br /> <br />
-                        {t(`MainInfo.headerDescription2`)}<br />
-                        {t(`MainInfo.headerDescription3`)} 
+                    <p className="main-info-header-description">
+                        {t(`MainInfo.headerDescription1`)}<br/>
+                        {t(`MainInfo.headerDescription2`)}
                         {quickStartLinks.map((link, index) => {
                             return <NavLink key={index} to={link.to} text={link.text}/>
                         })}
-                        {t(`MainInfo.headerDescription5`)}<br />
-                        {t(`MainInfo.headerDescription6`)}
+                        {t(`MainInfo.headerDescription4`)}
                     </p>
                     <LanguageDisclaimer/>   
             </header>
@@ -51,6 +47,7 @@ export const MainInfo:React.FC = () => {
                 <OfficialLinksSection/>
             </section>
             <section className="main-info-right">
+                    <NewsSection/>
                     <EventsSection/>
             </section>
                

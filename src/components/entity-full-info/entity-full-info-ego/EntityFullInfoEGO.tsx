@@ -20,7 +20,7 @@ const resMap:{
     'endure':'[x0.75]',
 }
 export const EntityFullInfoEGO:React.FC<IEntityFullInfoProps> = ({ego}) => {
-    const {sinner,imgUrl,egoTier,rarity,descriptionCoinEN,descriptionPassiveEN,wrath,sloth,lust,glut,gloom,pride,envy,egoResists} = ego;
+    const {sinner,imgUrl,season,egoTier,rarity,descriptionCoinEN,descriptionPassiveEN,wrath,sloth,lust,glut,gloom,pride,envy,egoResists,releaseDate} = ego;
     const {t,i18n} = useTranslation();
     const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const rarityStyled = rarity.replaceAll("O","Ø");
@@ -28,6 +28,18 @@ export const EntityFullInfoEGO:React.FC<IEntityFullInfoProps> = ({ego}) => {
     const sinsList = ["wrath","lust","sloth","glut","gloom","pride","envy"];
     const energyReqList = [wrath,lust,sloth,glut,gloom,pride,envy].filter(s => s > 0);
     const dispatch = useDispatch();
+    function excelToDate(excelDate:number) {
+        const excelStartDate = new Date(1899, 11, 30);
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        const date = new Date(excelStartDate.getTime() + excelDate * millisecondsPerDay);
+        return date;
+      }
+    const formateDate = (date:number) =>{
+        const newDate = excelToDate(date);
+        const month = `${newDate.getMonth()+1}`;
+        const day = `${newDate.getDate()}`;
+        return `${day.length === 1 ? `0${day}`: day}.${month.length === 1 ? `0${month}`: month}.${newDate.getFullYear()}`
+      }
     return (
         <section className={`${'entityFullInfo-entity'}`} >
                 <article className={"entityFullInfo-img"}>
@@ -42,7 +54,21 @@ export const EntityFullInfoEGO:React.FC<IEntityFullInfoProps> = ({ego}) => {
                     </div>
                 </article>
                 <div className='entityFullInfo-stats-container'>
-                
+
+                    <article className={"entityFullInfo-stats"}>
+                        <h2 >{t("EntityFullInfoIdentity.info")}</h2>
+                        {
+                            season !== "s-b" && <div className={`entityFullInfo-season entityFullInfo-season-${season[0] === 'w' ? 'w' : season.replace(/^e-/, 's-')}`}>
+                                {t(`EntityFullInfoIdentity.season.${season}`)}
+                            </div>
+                        }
+                        <div className={"entityFullInfo-release"}>
+                            {t('EntityFullInfoIdentity.release')}
+                            &nbsp;{/* Add a non-breaking space here */}
+                            <span className="date"> {formateDate(releaseDate)} </span>
+                        </div>
+                    </article>
+
                 {
                     status && <article className={"entityFullInfo-stats"}>
                     <h2 > {t("EntityFullInfoEGO.statuses")}</h2>

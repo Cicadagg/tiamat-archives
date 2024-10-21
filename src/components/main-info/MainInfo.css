@@ -13,6 +13,7 @@
 .main-info-header-main{
     min-height: 40vh;
     margin-top: 36px;
+    margin-bottom: 34.86px;
     position:relative;
     z-index: 3;
     padding:40px;
@@ -27,7 +28,9 @@
 .support-link {
     color:#3AA1FF;
 }
-
+.main-info-header-description{
+    max-width: 550px;
+}
 @keyframes AppearAnimationH1 {
     0% {
         opacity: 0;

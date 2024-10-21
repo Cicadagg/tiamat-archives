@@ -4,6 +4,7 @@ import { ISkill } from '../EntityFullInfoSkills';
 import "./EntityFullInfoSkill.css"
 import { SkillCoinDescription } from '../../skill-coin-description/SkillCoinDescription';
 import { getAtackWeightBonusFromDescription } from '../../../../tools/getAtackWeightBonusFromDescription';
+import { getUnbreakableCoinBonusFromDescription } from '../../../../tools/getUnbreakableCoinBonusFromDescription';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { setMobileModalTrigger } from '../../../../store/reducers/mobile-modal-reducer';
@@ -12,8 +13,9 @@ import { mobileLayoutFrom } from '../../../../constants/mobileLayoutFrom';
 interface IEntityFullInfoProps {
     identity:IdentityInterface;
     skill:ISkill;
+    maxLvlIdentity:number;
 }
-export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,skill}) => {
+export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,skill,maxLvlIdentity}) => {
     const {imgUrl,countCoin,basicCoin,weightCoin,growthPerCoin,damage,maxCoinValue,fullMaxCoinValue,maxPossibleDmg,minPossibleDmg} = identity;
     const {t,i18n} = useTranslation();
     
@@ -29,9 +31,10 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
     const testDescription = descriptionCoin.includes("|") && descriptionCoin.split("|")[skill.index] || "";
     const coins = Array(countCoin[skill.index]).fill(0);
     const attackWeightBuff = getAtackWeightBonusFromDescription([testDescription,descriptionPassive1]);
+    const unbreakableCoinBuff = getUnbreakableCoinBonusFromDescription(testDescription,countCoin[skill.index]);
     const dispatch = useDispatch();
 
-    const damageGuardType = skill.index === 3 && t("EntityFullInfoSkill.guardType") || t("EntityFullInfoSkill.damageType");
+    const damageGuardType = ((skill.index === 3 && skill.type === `guard`) || (skill.index === 4 && skill.type === `guard`)) && t("EntityFullInfoSkill.guardType") || t("EntityFullInfoSkill.damageType");
     const damageGuardTypeImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${skill.dmgType}.png`} alt={`${skill.dmgType}`}/>;
     
     const sinType = t("EntityFullInfoSkill.sin");
@@ -46,10 +49,9 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
     const maxCoinWithConditionTooltip = t("EntityFullInfoSkill.coinCondition");
     const maxCoinWithConditionImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinCondition.png`} alt={`max coin with condition`}/>;
 
-    const maxLvlIdentity = 45; // Максимальный уровень Идентичности
     const attackDefLevelValue = maxLvlIdentity + damage[skill.index];
-    const attackDefLevelTooltip = skill.index === 3 && t("EntityFullInfoSkill.defenceLevel") || t("EntityFullInfoSkill.offenceLevel");
-    const attackDefLevelImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${ skill.index !== 3 && `damage` || `evadeDef1`}.png`} alt={`attack/defence level`}/>;
+    const attackDefLevelTooltip = ((skill.index === 3 && skill.type === `guard`) || (skill.index === 4 && skill.type === `guard`)) && t("EntityFullInfoSkill.defenceLevel") || t("EntityFullInfoSkill.offenceLevel");
+    const attackDefLevelImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${ ((skill.index !== 3 && skill.type !== `guard`) || (skill.index !== 4 && skill.type !== `guard`)) && `damage` || `evadeDef1`}.png`} alt={`attack/defence level`}/>;
 
     const minPossibleDmgValue = minPossibleDmg[skill.index];
     const minPossibleDmgTooltip = t("EntityFullInfoSkill.minPotencial");
@@ -68,8 +70,15 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
     }
     return (
         <article className={`${'entityFullInfo-skill'}`} >
-                    <span className={`${'entityFullInfo-skill-index'}`} >{skill.type === "attack" ? `${t("EntityFullInfoSkill.skill")} ${skill.index+1}`: `${t("EntityFullInfoSkill.defSkill")}`} </span>
-                    
+                    <span className={`${'entityFullInfo-skill-index'}`} >
+                        {skill.type === "attack" 
+                        ? `${t("EntityFullInfoSkill.skill")} ${skill.index+1}`
+                        : skill.type[4] !== `attack` && skill.type[5] !== `attack` 
+                        ? (identity.guardType.length === 1 
+                            ? t("EntityFullInfoSkill.defSkill") 
+                            : `${t("EntityFullInfoSkill.defSkill")} ${skill.index+1-identity.skillsDmgType.length}`)
+                        : t("EntityFullInfoSkill.defSkill")}
+                    </span>
                     <div className={`${'entityFullInfo-skill-r'}`}>
                         <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:"20px",marginBottom:"15px"}}>
                             <p className={`${'skill-name'} ${skill.sin}-sin-color`} >{nameSkill[skill.index]}</p>
@@ -116,7 +125,7 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
                                     {
                                     coins.map(
                                         (element,index)=>{
-                                            return <img key={index} src={`${process.env.PUBLIC_URL}/images/general/coin.png`} alt={`coin`}/>
+                                            return (!unbreakableCoinBuff[index]) ? <img key={index} src={`${process.env.PUBLIC_URL}/images/general/coin.png`} alt={`coin`}/> : <img key={index} src={`${process.env.PUBLIC_URL}/images/general/unbreakableCoin.png`} alt={`unbreakableCoin`}/>;
                                         }
                                     )
                                     }

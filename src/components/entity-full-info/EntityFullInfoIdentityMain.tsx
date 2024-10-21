@@ -11,11 +11,12 @@ import "./EntityFullInfo.css"
 export const EntityFullInfoIdentityMain = () =>{
     const { identityId } = useParams();
     const {i18n} = useTranslation();
-    const entities = useQueryClient().getQueryData('identities') as IdentityInterface[] ;
+    const entities = useQueryClient().getQueryData('identities') as IdentityInterface[];
+    const maxLvlIdentity = 50; // Максимальный уровень Идентичности
     const entity = entities.find(id => id.imgUrl === identityId);
   
     if(!entity) return null;
-    const {sinner} = entity ;
+    const {sinner} = entity;
 
     const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof entity;
     const name = entity[nameKey] as string;
@@ -39,8 +40,8 @@ export const EntityFullInfoIdentityMain = () =>{
         <SEOHelmet titleText={`${name} | ${sinnersNamesMap[sinner]} | Great Limbus Library`} descriptionText=""/>
         <h1 className="entity-info-header" >{name} <LanguageDisclaimer/></h1>
         <div className={"entityFullInfo"}>
-            <EntityFullInfoIdentity  identity={entity}/>
-            <EntityFullInfoSkills  identity={entity}/>
+            <EntityFullInfoIdentity  identity={entity} maxLvlIdentity={maxLvlIdentity}/>
+            <EntityFullInfoSkills  identity={entity} maxLvlIdentity={maxLvlIdentity}/>
         </div>
         </>
     );

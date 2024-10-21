@@ -90,11 +90,13 @@ export const FiltersList:React.FC = () => {
        
        
     ];
-    return<>
-    {filters.map((filter,index)=>{
-        if(!filter.visible) return null
-        return  <FiltersSection key={index} filter={filter}/>
-    })
-    }
-    </> 
+    return (
+        <>
+            {filters.map((filter,index)=>{
+                if(!filter.visible) return null
+                return  <FiltersSection key={index} filter={filter}/>
+            })
+            }
+        </>
+    )
 }

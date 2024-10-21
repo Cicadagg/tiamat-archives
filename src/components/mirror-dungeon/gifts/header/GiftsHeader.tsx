@@ -100,14 +100,18 @@ export const GiftsHeader:React.FC = () => {
                 <span className='GiftsHeader-highlight-text'>
                   {t("GiftsHeader.buy")}
                 </span>
-                {giftData[i18n.language].cost} 
+                {
+                  (giftData[i18n.language].cost == 1) ? "?" : giftData[i18n.language].cost
+                } 
               </span>
             }
             <span>
               <span className='GiftsHeader-highlight-text'>
                 {t("GiftsHeader.sell")}
               </span>
-              {Math.ceil(giftData[i18n.language].cost/2)} 
+              {
+              (giftData[i18n.language].cost == 1) ? "?" : Math.ceil(giftData[i18n.language].cost/2)
+              } 
             </span>
             {
               !!usedToCraft.length &&

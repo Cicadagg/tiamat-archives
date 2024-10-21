@@ -166,6 +166,80 @@
     align-items: center;
 
 }
+.entityFullInfo-season{
+    width: 90%;
+    position: relative;
+    margin: auto;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    color: rgba(0, 0, 0, 0.803);
+    font-size: 28px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.entityFullInfo-season-w{
+    background-color: var(--season-w-color);
+}
+.entityFullInfo-season-s-0{
+    background-color: var(--season-s-0-color);
+}
+.entityFullInfo-season-s-1{
+    background-color: var(--season-s-1-color);
+    color: rgba(255, 255, 255, 0.903);
+}
+.entityFullInfo-season-s-2{
+    background-color: var(--season-s-2-color);
+}
+.entityFullInfo-season-s-3{
+    background-color: var(--season-s-3-color);
+}
+.entityFullInfo-season-s-4{
+    background-color: var(--season-s-4-color);
+    color: rgba(255, 255, 255, 0.903);
+}
+.entityFullInfo-season-s-5{
+    background-color: var(--season-s-5-color);
+}
+.entityFullInfo-season-s-6{
+    background-color: var(--season-s-6-color);
+}
+.entityFullInfo-season-s-7{
+    background-color: var(--season-s-7-color);
+}
+.entityFullInfo-season-s-8{
+    background-color: var(--season-s-8-color);
+}
+.entityFullInfo-season-s-9{
+    background-color: var(--season-s-9-color);
+}
+.entityFullInfo-season-s-10{
+    background-color: var(--season-s-10-color);
+}
+.entityFullInfo-season-s-11{
+    background-color: var(--season-s-11-color);
+}
+.entityFullInfo-season-s-12{
+    background-color: var(--season-s-12-color);
+}
+.entityFullInfo-release{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    margin-top: 0.25rem;
+    padding: 0.25rem;
+    display: flex;
+    color: rgba(255, 255, 255, 0.903);
+    font-size: 28px;
+    justify-content: center;
+    align-items: center;
+}
 @media (max-width:1200px) {
     .entityFullInfo-entity{
         flex-direction: row !important;

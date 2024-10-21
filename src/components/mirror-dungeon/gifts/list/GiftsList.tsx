@@ -57,6 +57,7 @@ export const GiftsList:React.FC = () => {
                             <ChvronUpSVG/>
                             {romanNumerals[key]} 
                             {t(`GiftsList.tier`)}
+                            {` (${value.length})`}
                         </header>
                         <div className={`GiftsList-content GiftsList-content--${sectionsVisibility[key] ? "":"hidden"}`}>
                             {

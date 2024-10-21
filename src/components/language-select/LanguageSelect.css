@@ -51,32 +51,133 @@
 .LanguageSelect li:hover{
     color:white;
 }
-@media (max-width:1000px) {
-    .dropdown{
-        position: relative;
-        transition: 0.4s;
-        font-size: 35px;
-        padding: 41.2px ;
+@media (max-height: 1200px) {
+    @media (max-width: 1000px) {
+        .dropdown{
+            position: absolute;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 32px;
+            padding: 41.2px;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
     }
-    .dropdown span  svg{
-        width: 35px;
-        height: 35px;
+    @media (max-width: 765px) {
+        .dropdown{
+            position: relative;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 30px;
+            padding: 41.2px;
+            padding-bottom: 0;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
     }
-    .LanguageSelect svg {
-        width: 25px !important;
-        height: 25px !important;
+}
+@media (max-height: 700px) {
+        @media (max-width: 1000px) {
+        .dropdown{
+            position: absolute;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 32px;
+            padding: 41.2px;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
     }
-    .LanguageSelect{
-        position: absolute;
-        top: 0px;
-        width: 80vw !important;
-        transform-origin: bottom bottom;
-        z-index: 2;
-    }
-    .LanguageSelect--show{
-        top: -60px;
-    }
-    .LanguageSelect li:first-of-type{
-        display: flex !important;
+    @media (max-width: 765px) {
+        .dropdown{
+            position: relative;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 26px;
+            padding: 41.2px;
+            padding-bottom: 0;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
     }
 }

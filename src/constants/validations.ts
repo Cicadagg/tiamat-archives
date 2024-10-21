@@ -23,6 +23,21 @@ export const validationToNumbersArray = (a:unknown) => {
     }
     return {validatedVal,isValid};
 }
+export const validationToNumbersArraySemicolon = (a:unknown) => {
+    let validatedVal:number[] = [];
+    let isValid = true;
+    if(typeof a === "string"){
+        const arr = a.split(";");
+        for(let i = 0; i < arr.length;i++){
+            const current = +arr[i];
+            if(isNaN(current)) continue;
+            validatedVal.push(current); 
+        }
+    }else if (typeof a === "number"){
+        validatedVal.push(a); 
+    }
+    return {validatedVal,isValid};
+}
 export const validationToStringsArrayVerticalBar = (a:unknown) => {
     let validatedVal:string[] = [];
     let isValid = true;
@@ -106,6 +121,23 @@ export const validationToDamageTypesArray = (a:unknown) => {
 
 export const validationToGuardTypes = (a:unknown) => {
     return {validatedVal:a ,isValid:guardTypes.includes(a as guardType)};
+}
+
+export const validationToGuardTypesArray = (a:unknown) => {
+    let validatedVal:guardType[] = [];
+    let isValid = true;
+    if(typeof a === "string"){
+        const arr = a.replaceAll(" " , "").split(",") ;
+        for(let i = 0; i < arr.length;i++){
+            const current = arr[i];
+            if(!validationToGuardTypes(current).isValid){
+                isValid = false 
+                break;
+            }
+        }
+        validatedVal = arr as guardType[];
+    } 
+    return {validatedVal,isValid};
 }
 export const validationToSinner = (a:unknown) => {
     return {validatedVal:a ,isValid:sinnerTypes.includes(a as sinnerType)};

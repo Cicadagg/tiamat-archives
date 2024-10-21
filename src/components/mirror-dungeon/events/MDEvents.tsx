@@ -1,16 +1,16 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { mobileLayoutFrom } from '../../../constants/mobileLayoutFrom';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { searchChangeValueAction } from '../../../store/reducers/search-reducer';
 import { isEventFilterMatching } from '../../../tools/isEventFilterMatching';
 import { MDEvent } from '../../../types/md-event-interface';
 import { Search } from '../../search/Search';
-import './MDEvents.css';
 import { MDEventOption, Option } from './option/MDEventOption';
+import { createGiftList } from '../formated-text-gift/MDFormatedText';
+import './MDEvents.css';
+
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -75,9 +75,13 @@ export const MDEvents:React.FC = () => {
                 className={`MDEvents-section MDEvents-section--${id === animatedId && !animationTriggered && "animated"}`}>
                     <header>
                         <h3>{(i18n.language === "ru") ? abnoRU:abnoEN}</h3>
-                        <img 
-                        src={`${process.env.PUBLIC_URL}/images/md-events/${id}.webp`} 
-                        alt={"event"}/>
+                        <img src={`${process.env.PUBLIC_URL}/images/md-events/${id}.webp`} alt={(i18n.language === "ru") ? abnoRU:abnoEN}/>
+                        <span className='MDEvents-ego-gifts-span'>
+                            {t("MDEventOption.gifts_list_header")}
+                        </span>
+                        <div className='MDEvents-ego-gifts-section'>
+                            {createGiftList((i18n.language === "ru") ? choiceRU.gift_id : choiceEN.gift_id, t)}
+                        </div>
                     </header>
                     <MDEventOption option={(i18n.language === "ru") ? choiceRU:choiceEN} />
 

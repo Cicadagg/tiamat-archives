@@ -11,6 +11,7 @@ import { TooltipMobile } from '../../tooltip-mobile/TooltipMobile';
 import "./EntityFullInfoIdentity.css"
 interface IEntityFullInfoProps {
     identity:IdentityInterface;
+    maxLvlIdentity:number;
 }
 const resMap:{
     [key:string]:string
@@ -19,13 +20,26 @@ const resMap:{
     'normal':'[x1]',
     'fatal':'[x2]'
 }
-export const EntityFullInfoIdentity:React.FC<IEntityFullInfoProps> = ({identity}) => {
-    const {imgUrl,idTier,hp,hpStun,speed,defence,slash,pierce,blunt,rarity,sinner,descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN} = identity;
+export const EntityFullInfoIdentity:React.FC<IEntityFullInfoProps> = ({identity,maxLvlIdentity}) => {
+    const {imgUrl,idTier,season,hp,hpStun,speed,defence,slash,pierce,blunt,rarity,sinner,descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN,releaseDate} = identity;
     const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const rarityStyled = rarity.replaceAll("O","Ø");
     const status = getStatusesEntityList([descriptionCoinEN,descriptionPassive1EN,descriptionPassive2EN]);
     const {t,i18n} = useTranslation();
     const dispatch = useDispatch();
+    const defLevelValue = maxLvlIdentity - (-defence);
+    function excelToDate(excelDate:number) {
+        const excelStartDate = new Date(1899, 11, 30);
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        const date = new Date(excelStartDate.getTime() + excelDate * millisecondsPerDay);
+        return date;
+      }
+    const formateDate = (date:number) =>{
+        const newDate = excelToDate(date);
+        const month = `${newDate.getMonth()+1}`;
+        const day = `${newDate.getDate()}`;
+        return `${day.length === 1 ? `0${day}`: day}.${month.length === 1 ? `0${month}`: month}.${newDate.getFullYear()}`
+      }
     return (
         <section className={`${'entityFullInfo-entity'}`} >
                 <article  
@@ -41,6 +55,21 @@ export const EntityFullInfoIdentity:React.FC<IEntityFullInfoProps> = ({identity}
                     </div>
                 </article>
                 <div  className={`${'entityFullInfo-stats-container'}`} >
+                
+                <article className={"entityFullInfo-stats"}>
+                    <h2 >{t("EntityFullInfoIdentity.info")}</h2>
+                    {
+                        season !== "s-b" && <div className={`entityFullInfo-season entityFullInfo-season-${season[0] === 'w' ? 'w' : season.replace(/^e-/, 's-')}`}>
+                            {t(`EntityFullInfoIdentity.season.${season}`)}
+                        </div>
+                    }
+                    <div className={"entityFullInfo-release"}>
+                        {t('EntityFullInfoIdentity.release')}
+                        &nbsp;{/* Add a non-breaking space here */}
+                        <span className="date"> {formateDate(releaseDate)} </span>
+                    </div>
+                </article>
+
                 {
                     status && <article className={"entityFullInfo-stats"}>
                     <h2 >{t("EntityFullInfoIdentity.statuses")}</h2>
@@ -81,7 +110,7 @@ export const EntityFullInfoIdentity:React.FC<IEntityFullInfoProps> = ({identity}
                         </li>
                         <li>
                             <img src={`${process.env.PUBLIC_URL}/images/general/defence1.png`} alt={`${imgUrl}`}/>
-                            {defence}
+                            {defLevelValue}
                         </li>
                     </ul>
                 </article>

@@ -1,27 +1,28 @@
-
-.event-sector{
+.event-sector {
   height: fit-content;
   font-size: 24px;
   display: flex;
+  margin-bottom: 16px;
   flex-direction: column;
   opacity: 0;
   transform: scale(0);
+  z-index: 5;
 }
-.events-section{
+.events-section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 2%;
-  justify-content: space-between;
   
+  justify-content: space-between;
 }
 .events-section h2 {
   margin-bottom: 16px;
   width: 100%;
 }
 .event-sector a {
+  opacity: 0.8;
   font-weight: 600;
-  margin-bottom: 4px;
   width: fit-content;
   color: rgb(4, 134, 255);
   text-decoration: none;
@@ -31,52 +32,65 @@
   font-weight: 500;
   margin-bottom: 4px;
   width: fit-content;
-
 }
-.event-sector img {
-  margin-bottom: 16px;
-  width:  100%;
+.event-image-container-ru {
+  overflow: hidden;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.event-image-container-en {
+  overflow: hidden;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.event-image-container-ru img {
+  transition: transform 1s ease;
+  width: 100%;
   min-height: 130px;
 }
-.event-sector--animated{
+.event-image-container-en img {
+  transition: transform 1s ease;
+  width: 100%;
+  min-height: 130px;
+}
+.event-image-container-ru img:hover {
+  transform: scale(1.06); 
+}
+.event-sector--animated {
   animation: bounceAnimation 1s ease forwards;
+  opacity: 0.8;
+}
+.event-sector:hover {
+  opacity: 1;
+  z-index: 6;
 }
 @keyframes bounceAnimation {
   0% {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: translate(0, 0) scale(1);
-      opacity: 1;
-    }
-}
-
-@media (max-width: 1295px) {
-  .event-sector{
-    width: 48%;
-    display: flex;
-    flex-direction: column;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
   }
-  .events-section{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2%;
-    justify-content: space-between;
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+@media (max-width: 1295px) {
+  .event-sector {
+    width: 48%;
   }
 }
 @media (max-width: 440px) {
-  .event-sector{
+  .event-sector {
     width: 100%;
-    display: flex;
-    flex-direction: column;
   }
-  .events-section{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2%;
-    justify-content: space-between;
-  }
+}
+.event-description {
+  font-size: 18px;
+  color: #ffffff;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
 }

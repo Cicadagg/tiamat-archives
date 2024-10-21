@@ -17,6 +17,7 @@ import { TeamBuilderSVG } from "../svg/TeamBuilderSVG";
 import { TierListSVG } from "../svg/TierListSVG";
 import { MirrorDungeonSVG } from "../svg/MirrorDungeonSVG";
 import "./LeftMenu.css"
+import { GuidesSVG } from "../svg/GuidesSVG";
 
 export const LeftMenu:React.FC = () => {
     const location = useLocation();
@@ -37,6 +38,7 @@ export const LeftMenu:React.FC = () => {
         {to:`/${navLang}/tierlist/identities`,route:`tierlist`,name:t('LeftMenu.tierlist'),SVG:TierListSVG},
         {to:`/${navLang}/teambuilder`,route:`teambuilder`,name:t('LeftMenu.teambuilder'),SVG:TeamBuilderSVG},
         {to:`/${navLang}/identities`,route:`identities`,name:t('LeftMenu.identities'),SVG:IdentitiesSVG},
+        {to:`/${navLang}/guides`,route:`guides`,name:t('LeftMenu.guides'),SVG:GuidesSVG},
         {to:`/${navLang}/ego`,route:`ego`,name:t('LeftMenu.ego'),SVG:EGOSVG},
         {to:`/${navLang}/mirror-dungeon/events`,route:`mirror-dungeon`,name:t('LeftMenu.mirror_dungeon'),SVG:MirrorDungeonSVG},
         {to:`/${navLang}/statuses`,route:`statuses`,name:t('LeftMenu.statuses'),SVG:StatusesPageSVG},

@@ -4,7 +4,7 @@ const egoKeys = [
     { key: 'imgUrl' ,validation:validationToString},  { key: 'sinner' ,validation:validationToSinner},
     { key: 'nameEN' ,validation:validationToString},  { key: 'nameRU' ,validation:validationToString},
     { key: 'rarity',validation:validationToRarityEGOTypes},
-    { key: 'season' ,validation:validationToNumber},  { key: 'egoResists' ,validation:validationToStringsArray},
+    { key: 'season' ,validation:validationToString},  { key: 'egoResists' ,validation:validationToStringsArray},
     { key: 'sanity' ,validation:validationToNumbersArray},    { key: 'wrath' ,validation:validationToNumber},
     { key: 'lust' ,validation:validationToNumber},    { key: 'sloth' ,validation:validationToNumber},
     { key: 'glut' ,validation:validationToNumber},    { key: 'gloom' ,validation:validationToNumber},

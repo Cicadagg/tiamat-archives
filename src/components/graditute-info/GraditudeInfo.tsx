@@ -39,11 +39,26 @@ export const GraditudeInfo: React.FC = () => {
             <div className="content-container">
                 <div className="text-donation">
                     <h1>{t("GraditudeInfo.text-donation.header")}</h1>
-                    <p>
-                    {t("GraditudeInfo.text-donation.text1")}
-                        <br/> <br/>{t("GraditudeInfo.text-donation.text2")}
-                        <br/> <br/>{t("GraditudeInfo.text-donation.text3")}
-                    </p>
+                    {
+                        (i18n.language === "ru") 
+                        ? 
+                            <p>
+                                {t("GraditudeInfo.text-donation.text1")}
+                                <br/><br/>{t("GraditudeInfo.text-donation.text2")}
+                                <br/>{t("GraditudeInfo.text-donation.text3")}
+                                <br/>{t("GraditudeInfo.text-donation.text4")}
+                                <br/>{t("GraditudeInfo.text-donation.text5")}
+                                <br/>{t("GraditudeInfo.text-donation.text6")}
+                                <br/><br/>{t("GraditudeInfo.text-donation.text7")}
+                            </p> 
+                        : 
+                            <p>
+                                {t("GraditudeInfo.text-donation.text1")}
+                                <br/><br/>{t("GraditudeInfo.text-donation.text2")}
+                                <br/><br/>{t("GraditudeInfo.text-donation.text3")}
+                                
+                            </p> 
+                    }
                     <h1>{t("GraditudeInfo.text-donation.links.header")}</h1>
                     <div className="donation-link">
                         <div className="tinkoff-button">
@@ -100,6 +115,8 @@ export const GraditudeInfo: React.FC = () => {
                             <li>{"lasosaynas"}</li>
                             <li>{"Саша Куценко"}</li>
                             <li>{"Xoskar"}</li>
+                            <li>{"Codey"}</li>
+                            <li>{"PancakeHunter"}</li>
                         </ul>
                     </article>
                 </div>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { mdSelectGiftIdAction } from '../../../store/reducers/md-reducer';
 import { MDGift } from '../../../types/md-gift-interface';
 import './MDFormatedText.css';
+import { TFunction } from 'i18next';
 const romanNumerals:Record<string,string> = {
     5: 'V',
     4: 'IV',
@@ -33,6 +34,11 @@ const romanNumerals:Record<string,string> = {
     "[tailsattackend]" : "[Атака Заканчивается Невыпадением Монетки] ",
     "[failedkill]" : "[Не Удалось Убить] ",
     "[critattackend]" : "[Атака Заканчивается Критическим Попаданием] ",
+    "[turnend]" : "[Конец Хода] ",
+    "[skillend]" : "[Конец Скилла] ",
+    "[oncritkill]": "[При Убийстве Критическим Попаданием] ",
+    "[beforeuse]":"[Перед Использованием]",
+    "[clashablecounter]":"[Столкновение при Контратаке]",
 }
 const GiftMapper:React.FC<{value:string}>  = ({value:gift_id}) =>{
     const gifts = useQueryClient().getQueryData("md-gifts") as MDGift[]|null;
@@ -70,7 +76,7 @@ const GiftMapper:React.FC<{value:string}>  = ({value:gift_id}) =>{
                     <span className='gift-tier'> {romanNumerals[gift.tier]} </span>
                 </div>
             </div>
-            <span className={`MDFormatedText--${gift.sin}`}>{name}</span>
+            <span className={`MDFormatedText--${gift.sin}`} style={{marginLeft:"4px"}}>{name}</span>
         </span>
     </Link>
 }
@@ -139,4 +145,24 @@ export const MDFormatedText:React.FC<{text:string}> = ({text}) => {
             {jsx}
         </span>
     );
+};
+
+export const createGiftList = (giftId: string | string[] | undefined, t: TFunction) => {
+    if (typeof giftId === 'undefined') {
+        return null;
+    } else if (!giftId.indexOf("")) {
+        return <p className='gifts-list--no-gifts'>{t('MDEventOption.no_gifts')}</p>;
+    } 
+     else if (typeof giftId === 'string') {
+        return <ul><li><GiftMapper key={giftId} value={giftId} /></li></ul>;
+    } else if (Array.isArray(giftId)) {
+        return (
+            <ul className='gifts-list'>
+                {giftId.map((id, index) => (
+                    <li key={id}><GiftMapper value={id} /></li>
+                ))}
+            </ul>
+        );
+    }
+    return null;
 };

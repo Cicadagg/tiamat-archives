@@ -20,6 +20,7 @@ import { GraditudePage } from "../pages/GraditudePage";
 import { MirrorDungeonPage } from "../pages/MirrorDungeonPage";
 import { MirrorDungeonPageRedirect } from "../pages/MirrorDungeonPageRedirect";
 import { EventTestPage } from "../pages/EventTestPage";
+import { GuidesPage } from "../pages/GuidesPage";
 
 export const AppRouter:React.FC = () => {
     
@@ -62,6 +63,11 @@ export const AppRouter:React.FC = () => {
         {
             path:"/identities",
             element:<IdentitiesPage />,
+            isExact:true,
+        },
+        {
+            path:"/guides",
+            element:<GuidesPage />,
             isExact:true,
         },
         {

@@ -10,7 +10,7 @@ export type EGOInterface = {
     nameEN: string;
 
     rarity: string;
-    season: number;
+    season: string;
     egoResists:string[];
     sanity:number[];
 

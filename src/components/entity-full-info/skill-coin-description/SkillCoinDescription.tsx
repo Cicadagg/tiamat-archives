@@ -35,6 +35,11 @@ export const SkillCoinDescription:React.FC<ISkillCoinDescriptionProps> = ({descr
         "[tailsattackend]" : "[Атака Заканчивается Невыпадением Монетки] ",
         "[failedkill]" : "[Не Удалось Убить] ",
         "[critattackend]" : "[Атака Заканчивается Критическим Попаданием] ",
+        "[turnend]" : "[Конец Хода]",
+        "[skillend]" : "[Конец Скилла] ",
+        "[oncritkill]": "[При Убийстве Критическим Попаданием] ",
+        "[beforeuse]":"[Перед Использованием]",
+        "[clashablecounter]":"[Столкновение при Контратаке]",
     }
     const coinsConditionsMap:{
         [key:string]:string;

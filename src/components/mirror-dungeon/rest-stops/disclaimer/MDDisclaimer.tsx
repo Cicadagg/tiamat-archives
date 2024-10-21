@@ -123,13 +123,13 @@ export const MirrorDungeonDisclaimer:React.FC = () => {
         However, if you have already acquired every single EGO Gift in the above Keyword and Tier combination, or if those EGO Gifts have already been assigned to Mirror Dungeon Events or the Boss Rewards of this Floor, then you might acquire an EGO Gift of a different Tier or a Keyword category from the chart listed above.<br>
         If you have already acquired all EGO Gifts in the corresponding Tier or are unable to obtain them due to the aforementioned reasons, then you cannot proceed with the Fusion.<br>
         <br>
-        The following are the circumstances in which the resulting EGO Gift from the Fusion won't match the Fusion Forecasts. In such cases, Keyword Forecast will be marked as "Random".<br>
+        The following are the circumstances in which the resulting EGO Gift from the Fusion won't match the Fusion Forecasts. In such cases, Keyword Forecast will be marked as "(Random)".<br>
         1) When every available EGO Gift in the selected Keyword category and forecasted Tier has already been obtained<br>
         2) When EGO Gifts of the selected Keyword category and the forecasted Tier have all been assigned to that Floor's Mirror Dungeon Events or Boss Encounter Reward pool (Can be obtained in the next Floor)<br>
         * You cannot continue with the Fusion if you have collected every EGO Gift in the forecasted Tier.
         `,
         "ru":`
-        Далее следует прогноз на Ключевые слова ЭГО Даров при выборе желаемого Ключевого слова, в который Вы желаете соединить Дары в окне "Соединение — Выбор Ключевого слова".<br>
+        Далее следует прогноз на Ключевые слова ЭГО Даров при выборе желаемого Ключевого слова, в который Вы желаете соединить ЭГО Дары в окне "Соединение — Выбор Ключевого слова".<br>
         <table style="border-spacing: 0px;">
             <tr>
                 <th style="border: 1px solid white; padding: 10px;">Число соединяемых ЭГО Даров</th>
@@ -181,7 +181,7 @@ export const MirrorDungeonDisclaimer:React.FC = () => {
         Далее следует прогноз на Ранг ЭГО Даров при соединении 3-х ЭГО Даров. Учитывайте, что при соединении 3-х ЭГО Даров вы можете получить ЭГО Дар до IV Ранга.
         <table style="border-spacing: 0px;">
             <tr>
-                <th style="border: 1px solid white; padding: 10px;">Соединение Даров под разными Ключевыми словами</th>
+                <th style="border: 1px solid white; padding: 10px;">Соединение ЭГО Даров под разными Ключевыми словами</th>
                 <th style="border: 1px solid white; padding: 10px;">Прогноз Ранга ЭГО Дара</th>
             </tr>
             <tr>
@@ -226,13 +226,13 @@ export const MirrorDungeonDisclaimer:React.FC = () => {
             </tr>
         </table>
         <br>
-        Однако если Вы уже собрали все возможные ЭГО Дары под определённым Ключевым словом и/или определённого Ранга, или эти ЭГО Дары уже ожидают Вас в выборе событий или награды за прохождения босса этого этажа, Вы можете получить ЭГО Дар другого Ранга и/или определённого Ключевого слова от того, что Вы выбрали.<br>
-        Если же Вы получили все ЭГО Дары определённого Ранга, или же не можете получить их по причине, указанной выше, вы не сможете соединить выбранные Дары.<br>
+        Однако, если Вы уже собрали все возможные ЭГО Дары под определённым Ключевым словом и/или определённого Ранга, или эти ЭГО Дары уже ожидают Вас в выборе Событий или награды за прохождения Босса этого Этажа, Вы можете получить ЭГО Дар другого Ранга и/или определённого Ключевого слова от того, что Вы выбрали.<br>
+        Если же Вы получили все ЭГО Дары определённого Ранга, или же не можете получить их по причине, указанной выше, вы не сможете соединить выбранные ЭГО Дары.<br>
         <br>
-        Далее следуют условия, в которых итоговый ЭГО Дар может не соответствовать прогнозам. В таких случаях прогноз будет отображать "Случайное" Ключевое слово.<br>
+        Далее следуют условия, в которых итоговый ЭГО Дар может не соответствовать прогнозам. В таких случаях прогноз будет отображать "(Случайное)" Ключевое слово.<br>
         1) Если все доступные ЭГО Дары под определённым Ключевым словом и предполагаемого Ранга уже были собраны<br>
-        2) Если ЭГО Дары под выбранным Ключевым словом и предполагаемого Ранга уже включены в выбор событий или награды за прохождение Босса Этажа. (Тогда ЭГО Дары можно получить на следующем этаже)<br>
-        * Вы не сможете соединить Дары после того, как соберёте все ЭГО Дары прогнозируемого Ранга.
+        2) Если ЭГО Дары под выбранным Ключевым словом и предполагаемого Ранга уже включены в выбор Cобытий или награды за прохождение Босса Этажа. (Тогда ЭГО Дары можно получить на следующем Этаже)<br>
+        * Вы не сможете соединить ЭГО Дары после того, как соберёте все ЭГО Дары прогнозируемого Ранга.
         `
     }
   return (

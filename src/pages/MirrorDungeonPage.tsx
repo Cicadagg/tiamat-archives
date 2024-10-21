@@ -5,7 +5,7 @@ import { LoadingPageWrapper } from "./LoadingPageWrapper";
 import { useTranslation } from "react-i18next";
 import { H1Component } from "../components/h1-component/H1Component";
 import { SEOHelmet } from "./SEOHelmet";
-import { MirrorDungeonNav } from "../components/mirror-dungeon/nav/TierListNav";
+import { MirrorDungeonNav } from "../components/mirror-dungeon/nav/MirrorDungeonNav";
 import { MDRouteHandler } from "../components/mirror-dungeon/route-type-handler/MDRouteHandler";
 
 export const MirrorDungeonPage:React.FC = () => {

@@ -38,6 +38,100 @@
     border-radius: 14px;
     box-sizing: border-box;
 }
+.MDEvents-ego-gifts-span{
+    margin-top: 8px;
+    font-size: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.MDEvents-ego-gifts-section{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+.gifts-list{
+    list-style: none;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    gap: 4px;
+    display: flex;
+    flex-direction: column;
+}
+.gifts-list--no-gifts{
+    font-size: 25px;
+    margin: 0 9% 0;
+    padding: 0;
+    color: var(--wrath-frame-color);
+    text-decoration: underline;
+}
+.MDEvents-ego-gifts-section .big-img--container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(0,-150%);
+    opacity: 0;
+    transition: 0.3s;
+    will-change: translate ;
+}
+.MDEvents-ego-gifts-section .big-img--wrapper{
+    position: relative;
+    pointer-events: none;
+    width: 90px;
+    height: 90px;
+    will-change: translate ;
+
+}
+.MDEvents-ego-gifts-section .big-img--wrapper .gift-tier{
+    color:#fbc601;
+    text-shadow: 0px 0px 10px red;
+    font-size: 45px;
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+    top:0px;
+    will-change: translate ;
+
+}
+.MDEvents-ego-gifts-section .big-img--wrapper .gift-keyword-img{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 0px;
+    bottom: 0px;
+    object-fit: contain;
+    z-index: 2;
+}
+.MDEvents-ego-gifts-section .big-img{
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    background: rgb(54, 54, 54);
+    border-radius: 6px;
+    border: 1px black solid;
+    box-sizing: border-box;
+}
+.formated-wrapper{
+    position: relative;
+}
+.MDEvents-ego-gifts-section .formated-wrapper:hover .big-img--container{
+    transform: translate(0,-100%);
+    opacity: 1;
+ }
+.MDEvents-ego-gifts-section .small-img{
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    background: rgb(54, 54, 54);
+    border-radius: 4px;
+    margin-bottom: -4px;
+}
 .MDEvents-section--animated{
     animation: MDEvents-section--animation 2s 0.2s ease-in-out forwards;
 }
@@ -50,6 +144,7 @@
     display: flex;
     flex-direction: column;
     text-wrap: balance;
+    width: 288px;
 }
 .MDEvents-section header img{
     object-fit: cover;
@@ -73,8 +168,11 @@
     .MDEvents-section{
         padding: 20px ;
     }
+    .MDEvents-ego-gifts-section{
+        width: 250px;
+    }
 }
-@media (max-width: 700px) {
+@media (max-width: 765px) {
     .MDEvents-section{
         flex-direction: column;
     }
