@@ -17,6 +17,20 @@
     height: 135px;
 }
 
+.tooltip {
+    position: absolute;
+    bottom: 100%; /* Позиционируем выше элемента */
+    left: 50%;
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px; /* Увеличенные отступы */
+    border-radius: 5px;
+    z-index: 10;
+    font-size: 16px; /* Увеличенный размер шрифта */
+    white-space: nowrap; /* Предотвращает перенос текста */
+}
+
 .entityFullInfo-skill-l img {
     width: 120px;
     height: 120px;
@@ -191,6 +205,10 @@
     }
     .skill-coinGrowth .entityFullInfo-tooltip{
         max-width: 50px;
+    }
+    .entityFullInfo-tooltip {
+        max-width: 150px; /* Ограничиваем максимальную ширину */
+        font-size: 12px; /* Уменьшаем размер шрифта для маленьких экранов */
     }
     
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
@@ -53,7 +53,7 @@ export const Gift:React.FC<Props> = ({setSelectedUpgrade,selectedUpgrade}) => {
         className='gift-keyword-img'
         src={
           ["blunt","pierce","slash"].includes(gift.keyword)
-          ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.png`
+          ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.webp`
           :`${process.env.PUBLIC_URL}/images/tags/${gift.keyword}.webp`
         } 
         alt={gift?.keyword}/>
@@ -68,7 +68,7 @@ export const Gift:React.FC<Props> = ({setSelectedUpgrade,selectedUpgrade}) => {
         
       }
       {
-        !!gift && <div className={`gift-bar gift-bar--${gift.sin}`}/>
+        !!gift && <div className={`gift-bar gift-bar--${(gift.id !== "gift_0") ? gift.sin : "none"}`}/>
       }
       {
         !!gift && <>

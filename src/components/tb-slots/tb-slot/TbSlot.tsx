@@ -46,7 +46,7 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
             ego:TETH,
             ref:refSlotTETH,
             isHovering:isHoveringSlotTETH,
-            glyph:"ו",
+            glyph:"ט",
         },
         {
             ego:HE,
@@ -58,13 +58,13 @@ export const TbSlot:React.FC<{slot:SlotInterface,index:number}> = ({slot,index})
             ego:WAW,
             ref:refSlotWAW,
             isHovering:isHoveringSlotWAW,
-            glyph:"ℵ",
+            glyph:"ו",
         },
         {
             ego:ALEPH,
             ref:refSlotALEPH,
             isHovering:isHoveringSlotALEPH,
-            glyph:"ט",
+            glyph:"ℵ",
         },
     ];
     const isHoveringEGO = () => {

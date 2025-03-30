@@ -38,12 +38,14 @@
   --gloom-frame-color: #16849b;
   --pride-frame-color: #185188;
   --envy-frame-color: #5c0288;
+  --none-frame-color: #9f693a;
   --SSS-color: rgb(236, 24, 48);
   --SS-color: rgba(255, 97, 74);
   --S-color: rgba(255, 188, 58);
   --A-color: rgb(143, 255, 58);
   --B-color: rgb(58, 255, 166);
   --C-color: rgb(58, 255, 248);
+  --Test-color: rgb(75, 3, 53);
   --grey-0:#2C2C2C;
   --grey-1:#494747;
   --grey-2:#4D4B4B;
@@ -124,7 +126,7 @@
 }
 .perCent-special-font{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
-  font-size: 22px;
+  font-size: 0.88em;
   opacity: 0.9;
 }
 h1 {

@@ -24,7 +24,7 @@
 
 .modal__content{
     width: 800px;
-    height: 500px;
+    height: 600px;
     padding: 20px 52px 20px 52px;
     box-sizing: border-box;
     border-radius: 12px;
@@ -56,7 +56,7 @@
     padding: 20px;
     box-sizing: border-box;
     border-radius: 12px;
-    background-color: #1C1E23;;
+    background-color: #1C1E23;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -67,14 +67,13 @@
     display: flex;
     flex-direction: row;
 }
-.modal--active .modal__content{
-    transform-style: preserve-3d; 
-    transform:  rotateY(-20deg);
-}
-.modal--active .modal__slot{
-    transform-style: preserve-3d; 
+
+.modal--active .modal__slot {
+
     transform: perspective(1600px) rotateY(20deg);
+    pointer-events: auto;
 }
+
 .modal-identity img {
     width: 100%;
     height: 100%;
@@ -92,6 +91,71 @@
     align-items: center;
     border-radius: 8px 8px;
 }
+.modal-identity-shadow{
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    transition: 0.3s;
+    z-index: 3;
+}
+.modal-ego{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px 8px;
+}
+.modal-ego-shadow{
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    transition: 0.3s;
+    z-index: 3;
+}
+.modal-identity:hover .modal-identity-shadow{
+    background: rgba(0, 0, 0, 0.5);
+}
+.modal-ego:hover .modal-ego-shadow{
+    background: rgba(0, 0, 0, 0.5);
+}
+.modal-info{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15%;
+    text-align: center;
+    color: white;
+    z-index: 4;
+    font-size: clamp(16px, 3vw, 36px);
+    font-weight: bold;
+    line-height: 1.2;
+    transform: scale(0);
+    transition: 0.3s;
+    will-change: scale transform;
+}
+.modal-identity:hover .modal-info{
+    transform: scale(1);
+}
+.modal-ego:hover .modal-info{
+    transform: scale(1);
+}
+.modal-info svg path{
+    stroke:white;
+    stroke-width: 1.5px;
+  }
 .modal-ego-container{
     margin-top: 12px;
     width: 100%;
@@ -142,5 +206,11 @@
         padding: 20px;
         width: 85%;
     }
-    
+
+}
+@media (max-width:650px) {
+    .modal-info{
+        font-size: 10px;
+        line-height: 12px;
+    }
 }

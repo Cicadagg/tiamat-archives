@@ -35,6 +35,18 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
         }
         return result;
     }
+    const renderCount = (count: string | number | Date | number[] | string[]): React.ReactNode => {
+        if (typeof count === 'string' || typeof count === 'number') {
+            return count;
+        }
+        if (count instanceof Date) {
+            return count.toLocaleDateString();
+        }
+        if (Array.isArray(count)) {
+            return count.join(', ');
+        }
+        return null; // или какое-то значение по умолчанию
+    };
     const energyConsumeList = (sin:string) =>{
         let result: JSX.Element[] = [];
         for(let i =0 ; i< slots.length ; i++){
@@ -46,9 +58,9 @@ export const TbInfo:React.FC<TbInfoInterface> = ({attribure,type}) => {
                 let count = current[sin as keyof typeof current];
                 if(!count) continue;
                 result.push(
-                    <div  key={`${attribure}${current.imgUrl}`}>
-                        <img className="tb-info-img" src={`${process.env.PUBLIC_URL}/images/ego/${current.imgUrl}.webp`}></img> 
-                        <span className="tb-info-count">x{count}</span>
+                    <div key={`${attribure}${current.imgUrl}`}>
+                        <img className="tb-info-img" src={`${process.env.PUBLIC_URL}/images/ego/${current.imgUrl}.webp`} alt="" />
+                        <span className="tb-info-count">x{renderCount(count)}</span>
                     </div>
                 )
             }

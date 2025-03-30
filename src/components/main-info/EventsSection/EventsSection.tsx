@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { events } from "../../../constants/eventsList";
+import { EventInterface } from "../../../store/reducers/events_list-reducer";
+import { useQueryClient } from 'react-query';
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 import "./EventsSection.css"
-interface IEventSector{
-    event:{
-        startDate:Date|undefined ,endDate:Date|undefined,name:string,imgSrc:string,description?:string,link?:string
-    }
-}
-const EventSector: React.FC<IEventSector> = ({ event }) => {
+
+// Компонент EventSector
+const EventSector: React.FC<{ event: EventInterface }> = ({ event }) => {
   const { t, i18n } = useTranslation();
-  const [date, setDate] = useState<null | Date>(null);
+  const [, setDate] = useState<null | Date>(null);
   const containerRef = useRef(null);
   const { isVisible } = useIntersectionObserver(containerRef, 0.1);
 
@@ -20,40 +18,88 @@ const EventSector: React.FC<IEventSector> = ({ event }) => {
   };
 
   const handleTimeDifference = (
-    startDate: Date | undefined,
-    endDate: Date | undefined
+    startDate: Date | string | null | undefined,
+    endDate: Date | string | null | undefined
   ) => {
     const currentDate = new Date();
-    if (startDate === undefined)
-      return <span>{t("EventsSection.startDateUnknown")}</span>;
-
-    let difference = startDate.getTime() - currentDate.getTime();
-    let info = t("EventsSection.eventStarts");
-    if (difference <= 0) {
-      if (endDate === undefined)
-        return <span>{t("EventsSection.endDateUnknown")}</span>;
-
-      difference = endDate.getTime() - currentDate.getTime();
-      info = t("EventsSection.eventEnds");
+    
+    if (typeof startDate === 'string' && /^\d+$/.test(startDate)) {
+      const baseDate = new Date('1900-01-01');
+      baseDate.setDate(baseDate.getDate() - 1); // Уменьшить на 1 день
+      baseDate.setHours(baseDate.getHours() - 20); // Уменьшить на 20 часов
+      
+      const parsedStartDate = new Date(baseDate.getTime() + parseInt(startDate) * 86400000);
+      parsedStartDate.setHours(6, 0, 0); // Установить время на 06:00
+      startDate = parsedStartDate;
+    } else {
+      const parsedStartDate = startDate ? new Date(startDate) : null;
+      if (parsedStartDate) {
+        parsedStartDate.setHours(6, 0, 0); // Установить время на 06:00
+      }
+      startDate = parsedStartDate;
     }
-
+    
+    
+    if (typeof endDate === 'string' && /^\d+$/.test(endDate)) {
+      const baseDate = new Date('1900-01-01');
+      baseDate.setDate(baseDate.getDate() - 1); // Уменьшить на 1 день
+      
+      const parsedEndDate = new Date(baseDate.getTime() + parseInt(endDate) * 86400000);
+      parsedEndDate.setHours(4, 0, 0); // Установить время на 04:00
+      endDate = parsedEndDate;
+    } else {
+      const parsedEndDate = endDate ? new Date(endDate) : null;
+      if (parsedEndDate) {
+        parsedEndDate.setHours(4, 0, 0); // Установить время на 04:00
+      }
+      endDate = parsedEndDate;
+    }
+    
+    if (!startDate) {
+      return <span>{t("EventsSection.startDateUnknown")}</span>;
+    }
+    
+    if (startDate > currentDate) {
+      let difference = startDate.getTime() - currentDate.getTime();
+      let info = t("EventsSection.eventStarts");
+      
+      return formatTimeDifference(difference, info);
+    } else {
+      // Если событие уже началось
+      if (!endDate) {
+        return <span>{t("EventsSection.endDateUnknown")}</span>;
+      } else {
+        let difference = endDate.getTime() - currentDate.getTime();
+        let info = t("EventsSection.eventEnds");
+        
+        if (difference < 0) return <span>{t("EventsSection.eventEnded")}</span>;
+        
+        return formatTimeDifference(difference, info);
+      }
+    }
+  };
+  
+  
+  
+  const formatTimeDifference = (difference: number, info: string) => {
     const millisecondsInOneDay = 86400000;
-    const deltaDays = difference / millisecondsInOneDay;
-    const deltaHours = (deltaDays % 1) * 24;
-    const deltaMinutes = (deltaHours % 1) * 60;
-    const deltaSeconds = (deltaMinutes % 1) * 60;
-    if (difference < 0) return <span>{t("EventsSection.eventEnded")}</span>;
+    const deltaDays = Math.trunc(difference / millisecondsInOneDay);
+    const deltaHours = Math.trunc((difference % millisecondsInOneDay) / 3600000);
+    const deltaMinutes = Math.trunc((difference % 3600000) / 60000);
+    const deltaSeconds = Math.trunc((difference % 60000) / 1000);
+  
     return (
       <span>
         {info}
         <br />
-        {Math.trunc(deltaDays) + " " + t("EventsSection.d")}{" "}
-        {Math.trunc(deltaHours) + " " + t("EventsSection.h")}{" "}
-        {Math.trunc(deltaMinutes) + " " + t("EventsSection.m")}{" "}
-        {Math.trunc(deltaSeconds) + " " + t("EventsSection.s")}
+        {deltaDays + " " + t("EventsSection.d")}{" "}
+        {deltaHours + " " + t("EventsSection.h")}{" "}
+        {deltaMinutes + " " + t("EventsSection.m")}{" "}
+        {deltaSeconds + " " + t("EventsSection.s")}
       </span>
     );
   };
+  
 
   useEffect(() => {
     const timeInterval = setInterval(displayDateAndTimezone, 1000);
@@ -63,39 +109,42 @@ const EventSector: React.FC<IEventSector> = ({ event }) => {
   }, []);
 
   return (
-      <article
-        ref={containerRef}
-        className={`event-sector ${isVisible ? "event-sector--animated" : ""}`}
-      >
-        {handleTimeDifference(event.startDate, event.endDate)}
-        {
-          i18n.language == "ru" && <a href={event.link} target="_blank" rel="noopener noreferrer">
+    <article
+      ref={containerRef}
+      className={`event-sector ${isVisible ? "event-sector--animated" : ""}`}
+    >
+      {handleTimeDifference(event.startDate, event.endDate)}
+      {
+        i18n.language == "ru" && <a href={event.link} target="_blank" rel="noopener noreferrer">
           <div className="event-image-container-ru">
-              <img src={event.imgSrc} alt={event.name} />
+            <img src={event.imgSrc} alt={event.nameRu} />
           </div>
-          </a>
+        </a>
       }
       {
-          i18n.language == "en" && <div className="event-image-container-en">
-              <img src={event.imgSrc} alt={event.name} />
-          </div>
-          
+        i18n.language == "en" && <div className="event-image-container-en">
+          <img src={event.imgSrc} alt={event.nameEn} />
+        </div>
       }
-      {event.description && i18n.language == "ru" && (
-        <p className="event-description">{event.description}</p>
+      {i18n.language == "ru" && (
+        <p className="event-description">{t("EventsSection.description")}</p>
       )}
-      </article>
+    </article>
   );
 };
-  
-  export const EventsSection: React.FC = () => {
-    const { t } = useTranslation();
-    return (
-      <section className="events-section">
-        <h2>{t("EventsSection.header")}</h2>
+
+export const EventsSection: React.FC = () => {
+  const events = useQueryClient().getQueryData<EventInterface[]>('events_list') || [];
+  const { t } = useTranslation();
+  return (
+    <section className="events-section">
+      <h2 className="new-entity">{t("EventsSection.header")}</h2>
+      <div className="events-list-container">
         {events.map((event, index) => (
           <EventSector key={index} event={event} />
         ))}
-      </section>
-    );
-  };
+      </div>
+    </section>
+  );
+};
+

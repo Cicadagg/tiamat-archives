@@ -50,6 +50,9 @@
 .tier-bar-container--C {
     background: linear-gradient(90deg, rgb(58, 255, 248) -79.04%, #202228 11.98%);
 }
+.tier-bar-container--Test {
+    background: linear-gradient(90deg, rgb(81, 6, 110) -79.04%, #202228 11.98%);
+}
 
 .tier-bar-line {
     position: absolute;
@@ -80,6 +83,9 @@
 
 .tier-bar-line--C {
     background-color: rgb(46.4, 204, 198.4);
+}
+.tier-bar-line--Test {
+    background-color: rgb(80, 7, 76);
 }
 
 .tier-bar-dot {

@@ -4,9 +4,9 @@ import { CommonPageLayout } from "./CommonPageLayout";
 import { LoadingPageWrapper } from "./LoadingPageWrapper";
 import { useTranslation } from "react-i18next";
 import { H1Component } from "../components/h1-component/H1Component";
-import { SEOHelmet } from "./SEOHelmet";
 import { MirrorDungeonNav } from "../components/mirror-dungeon/nav/MirrorDungeonNav";
 import { MDRouteHandler } from "../components/mirror-dungeon/route-type-handler/MDRouteHandler";
+import Analytics from "../components/Analytics"; // Импортируем ваш компонент
 
 export const MirrorDungeonPage:React.FC = () => {
     const {i18n} = useTranslation();
@@ -20,6 +20,7 @@ export const MirrorDungeonPage:React.FC = () => {
     const queryKeys = ["md-gifts","md-events","statuses"];
     const {t} = useTranslation();
     return <CommonPageLayout>
+        <Analytics /> {/* Вставляем компонент для GA */}
             <LoadingPageWrapper queryKeys={queryKeys}>
                 <H1Component header={t("MirrorDungeonPage.header")}/>
                 <MirrorDungeonNav/>

@@ -13,6 +13,7 @@ export type EGOInterface = {
     season: string;
     egoResists:string[];
     sanity:number[];
+    damage:number[];
 
     wrath:number;
     lust:number;
@@ -28,6 +29,7 @@ export type EGOInterface = {
     basicCoin: number[];
     growthPerCoin: number[];
     maxCoinValue: number[];
+    clashCoinValue: number[];
     countCoin: number[];
     weightCoin:number[];
 
@@ -46,6 +48,9 @@ export type EGOInterface = {
     egoTier: string;
     releaseDate:number;
     isNew:string
+
+    descriptionCoinEN2:string;
+    
 
 };
 export enum EGOActionTypes {

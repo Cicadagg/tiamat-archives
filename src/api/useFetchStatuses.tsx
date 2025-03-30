@@ -1,11 +1,11 @@
-import {  statusesApiKey1, statusesApiKey2 } from "../constants/apiKeys";
+import { statusesApiKey1, statusesApiKey2 } from "../constants/apiKeys";
 import { useQuery, QueryClient } from "react-query";
 import { statusesKeys } from "../constants/statusesKeys";
 import { fetchAndValidateData } from "../tools/fetchAndValidateData";
 
-const SPREADSHEET_ID = '1nQehU8M42srGGaaeMDOM4jREBpPOclcvN0dJrZHh_ao';
-const RANGE1 = 'Sinner'; 
-const RANGE2 = 'Anomaly'; 
+const SPREADSHEET_ID = '1w3MrtYSiXLYEQwlhQWOrsjNSuMlxzc1uJii1YZ0orlA'; // старое
+const RANGE1 = 'sinner_statuses_db_rows'; // старое
+const RANGE2 = 'anomaly_statuses_db_rows'; // старое
 
 const API_KEY1 = statusesApiKey1; 
 const API_KEY2 = statusesApiKey2; 
@@ -17,7 +17,7 @@ const apiUrl2_1 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_I
 const apiUrl2_2 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE2}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY2}`;
 
 const CACHE_KEY = 'statuses_cache';
-const CACHE_TIME = 2 * 60 * 1000; // 2 minutes in milliseconds
+const CACHE_TIME = 60 * 60 * 1000; // 1 час в миллисекундах
 
 const getDataFromCache = () => {
   const cachedData = localStorage.getItem(CACHE_KEY);
@@ -38,20 +38,22 @@ const setDataToCache = (data: any) => {
   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
 };
 
-const useFetchStatusesAction = async () => {
+const useFetchStatusesAction = () => {
   const cachedData = getDataFromCache();
   if (cachedData) {
     return cachedData;
   }
 
-  const result = await fetchAndValidateData(
+  const result = fetchAndValidateData(
     [
         [apiUrl1_1,apiUrl1_2],
         [apiUrl2_1,apiUrl2_2]
     ],
-    statusesKeys);
-  setDataToCache(result);
-  return result;
+    statusesKeys).then(result => {
+      setDataToCache(result);
+      return result;
+    });
+  return result; 
 };
 
 export const useFetchStatuses = () => {

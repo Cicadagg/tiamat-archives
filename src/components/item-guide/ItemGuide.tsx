@@ -1,18 +1,42 @@
-import React, { useEffect, useRef, useState} from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { mobileLayoutFrom } from "../../constants/mobileLayoutFrom";
-import useHover from "../../hooks/useHover";
-import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
-import { EGOInterface } from "../../store/reducers/ego-reducer";
-import { IdentityInterface } from "../../store/reducers/ids-reducer";
-import { isIdentity } from "../../tools/isIdentity";
-import { ItemEGOInfo } from "../item-ego-info/ItemEGOInfo";
-import { ItemIdentityInfo } from "../item-identity-info/ItemIdentityInfo";
 import "./ItemGuide.css";
 import { GuideInterface } from "../../store/reducers/guides-reducer";
-import { GuideTagInterface } from "../../store/reducers/guides-tags-reducer";
-import { GuideTag } from "./GuideTag";
+import { addTag, GuideTagInterface, removeTag, TagsState } from "../../store/reducers/guides-tags-reducer";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useDispatch } from "react-redux";
+import { filterChangeTypeAction } from "../../store/reducers/filter-reducer";
+
+const formatDateFromISO = (dateString: string | number): string => {
+    console.log('Полученная дата:', dateString);
+    
+    let newDate: Date;
+
+    if (typeof dateString === 'string') {
+        newDate = new Date(dateString);
+    } else if (typeof dateString === 'number') {
+        // Если это количество дней с начала эпохи Excel (30 декабря 1899 года)
+        const excelStartDate = new Date(1899, 11, 30);
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        newDate = new Date(excelStartDate.getTime() + dateString * millisecondsPerDay);
+    } else {
+        console.error('Invalid date format');
+        throw new Error('Invalid date format');
+    }
+
+    // Проверяем, является ли дата допустимой
+    if (isNaN(newDate.getTime())) {
+        console.error('Invalid date format');
+        throw new Error('Invalid date format');
+    }
+
+    const month = String(newDate.getMonth() + 1).padStart(2, '0');
+    const day = String(newDate.getDate()).padStart(2, '0');
+    const formattedDate = `${day}.${month}.${newDate.getFullYear()}`;
+    console.log('Отформатированная дата:', formattedDate);
+    return formattedDate;
+};
 
 
 export interface IItemEntity{
@@ -20,61 +44,56 @@ export interface IItemEntity{
     tags: GuideTagInterface[],
     animationDelay?:number;
 }
-export const ItemGuide:React.FC<IItemEntity> = ({entity, tags, animationDelay}) =>{
-    let {date, descriptionRu, descriptionEn, tagsId, nameRu, nameEn} = entity;
-    descriptionEn = descriptionEn.replace(/<img src="(.*?)"/g, '<img src="/images/guides/$1"');
-    descriptionRu = descriptionRu.replace(/<img src="(.*?)"/g, '<img src="/images/guides/$1"');
-    /*
-    const [animatedClass, setAnimatedClass] = useState("");
-    const [timer, setTimer] = useState<NodeJS.Timeout|null>(null);
-    
+export const ItemGuide:React.FC<IItemEntity> = ({entity, tags}) =>{
+    let {ids, date, nameRu, nameEn} = entity;
     const { i18n } = useTranslation();
-    const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof entity;
-    const name = entity[nameKey] as string;
-    const isEgo = !isIdentity(entity);
-    const rarityStyled = (isEgo) ? rarity :  rarity.replaceAll("O","Ø");
-    const frameRarityClass = (isEgo) ? `${entity.egoSin}-sin-color` :  `item-entity-frame--${rarity}`;
-    const imgFolder = (isEgo) ?  "ego" : "identities";
-    const refItem = useRef<HTMLAnchorElement>(null);
-    const {isVisible} = useIntersectionObserver(refItem , 0.1);
-    const isHovering = useHover(refItem);
-    const HoverComponent = (isEgo) ?  <ItemEGOInfo entity={entity} /> : <ItemIdentityInfo entity={entity} />;
-    const linkDestination = (isEgo) ?  `/${i18n.language}/ego/${imgUrl}` : `/${i18n.language}/identities/${imgUrl}`;
 
-    useEffect(()=>{
-        let tim:NodeJS.Timeout|null = null;
-        if(isVisible){
-            const deplay = animationDelay || 0;
-            tim = setTimeout(()=>setAnimatedClass("item-entity-container--animated"),deplay);
-            setTimer(tim);
+    function handleFilterChange(key: string){
+        filterChangeTypeAction(dispatch,key);
+       
+        if (tagsReducer.selectedTags.includes(key)){
+            dispatch(removeTag(key))
         }
-        return ()=>{
-            if(tim) clearTimeout(tim);
+        else{
+            dispatch(addTag(key));
         }
-    },[isVisible])*/
-  
+    }
+
+    const tagsReducer = useTypedSelector(state => state.tagsReducer) as TagsState;
+    const selectedTags = tagsReducer.selectedTags;
+
+    const dispatch = useDispatch();
+
     return (
-        <div>
-        <h1>{nameRu}</h1>
-        <span>{date}</span>
-        <div dangerouslySetInnerHTML={{ __html: descriptionRu }} />
-        {tags.map((tag: GuideTagInterface) => 
-            <GuideTag name={tag.nameRu} />
-        )}
-        {/*<Link to={linkDestination} ref={refItem} className={`item-entity-container ${animatedClass}`} >
-            {
-                isHovering && window.innerWidth > mobileLayoutFrom && HoverComponent
-                } 
-                <div className={"shadow"}>
-                <img className="item-entity-image" src={`${process.env.PUBLIC_URL}/images/${imgFolder}/${imgUrl}.webp`} alt={`${imgUrl}`}/>
+        <li className="guide-info-item" key={ids}>
+            <Link to={`/${i18n.language}/guides/${ids}`} className="guide-info-link-wrapper">
+                <div className="guide-info-content">
+                    <time className="guide-info-date">
+                    {(i18n.language == 'ru') ? 'Последнее изменение' : 'Last updated on'}: {formatDateFromISO(date)}
+                    </time>
+                    <h2 className="guide-info-title">{ (i18n.language === "ru") ? nameRu : nameEn }</h2>
+                    <div className="guide-info-image-wrapper">
+                        <img 
+                            src={`${process.env.PUBLIC_URL}/images/guides/${ids}/${ids}.webp`} 
+                            alt={ (i18n.language === "ru") ? nameRu : nameEn }
+                            className="guide-info-image" 
+                        />
+                    </div>
                 </div>
-                {!!(+isNew) && <span className="item-entity-new" >NEW</span>}
-                <div className="item-entity-rarity" >{rarityStyled}</div>
-                <div>
-                <div className={"item-entity-name"} >{name}</div>
-                <div className={["item-entity-frame",`${frameRarityClass}`].join(" ")} ></div>
+            </Link>
+            <div className="guide-tags-container">
+                <div className="guide-tags">
+                    {tags?.slice(0, 3).map((tag: GuideTagInterface) => (
+                        <button
+                            key={tag.Id}
+                            className={`tag-item ${selectedTags.includes(tag.Id) ? 'active' : ''}`}
+                            onClick={() => handleFilterChange(tag.Id)}
+                        >
+                            {(i18n.language == 'ru') ? tag.nameRu : tag.nameEn}
+                        </button>
+                    ))}
                 </div>
-                </Link>*/}
-        </div>
+            </div>
+        </li>
     )
 }

@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 4px;
 }
 
 .item-identity-info-sin {
@@ -104,6 +105,15 @@
     font-size: 18px;
     font-weight: 500;
     box-sizing: border-box;
+}
+
+.item-identity-info-sin--variation {
+    width: 50%; /* Half the width of a standard skill block */
+    margin: 0 2px;
+}
+
+.item-identity-info-sin--variation .item-identity-info-line {
+    height: 2px; /* Thinner line for variations */
 }
 
 .item-identity-info-tier-rank {

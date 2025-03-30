@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { mdSelectGiftIdAction } from '../../../store/reducers/md-reducer';
 import { MDGift } from '../../../types/md-gift-interface';
 import './MDFormatedText.css';
 import { TFunction } from 'i18next';
+import { useFetchMDGifts } from '../../../api/useFetchMDGifts';
 const romanNumerals:Record<string,string> = {
     5: 'V',
     4: 'IV',
@@ -34,15 +34,24 @@ const romanNumerals:Record<string,string> = {
     "[tailsattackend]" : "[Атака Заканчивается Невыпадением Монетки] ",
     "[failedkill]" : "[Не Удалось Убить] ",
     "[critattackend]" : "[Атака Заканчивается Критическим Попаданием] ",
-    "[turnend]" : "[Конец Хода] ",
+    "[turnend]" : "[Конец Хода]",
     "[skillend]" : "[Конец Скилла] ",
     "[oncritkill]": "[При Убийстве Критическим Попаданием] ",
-    "[beforeuse]":"[Перед Использованием]",
-    "[clashablecounter]":"[Столкновение при Контратаке]",
+    "[beforeuse]":"[Перед Использованием] ",
+    "[clashablecounter]":"[Столкновение при Контратаке] ",
+    "[onallykill]":"[При Убийстве Союзника] ",
+    "[onallykillfail]":"[Неудача при Убийстве Союзника] ",
+    "[onhitwithoutcracking]":"[При атаке без Стеггера] ",
+    "[ontargetkill]":"[При убийстве цели] ",
+    "[turnstart]":"[Начало Хода] ",
+    "[encounterstart]":"[Начало Столкновения] ",
+    "[beforegettinghit]":"[До Получение Попадания] ",
+    "[reuseonhit]" : "[Повторное Применение - При Попадании] ",
+    "[onunopposedattack]" : "[При Атаке в Одностороннем Порядке] ",
 }
 const GiftMapper:React.FC<{value:string}>  = ({value:gift_id}) =>{
-    const gifts = useQueryClient().getQueryData("md-gifts") as MDGift[]|null;
-    const gift = gifts?.find(g => g.id === gift_id);
+    const {data: gifts} = useFetchMDGifts();
+    const gift = gifts?.find((g: MDGift) => g.id === gift_id);
     const {i18n} = useTranslation();
     const dispatch = useDispatch();
     if(!gift) return null;
@@ -68,7 +77,7 @@ const GiftMapper:React.FC<{value:string}>  = ({value:gift_id}) =>{
                         className='gift-keyword-img'
                         src={
                         ["blunt","pierce","slash"].includes(gift.keyword)
-                        ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.png`
+                        ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.webp`
                         :`${process.env.PUBLIC_URL}/images/tags/${gift.keyword}.webp`
                         } 
                         alt={gift?.keyword}/>
@@ -76,7 +85,7 @@ const GiftMapper:React.FC<{value:string}>  = ({value:gift_id}) =>{
                     <span className='gift-tier'> {romanNumerals[gift.tier]} </span>
                 </div>
             </div>
-            <span className={`MDFormatedText--${gift.sin}`} style={{marginLeft:"4px"}}>{name}</span>
+            <span className={`MDFormatedText--${(gift.id !== "gift_0") ? gift.sin : "none"}`} style={{marginLeft:"4px"}}>{name}</span>
         </span>
     </Link>
 }

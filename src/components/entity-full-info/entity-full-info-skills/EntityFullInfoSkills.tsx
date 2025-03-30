@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { dmgType, guardType, sinType } from '../../../constants/types';
+import { dmgType, guardTypeExtended, sinType, normalizeGuardType } from '../../../constants/types';
 import { IdentityInterface } from '../../../store/reducers/ids-reducer';
 import { EntityFullInfoPassive } from './entity-full-info-passive/EntityFullInfoPassive';
 import { EntityFullInfoSanity} from './entity-full-info-sanity/EntityFullInfoSanity';
@@ -12,7 +12,7 @@ interface IEntityFullInfoProps {
 }
 export interface ISkill {
     index:number;
-    dmgType:dmgType|guardType;
+    skillType:dmgType|guardTypeExtended;
     sin:sinType;
     type:"attack"|"guard";
     resourceCount:number;
@@ -37,23 +37,27 @@ export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity,ma
     const skills:ISkill[] = Array(Math.min(skillsDmgType.length,skillsSin.length)).fill(1).map((n,index)=>{
         return {
             index,
-            dmgType:skillsDmgType[index],
+            skillType:skillsDmgType[index],
             sin:skillsSin[index],
             resourceCount:resourceCounts[index] || 0,
             type:"attack"
         }
     })
-    if (identity.sinGuard && identity.guardType) {
-        identity.sinGuard.forEach((sin, index) => {
+    if (identity.guardSin && identity.guardType) {
+        identity.guardSin.forEach((sin, index) => {
             skills.push({
                 index:skills.length,
                 sin,
-                dmgType:identity.guardType[index],
-                resourceCount:0,
-                type:"guard"
-            });
-        });
+                skillType:identity.guardType[index],
+                type:"guard",
+                resourceCount:0
+            })
+        })
     }
+    const normalizedSkills = skills.map(skill => ({
+        ...skill,
+        displayType: skill.type === "guard" ? normalizeGuardType(skill.skillType as guardTypeExtended) : skill.skillType
+    }));
     const passives:IPassive[] = [0,1].map((n,index)=>{
         let k1 = `sinPassive${n+1}` as keyof typeof identity;
         let k2 = `countPassive${n+1}` as keyof typeof identity;
@@ -85,7 +89,7 @@ export const EntityFullInfoSkills:React.FC<IEntityFullInfoProps> = ({identity,ma
                 }
             </ul>
             {
-                (activeTab === "skills") && skills.map(
+                (activeTab === "skills") && normalizedSkills.map(
                     (skill,index)=>{
                         return <EntityFullInfoSkill skill={skill} key={index} identity={identity} maxLvlIdentity={maxLvlIdentity}/>
                     }

@@ -17,7 +17,7 @@ export interface IItemEntity{
 export const ItemEntity:React.FC<IItemEntity> = ({entity,animationDelay}) =>{
     const {rarity , imgUrl,isNew} = entity;
     const [animatedClass, setAnimatedClass] = useState("");
-    const [timer, setTimer] = useState<NodeJS.Timeout|null>(null);
+    const [, setTimer] = useState<NodeJS.Timeout|null>(null);
     
     const { i18n } = useTranslation();
     const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof entity;
@@ -46,19 +46,18 @@ export const ItemEntity:React.FC<IItemEntity> = ({entity,animationDelay}) =>{
   
     return (
         <Link to={linkDestination} ref={refItem} className={`item-entity-container ${animatedClass}`} >
-                {
-                    isHovering && window.innerWidth > mobileLayoutFrom && HoverComponent
-                } 
-                <div className={"shadow"}>
-                    <img className="item-entity-image" src={`${process.env.PUBLIC_URL}/images/${imgFolder}/${imgUrl}.webp`} alt={`${imgUrl}`}/>
-                </div>
-                {!!(+isNew) && <span className="item-entity-new" >NEW</span>}
-                <div className="item-entity-rarity" >{rarityStyled}</div>
-                <div>
-                    <div className={"item-entity-name"} >{name}</div>
-                    <div className={["item-entity-frame",`${frameRarityClass}`].join(" ")} ></div>
-                </div>
-            </Link>  
-       
+            {
+                isHovering && window.innerWidth > mobileLayoutFrom && HoverComponent
+            } 
+            <div className={"shadow"}>
+                <img className="item-entity-image" src={`${process.env.PUBLIC_URL}/images/${imgFolder}/${imgUrl}.webp`} alt={`${imgUrl}`}/>
+            </div>
+            {!!(+isNew) && <span className="item-entity-new" >NEW</span>}
+            <div className="item-entity-rarity" >{rarityStyled}</div>
+            <div>
+                <div className={"item-entity-name"} >{name}</div>
+                <div className={["item-entity-frame",`${frameRarityClass}`].join(" ")} ></div>
+            </div>
+        </Link>  
     )
 }

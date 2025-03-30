@@ -1,4 +1,4 @@
-import { dmgType, guardType, sinType } from "../../constants/types";
+import { dmgType, guardTypeExtended, sinType } from "../../constants/types";
 
 
 export interface IdentityInterface{
@@ -13,11 +13,11 @@ export interface IdentityInterface{
     hp:number,
     hpStun:number[],
     speed:string,
-    defence:number,
+    defense:number,
     skillsSin:sinType[],
     skillsDmgType:dmgType[],
-    sinGuard:sinType[],
-    guardType:guardType[],
+    guardSin:sinType[],
+    guardType:guardTypeExtended[],
     basicCoin:number[],
     growthPerCoin:number[],
     maxCoinValue:number[],
@@ -39,7 +39,7 @@ export interface IdentityInterface{
 
     sinPassive1:sinType[],
     countPassive1:number[],
-    sinPassive2:sinType,
+    sinPassive2:sinType[],
     countPassive2:number[],
     passive1Condition:string,
     passive2Condition:string,
@@ -59,6 +59,10 @@ export interface IdentityInterface{
     
     sanityInfoEN:string,
     sanityInfoRU:string,
+
+    skillsOrder:string[]|null,
+
+    descriptionCoinEN2:string
 
 }
 

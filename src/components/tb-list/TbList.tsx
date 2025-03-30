@@ -9,6 +9,7 @@ import { Filters } from "../filters/Filters";
 import { TbItem } from "../tb-item/TbItem";
 import { TbListEGO } from "../tb-list-ego/TbListEgo";
 import { TbListIds } from "../tb-list-ids/TbListIds";
+import { StatusesInterface } from "../../store/reducers/statuses-reducer";
 import "./TbList.css";
 
 type TTabOption = "ego" | "identity";
@@ -16,8 +17,9 @@ type TTabOption = "ego" | "identity";
 export const TbList:React.FC = () => {
     const ids = useQueryClient().getQueryData("identities") as IdentityInterface[]|null;
     const egos = useQueryClient().getQueryData("ego") as EGOInterface[]|null;
+    const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const [tabOption, settabOption] = useState<TTabOption>("identity");
-    
+
     const {t,i18n} = useTranslation();
     const {slots,modalTrigger} = useTypedSelector(store => store.tbReducer);
     const filterState = useTypedSelector(store => store.filterReducer);
@@ -83,7 +85,7 @@ export const TbList:React.FC = () => {
     const jsxElementsIdsNew:React.ReactNode[] = []
     const jsxElementsIds = ids?.reduceRight((acc:React.ReactNode[] , entity) => {
         if (modalTrigger !== null && !isSameSinnerId(entity) ) return acc;
-        if (!isFilterMatching(filterState,searchState,entity,i18n.language)) return acc;
+        if (!isFilterMatching(filterState,searchState,entity,i18n.language,statuses)) return acc;
         if (!isAvailibleSinnerId(entity)) return acc;
         if (!!(+entity.isNew)){
             jsxElementsIdsNew.push(<TbItem key={entity.imgUrl} entity={entity} />)
@@ -96,7 +98,7 @@ export const TbList:React.FC = () => {
     const jsxElementsEGONew:React.ReactNode[] = [];
     const jsxElementsEGO = egos?.reduceRight((acc:React.ReactNode[] ,entity) => {
         if (modalTrigger !== null && !isSameSinnerEGO(entity) ) return acc;
-        if (!isFilterMatching(filterState,searchState,entity,i18n.language)) return acc;
+        if (!isFilterMatching(filterState,searchState,entity,i18n.language,statuses)) return acc;
         if (!isAvailibleSinnerEGO(entity)) return acc;
         if (!!(+entity.isNew)){
             jsxElementsEGONew.push(<TbItem key={entity.imgUrl} entity={entity} />)
@@ -108,7 +110,7 @@ export const TbList:React.FC = () => {
 
     return (
         <div className={"tb-list-container"} >
-            <Filters></Filters>
+            <Filters isIdentityTeamBuilder={tabOption}></Filters>
             <div style={{display:"flex" , gap:"12px" ,marginBottom:"4px"}}> 
                 <span onClick={()=>{settabOption("identity")}} className={`tb-list-header ${tabOption === "identity" ? "tb-list-header--active" : ""}`} > 
                     {`${t("TbListIds.header")} (${(jsxElementsIds?.length || 0) + jsxElementsIdsNew.length})`}

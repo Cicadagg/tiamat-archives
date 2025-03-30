@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
-import { damageTypes,guardTypes,rarityEGOTypes,rarityIdentityTypes,sinnerTypes,sinTypes,tagsIds } from "../../constants/skillBasedTypes";
-import { sinnerType, sinType ,dmgType,guardType,rarityEGOType,rarityIdentityType} from "../../constants/types";
+import { damageTypes,guardTypes,rarityEGOTypes,rarityIdentityTypes,sinnerTypes,sinTypes,tagsIds,seasonTypes, eventTypes } from "../../constants/skillBasedTypes";
+import { sinnerType, sinType ,dmgType,guardType,rarityEGOType,rarityIdentityType,seasonType,eventType} from "../../constants/types";
 export type SinFilterInterface = {
     [key in sinType]:boolean;
 }
@@ -22,6 +22,12 @@ export type SinnerRarityFilterInterface = {
 export type EGORarityFilterInterface = {
     [key in rarityEGOType]: boolean;
 };
+export type SeasonFilterInterface = {
+    [key in seasonType]:boolean;
+}
+export type EventFilterInterface = {
+    [key in eventType]:boolean;
+}
 export type FilterInterface = {
     types:{
         [key : string]:{[key:string]:boolean};
@@ -30,10 +36,12 @@ export type FilterInterface = {
         dmgType:DmgTypeFilterInterface,
         guardType:GuardTypeFilterInterface,
         tags:TagsFilterInterface,
-        sinner:SinnerFilterInterface;
-        rarityIdentity:SinnerRarityFilterInterface;
-        rarityEGO:EGORarityFilterInterface;
-        md:Record<string,boolean>;
+        sinner:SinnerFilterInterface,
+        rarityIdentity:SinnerRarityFilterInterface,
+        rarityEGO:EGORarityFilterInterface,
+        md:Record<string,boolean>, // отвечает за фильтр None в гифтах
+        season:SeasonFilterInterface,
+        event:EventFilterInterface,
     }
 }
 export enum FilterActionTypes {
@@ -71,6 +79,8 @@ const initialTypes = {
     rarityIdentity:initStateParam(rarityIdentityTypes),
     rarityEGO:initStateParam(rarityEGOTypes),
     md:{"none":false},
+    season:initStateParam(seasonTypes),
+    event:initStateParam(eventTypes),
 }
 const initialState : FilterInterface = {
     types:initialTypes
@@ -106,7 +116,7 @@ const applyFilter = (payload: string, state: FilterInterface) => {
     if(!keyExists) tags[payload] = true;
     return state;
 };
-const resetAll = (state: FilterInterface) =>{
+const resetAll = (state: FilterInterface )=>{
     const {types} = state;
     for(const key in types) clearSection(key,state);
     return state;

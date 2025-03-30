@@ -30,12 +30,12 @@ export const FiltersSectionMd:React.FC = () => {
     },{
         type:"dmgType" ,
         imgsFolder:"dmg-type",
-        imgExtension:".png",
+        imgExtension:".webp",
         data:damageTypes,
     },{
         type:"md" ,
         imgsFolder:"md-filter",
-        imgExtension:".png",
+        imgExtension:".webp",
         data:["none"],
     }];
     let countActive = 0;
@@ -45,6 +45,7 @@ export const FiltersSectionMd:React.FC = () => {
     const handleClearSection = () => {
         filterClearSectionAction(dispatch,"tags");
         filterClearSectionAction(dispatch,"dmgType");
+        filterClearSectionAction(dispatch,"md");
     };
     return <section className="filters-section">
     {

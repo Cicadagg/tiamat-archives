@@ -115,7 +115,9 @@
 .item-ego-info-tier-rank--C {
     background-color: rgb(58, 255, 248);
 }
-
+.item-ego-info-tier-rank--Test {
+    background-color: rgb(80, 7, 76);
+}
 .item-ego-info-arrow {
     width: 11.52px;
     height: 11.52px;

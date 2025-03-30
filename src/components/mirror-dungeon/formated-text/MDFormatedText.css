@@ -75,3 +75,6 @@
 .MDFormatedText--envy{
     color: var(--envy-frame-color);
 }
+.MDFormatedText--none{
+    color: var(--none-frame-color);
+}

@@ -10,6 +10,7 @@ import { searchChangeTargetRefAction } from "../../store/reducers/search-reducer
 import { isFilterMatching } from "../../tools/isFilterMatching";
 import { ItemEntity } from "../item-entity/ItemEntity";
 import { TierBar } from "./tier-bar/TierBar";
+import { StatusesInterface } from "../../store/reducers/statuses-reducer";
 import "./TierList.css"
 type TRatings = {
     [key:string]:{
@@ -20,6 +21,7 @@ type TRatings = {
 export const TierList:React.FC = () => {
     const ids = useQueryClient().getQueryData("identities") as IdentityInterface[]|null;
     const ego = useQueryClient().getQueryData("ego") as EGOInterface[]|null;
+    const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const {t,i18n} = useTranslation();
     const filterState = useTypedSelector(state => state.filterReducer);
     const searchState = useTypedSelector(state => state.searchReducer);
@@ -54,22 +56,102 @@ export const TierList:React.FC = () => {
         return Object.values(data).reduce((acc,item)=>{ acc+= item.data.length ; return acc} , 0);
     }
 
-    const setupEGO = (ratings:TRatings) =>{
-        ego?.forEach((item:EGOInterface,index) =>{
-            if(isFilterMatching(filterState,searchState,item,i18n.language)){
-                ratings[item.egoTier].data.push(<ItemEntity  key={index} entity={item}/>) 
+    const setupEGO = (ratings: TRatings) => {
+        console.log('Начало сортировки EGO');
+        
+        ego?.forEach((item: EGOInterface, index) => {
+            if (isFilterMatching(filterState, searchState, item, i18n.language, statuses)) {
+                ratings[item.egoTier].data.push(<ItemEntity key={index} entity={item} />);
             }
-        })
+        });
+    
+        console.log('Элементы до сортировки:');
+        Object.keys(ratings).forEach(key => {
+            console.log(`Категория: ${key}`);
+            ratings[key].data.forEach((item, index) => {
+                const entity = item.props.entity as EGOInterface;
+                console.log(`  - ${index}: ${entity.nameRU} (rarity: ${entity.rarity || 'Нет данных'})`);
+            });
+        });
+    
+        // Сортировка по rarity внутри каждой категории
+        Object.keys(ratings).forEach(key => {
+            ratings[key].data.sort((a, b) => {
+                const itemA = (a.props.entity as EGOInterface);
+                const itemB = (b.props.entity as EGOInterface);
+
+                const egoRarityOrder: { [key: string]: number } = {
+                    ALEPH: 1,
+                    WAW: 2,
+                    HE: 3,
+                    TETH: 4,
+                    ZAYIN: 5,
+                };
+                
+                const orderA = egoRarityOrder[itemA.rarity] || Infinity;
+                const orderB = egoRarityOrder[itemB.rarity] || Infinity;
+                
+                return orderA - orderB;
+            });
+        });
+    
+        console.log('Элементы после сортировки:');
+        Object.keys(ratings).forEach(key => {
+            console.log(`Категория: ${key}`);
+            ratings[key].data.forEach((item, index) => {
+                const entity = item.props.entity as EGOInterface;
+                console.log(`  - ${index}: ${entity.nameRU} (rarity: ${entity.rarity || 'Нет данных'})`);
+            });
+        });
+    
         return ratings;
     }
-    const setupIds = (ratings:TRatings) =>{
-        ids?.forEach((item:IdentityInterface,index) =>{
-            if(isFilterMatching(filterState,searchState,item,i18n.language)){
-                ratings[item.idTier].data.push(<ItemEntity  key={index} entity={item}/>) 
+    
+    const setupIds = (ratings: TRatings) => {
+        console.log('Начало сортировки Ids');
+        
+        ids?.forEach((item: IdentityInterface, index) => {
+            if (isFilterMatching(filterState, searchState, item, i18n.language, statuses)) {
+                ratings[item.idTier].data.push(<ItemEntity key={index} entity={item} />);
             }
-        })
+        });
+    
+        console.log('Элементы до сортировки:');
+        Object.keys(ratings).forEach(key => {
+            console.log(`Категория: ${key}`);
+            ratings[key].data.forEach((item, index) => {
+                const entity = item.props.entity as IdentityInterface;
+                console.log(`  - ${index}: ${entity.nameRU} (rarity: ${entity.rarity})`);
+            });
+        });
+    
+        Object.keys(ratings).forEach(key => {
+            ratings[key].data.sort((a, b) => {
+                const itemA = (a.props.entity as IdentityInterface);
+                const itemB = (b.props.entity as IdentityInterface);
+                
+                // Сортировка по количеству символов 'O' в строке rarity
+                const countA = itemA.rarity.split('O').length - 1;
+                const countB = itemB.rarity.split('O').length - 1;
+                
+                return countB - countA; // Сортировка по убыванию количества 'O'
+            });
+        });
+        
+    
+        console.log('Элементы после сортировки:');
+        Object.keys(ratings).forEach(key => {
+            console.log(`Категория: ${key}`);
+            ratings[key].data.forEach((item, index) => {
+                const entity = item.props.entity as IdentityInterface;
+                console.log(`  - ${index}: ${entity.nameRU} (rarity: ${entity.rarity})`);
+            });
+        });
+    
         return ratings;
     }
+    
+    
    
     const setupItems = (params:string) =>{
         const ratings:TRatings = {
@@ -96,6 +178,10 @@ export const TierList:React.FC = () => {
             "C":{
                 data:[],
                 description: t(`TierList.description.${params}.C`)
+            },
+            "Test":{
+                data:[],
+                description: t(`TierList.description.${params}.Test`)
             },
         };
         if(params === "ego") return setupEGO(ratings);

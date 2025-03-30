@@ -1,41 +1,51 @@
-import { DmgTypeFilterInterface, FilterInterface, SinFilterInterface } from "../store/reducers/filter-reducer";
+import { FilterInterface } from "../store/reducers/filter-reducer";
 import { MDGift } from "../types/md-gift-interface";
 
 export const isGiftFilterMatching = (
-    filterState:FilterInterface,
-    searchValue:string, 
-    gift:MDGift,
-    locale:string) =>{
-      const {keyword,nameEN,nameRU,sin} = gift;
-      const name = (locale  === "ru") ? nameRU : nameEN;
+  filterState:FilterInterface,
+  searchValue:string, 
+  gift:MDGift,
+  locale:string) =>{
+    const {keyword,nameEN,nameRU,sin,grade1EN,grade2EN,grade3EN} = gift;
+    const name = (locale  === "ru") ? nameRU : nameEN;
 
-      const regex = new RegExp(searchValue, 'i');
-      if(!regex.test(name)) return false; 
-      const {types} = filterState;
+    const regex = new RegExp(searchValue, 'i');
+    if(!regex.test(name)) return false; 
+    const {types} = filterState;
 
-      for(const key in types.dmgType){
-        const value = types.dmgType[key as keyof DmgTypeFilterInterface];
-        if(value === false)continue;
-        if( key !== keyword ) return false;
-      }
-      
-      for(const key in types.sin){
-        const value = types.sin[key as keyof SinFilterInterface];
-        if(value === false)continue;
-        if( key !== sin) return false;
-      }
+    // Проверка sin
+    const activeSins = Object.entries(types.sin)
+      .filter(([_, value]) => value === true)
+      .map(([key, _]) => key);
+    if (activeSins.length > 0 && !activeSins.includes(sin)) return false;
 
-      for(const key in types.md){
-        const value = types.md[key];
-        if(value === false)continue;
-        if(keyword !== key) return false;
-      }
-      
-      for(const key in types.tags){
-          const value = types.tags[key];
-          if(value === false)continue;
-          if(keyword !== key) return false;
-      }
+    // Объединенная проверка ключевых слов (dmgType, md, tags)
+    const activeKeywords = [
+      ...Object.entries(types.dmgType)
+        .filter(([_, value]) => value === true)
+        .map(([key, _]) => key),
+      ...Object.entries(types.md)
+        .filter(([_, value]) => value === true)
+        .map(([key, _]) => key),
+      ...Object.entries(types.tags)
+        .filter(([_, value]) => value === true)
+        .map(([key, _]) => key)
+    ];
+
+    // Проверка ключевых слов в keyword и описаниях апгрейдов
+    const giftDescriptions = [
+      keyword, 
+      grade1EN || '', 
+      grade2EN || '', 
+      grade3EN || ''
+    ];
+
+    const hasMatchingKeyword = activeKeywords.some(activeKey => 
+      giftDescriptions.some(desc => desc.toLowerCase().includes(activeKey.toLowerCase()))
+    );
+
+    // Если есть активные ключевые слова, но текущий гифт не подходит ни под одно
+    if (activeKeywords.length > 0 && !hasMatchingKeyword) return false;
 
     return true;
 }

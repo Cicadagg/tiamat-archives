@@ -1,17 +1,19 @@
-import { md_eventsApiKey1, md_eventsApiKey2 } from "../constants/apiKeys";
+import { md_eventsApiKey1, md_eventsApiKey2, md_eventsApiKey3 } from "../constants/apiKeys";
 import { useQuery, QueryClient } from "react-query";
-import { fetchAndValidateData } from "../tools/fetchAndValidateData";
 import { md_eventsKeys } from "../constants/md-eventsKeys";
+import { fetchAndValidateData } from "../tools/fetchAndValidateData";
 
-const SPREADSHEET_ID = '1VHyZZp4YX73n9zpoSA3p2L8WzQnzOnnQIfYPxS-rxWk';
-const RANGE = 'Event'; 
+const SPREADSHEET_ID = '1RLhaNaaQge3yt04s3q2B0HTw9kdprgYJ2j8EJ_p6D2g'; // старое
+const RANGE = 'md_events_db_rows'; // старое
 const API_KEY1 = md_eventsApiKey1;
 const API_KEY2 = md_eventsApiKey2;
+const API_KEY3 = md_eventsApiKey3;
 const apiUrl1 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY1}`;
 const apiUrl2 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY2}`;
+const apiUrl3 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY3}`;
 
 const CACHE_KEY = 'md-events_cache';
-const CACHE_TIME = 2 * 60 * 1000; // 2 minutes in milliseconds
+const CACHE_TIME = 3600000; // 1 час в миллисекундах
 
 const getDataFromCache = () => {
   const cachedData = localStorage.getItem(CACHE_KEY);
@@ -32,15 +34,17 @@ const setDataToCache = (data: any) => {
   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
 };
 
-const useFetchEventsAction = async () => {
+const useFetchEventsAction = () => {
   const cachedData = getDataFromCache();
   if (cachedData) {
     return cachedData;
   }
 
-  const result = await fetchAndValidateData([apiUrl1, apiUrl2], md_eventsKeys);
-  setDataToCache(result);
-  return result;
+  const result = fetchAndValidateData([apiUrl1,apiUrl2,apiUrl3],md_eventsKeys).then(result => {
+    setDataToCache(result);
+    return result;
+  });
+  return result; 
 };
 
 export const useFetchMDEvents = () => {
@@ -72,7 +76,7 @@ export const createQueryClient = () => {
   if (typeof window !== 'undefined') {
     const cachedData = getDataFromCache();
     if (cachedData) {
-      queryClient.setQueryData("identities", cachedData);
+      queryClient.setQueryData("md-events", cachedData);
     }
   }
 

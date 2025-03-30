@@ -1,6 +1,6 @@
 .statuses-table{
-    margin-top: 38.4px;
-    margin-bottom: 19.2px;
+    margin-top: 1em;
+    margin-bottom: 1em;
     width: 90%;
     justify-content: center;
     align-items: center;
@@ -12,8 +12,30 @@
 td .perCent-special-font{
     font-size: 20px;
 }
-.statuses-section:nth-of-type(2) h2{
+.statuses-section:nth-of-type(2),
+.statuses-section:nth-of-type(3),
+.statuses-section:nth-of-type(4),
+.statuses-section:nth-of-type(5) h2{
     margin-top: 15px;
+}
+.statuses-section .search {
+    margin-top: 2em;
+    width: 100%;
+    box-sizing: border-box;
+}
+.statuses-section .search input {
+    width: 80%;
+}
+.statuses-section .search .btn-clear {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+.statuses-section .search .btn-search {
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
 }
 .status-tooltip{
     display: block; 
@@ -136,8 +158,9 @@ button:hover .status-tooltip{
 .statuses-section h2 {
     color: white;
 }
-.statuses-section h2  {
+.statuses-section h2 {
     margin-top: 0;
+    margin-bottom: 0.25em;
 }
 @media (max-width: 665px) {
     .statuses-table{

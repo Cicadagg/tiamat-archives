@@ -88,7 +88,7 @@ const MDEventCheckPassed:React.FC<{check_passed?:ChekOption}> = ({check_passed})
   return (
     <>
     <div className="check-passed-header">
-      <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.png`} alt={"check passed"}/>
+      <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.webp`} alt={"check passed"}/>
       {t("MDEventOption.check_passed")}
     </div>
     {
@@ -126,7 +126,7 @@ const MDEventCheckFailed:React.FC<{check_failed?:ChekOption}> = ({check_failed})
   return (
     <>
     <div className="check-failed-header">
-      <img src={`${process.env.PUBLIC_URL}/images/general/coin.png`} alt={"check failed"}/>
+      <img src={`${process.env.PUBLIC_URL}/images/general/coin.webp`} alt={"check failed"}/>
       {t("MDEventOption.check_failed")}
     </div>
     {
@@ -222,14 +222,14 @@ export const MDEventOptionCheck:React.FC<{check?:Check}> = ({check})=> {
             const checkData = check[key as keyof typeof  check];
             if(typeof checkData !== "object") return null;
             return <div key={id} className="check-item">
-              <img src={`${process.env.PUBLIC_URL}/images/sins/${key}.png`} alt={key}/>
+              <img src={`${process.env.PUBLIC_URL}/images/sins/${key}.webp`} alt={key}/>
               <span>{t(`FiltersSection.${key}`)}</span>
               {(item.length !== id +1) &&  <span>/</span>}
             </div>
           })
         }
          <span>{t("MDEventOption.advantage")}</span>
-         <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.png`} alt={key}/>
+         <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.webp`} alt={key}/>
           <span>{functionSignMapper(checkData.function)}</span>
           <span>{checkData.value}</span>
       </div>
@@ -241,7 +241,7 @@ export const MDEventOptionCheck:React.FC<{check?:Check}> = ({check})=> {
       {
           (checkName === "*" || !keysWhitelist.includes(checkName.toLowerCase())) 
           ?<></>
-          :<img src={`${process.env.PUBLIC_URL}/images/sins/${checkName}.png`} alt={checkName}/>
+          :<img src={`${process.env.PUBLIC_URL}/images/sins/${checkName}.webp`} alt={checkName}/>
       }
       {
         typeof checkData === "object"
@@ -252,7 +252,7 @@ export const MDEventOptionCheck:React.FC<{check?:Check}> = ({check})=> {
             ?<span>{t("MDEventOption.no_advantage")}</span>
             :<span>{checkName}</span>
           }
-          <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.png`} alt={checkName}/>
+          <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.webp`} alt={checkName}/>
           <span>{functionSignMapper(checkData.function)}</span>
           <span>{checkData.value}</span>
         </>

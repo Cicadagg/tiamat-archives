@@ -1,4 +1,4 @@
-import {Routes , Route,BrowserRouter as Router, useLocation} from "react-router-dom";
+import {Routes , Route, useLocation} from "react-router-dom";
 import React, {useEffect} from "react";
 import { IndexPage } from "../pages/IndexPage";
 import { TierListPage } from "../pages/TierListPage";
@@ -17,10 +17,12 @@ import { EGOPage } from "../pages/EGOPage";
 import { AdminPage } from "../pages/AdminPage";
 import { TierListPageRedirect } from "../pages/TierListPageRedirect";
 import { GraditudePage } from "../pages/GraditudePage";
+import { TurnamentPage } from "../pages/TurnamentPage";
 import { MirrorDungeonPage } from "../pages/MirrorDungeonPage";
 import { MirrorDungeonPageRedirect } from "../pages/MirrorDungeonPageRedirect";
 import { EventTestPage } from "../pages/EventTestPage";
 import { GuidesPage } from "../pages/GuidesPage";
+import { GuidePage } from "../pages/GuidePage";
 
 export const AppRouter:React.FC = () => {
     
@@ -71,6 +73,11 @@ export const AppRouter:React.FC = () => {
             isExact:true,
         },
         {
+            path:"/guides/:guideId",
+            element:<GuidePage />,
+            isExact:true,
+        },
+        {
             path:"/identities/:identityId",
             element:<IdentityPage />,
             isExact:true,
@@ -98,6 +105,11 @@ export const AppRouter:React.FC = () => {
         {
             path:"/graditude",
             element:<GraditudePage />,
+            isExact:true,
+        },
+        {
+            path:"/turnament",
+            element:<TurnamentPage />,
             isExact:true,
         },
         {

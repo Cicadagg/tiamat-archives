@@ -11,7 +11,7 @@ const conditionFunc = (value) =>{
     return null;
 }
 const tagFunc = (value) =>{
-    return `<img className="status" src="../images/tags/${value}.png"/><span className="status--name">${value}</span>`
+    return `<img className="status" src="../images/tags/${value}.webp"/><span className="status--name">${value}</span>`
 }
 const specialsMap = {
     "@":coinFunc,

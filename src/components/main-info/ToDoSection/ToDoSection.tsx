@@ -8,12 +8,20 @@ export const ToDoSection: React.FC = () => {
     const todos = [
         t("ToDoSection.1"),
         t("ToDoSection.2"),
-        t("ToDoSection.3")
+        t("ToDoSection.3"),
+        t("ToDoSection.4")
     ]
     const quickStartLinks = [
         {
             text:t("ToDoSection.contactUs2"),
-            to: (i18n.language == "ru") ? `https://docs.google.com/forms/d/1bRPaej-7flCm1H01xM-OjSXgUs10iej_tiaWNIwOjFI/edit` : `https://docs.google.com/forms/d/1Gxsi1emIENdJdDNLd04rD5KytGQRU3UvA-7WHi1DpiY/edit`
+            to: (i18n.language == "ru") ? `https://discord.gg/BGpmmqknWE` : `https://discord.gg/BGpmmqknWE`
+        }
+    ]
+
+    const quickStartLinks2 = [
+        {
+            text:t("ToDoSection.contactUs2"),
+            to: (i18n.language == "ru") ? `https://boosty.to/gll-fun` : `https://boosty.to/gll-fun`
         }
     ]
     const NavLink:React.FC<{to:string,text:string}> = ({to,text}) =>{

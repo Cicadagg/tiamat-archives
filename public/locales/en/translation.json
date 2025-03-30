@@ -1,9 +1,11 @@
 {
     "MainInfo": {
         "headerDescription1":"Great Limbus Library is a fan site and database developed by the community, dedicated to Limbus Company.",
-        "headerDescription2":"If You want to keep up with the news about site updates, You can go to the ",
-        "headerDescription3":"SITE SUPPORT",
-        "headerDescription4":" section and go from there to Boosty, the latest news is published there for free."
+        "headerDescription2":"If you want to follow the news about the site update, you can go to our ", 
+        "headerDescription3": " DISCORD SERVER ", 
+        "headerDescription4": " and also to our ",
+        "headerDescription5": " BOOSTY ",
+        "headerDescription6": " to support us."
     },
     "EntitySection": {
         "new" : "Recently Released Identities and EGOs"
@@ -29,22 +31,25 @@
         "h":"h"
     },
     "NewsSection":{
-        "header":"Last news about GLL"
+        "header":"Latest GLL news",
+        "description":"Click on the image for more details"
     },
     "OfficialLinksSection":{
         "header":"Official Links"
     },
     "ToDoSection":{
-        "1":"Adding guides",
-        "2":"Improving team builder functionality",
-        "3":"General improvements to the site's interface and content",
+        "1":"Adding new guides",
+        "2":"Adding Uptie Tier for Identities and Threadspin Tier for Egos",
+        "3":"Improving Team Builder functionality",
+        "4":"General improvements to the site's interface and content",
         "header":"Site Improvement Plans",
-        "contactUs":"If you have ideas or suggestions, please click on the ",
-        "contactUs2":"QUESTIONNAIRE",
-        "contactUs3":" section and fill out the 'Full questionnaire on Great Limbus Library'."
+        "contactUs":"If you have any ideas, suggestions, or just want to follow our activities, we are waiting for you on our ",
+        "contactUs2":" DISCORD",
+        "contactUs3":" server."
     },
     "LeftMenu":{
         "graditude":"SITE SUPPORT",
+        "turnament":"TOURNAMENT",
         "tierlist":"TIER LIST",
         "teambuilder":"TEAM BUILDER",
         "identities":"IDENTITIES",
@@ -52,9 +57,9 @@
         "ego":"EGO",
         "statuses":"STATUSES",
         "aboutgame":"ABOUT THE GAME",
-        "contact":"OUR CONTACTS",
+        "contact":"SITE TEAM AND OUR COLLEAGUES",
         "mirror_dungeon":"MIRROR DUNGEON",
-        "feedback":"QUESTIONNAIRE"
+        "discord":"DISCORD"
     },
     "TierListPage":{
         "title":"Tier List",
@@ -77,7 +82,8 @@
                 "S":"Strong identities that require a lot of conditions for their realization",
                 "A":"Average in strength identities. Not bad, but not something outstanding",
                 "B":"The level of strength of these identities is below average, they are easily replaced and rarely used",
-                "C":"Weak identities unable to deal effectively with the game content"
+                "C":"Weak identities unable to deal effectively with the game content",
+                "Test":"We are checking the Identity mapping, it is still in progress."
             },
             "ego":{
                 "SSS":"The strongest and most versatile EGOs, used effectively in the vast majority of situations",
@@ -85,7 +91,8 @@
                 "S":"Strong EGOs used in rare or specific situations or not powerful enough for SS range",
                 "A":"Medium strong EGOs that are rarely used and are often replaced by their counterparts",
                 "B":"Mediocre EGOs that are rarely used and do little work",
-                "C":"Weak EGOs unable to compete with their counterparts"
+                "C":"Weak EGOs unable to compete with their counterparts",
+                "Test":"We're checking the EGO mapping, it's still in progress."
             }
         }
         
@@ -108,7 +115,9 @@
             "sin":"Sin",
             "sinner":"Sinner",
             "statusType":"Status type",
-            "tags": "Tags"
+            "tags": "Tags",
+            "season":"Dispense",
+            "event":"Event"
         }
     },
     "Search":{
@@ -158,7 +167,7 @@
         "header": "Found Identities"
     },
     "ListGuides": {
-        "empty": "No hay Identidades disponibles. Intenta desactivar algunos filtros.",
+        "empty": "No available Guides. Try disabling some filters.",
         "header": "Guides Encontradas"
     },
     "StatusesPage": {
@@ -167,8 +176,12 @@
     },
     "StatusesTable": {
         "header": {
-            "sinner": "Statuses related to sinners",
-            "anomaly": "Statuses related to anomalies"
+            "sinner": "Statuses related to Sinners",
+            "ego": "Statuses related to EGOs",
+            "sinner_story": "Statuses related to Sinners in story",
+            "anomaly": "Statuses related only to enemy",
+            "md_gift":"Statuses related only to EGO Gifts",
+            "none": "Statuses with unknown source"
         },
         "status": "Status",
         "name": "Name",
@@ -185,7 +198,7 @@
     },
     "ContactPage.title": "Contact",
     "ContactInfo": {
-        "header": "Our Contacts:",
+        "header": "Contact us by e-mail:",
         "colleagues": {
             "header":"URL to Our Colleagues:",
             "1": "",
@@ -193,8 +206,7 @@
             "3": "",
             "4": ""
         },
-        "copied": "Nickname copied",
-        "originalAuthor": "Original Document Author",
+        "emailCopied": "E-mail copied",
         "creator": "Website Creator",
         "workers.header": "Contributors to the Website:",
         "workers1": {
@@ -213,9 +225,9 @@
             "patron8":"[Floor of Social Sciences]",
             "patron9":"[Floor of Philosophy]",
             "patron10":"[Floor of Religion]",
-            "1":"Klinch as a Average Grade 9 Fixer",
+            "1":"Reki5.7 as Assistant Director of the “Multicrek” Office",
             "2":"Unawakened",
-            "3":"Sir Alonne в роли слабейшего ПМ минмаксера",
+            "3":"Sir Alonne as the Weakest LCB minmaxer",
             "4":"Unawakened",
             "5":"morj. as the hardest worker (real)",
             "6":"turbae_carissimus",
@@ -223,15 +235,19 @@
             "8":"The Cyan Sunset as Carmen",
             "9":"Unawakened",
             "10.1":"FORGOTTEN as a war seal",
-            "10.2":"Xoskar as coffin of Funeral of the Dead Butterflies"
+            "10.2":"Xoskar as coffin of Funeral of the Dead Butterflies",
+            "11":"ꙢӚⅯ∑₦ꚎӥԘ as the Zwei knight",
+            "12":"1-Holopsicon-1  as a user, the EGO of Black Silence"
         },
         "workers3": {
-        "header": "Lost Books:",
-        "1": "Kamikotosss",
-        "2": "ManulGod",
-        "3": "Vicissitude as a gift",
-        "4": "Licht & Ruchi as Workers for one Day",
-        "5": "hgjrtu as the most sane tier list maker"
+            "header": "Lost Books:",
+            "1":"Kamikotosss",
+            "2":"ManulGod",
+            "3":"Vicissitude as a gift",
+            "4":"Licht & Ruchi as Workers for one Day",
+            "5":"hgjrtu as the most sane tier list maker",
+            "6":"Klinch as the Average Grade 9 Fixer",
+            "7":"Selerm as the Detective, Lieutenant double-yefreitor"
         },
         "workers4": {
             "header": "Special Thanks:",
@@ -255,13 +271,79 @@
             "header":"Our Patrons"
         }
     },
+    "TurnamentPage.title":"Tournament",
+    "TurnamentInfo":{
+        "tournament": {
+            "header": "Tournament Information",
+            "passworldText": "This page is under testing, please enter the password to view the content."
+        },
+        "info": {
+            "header": "Tournament Information"
+        },
+        "info_title": "RR5 Tournament",
+        "description": {
+            "text1": "This tournament is held to raise funds for charity.",
+            "text2": "Teams from different cities participate in it.",
+            "text3": "The tournament takes place in several rounds, with a final match at the end."
+        },
+        "prize": {
+            "header": "Prize Fund",
+            "text": "The total prize pool is $10,000."
+        },
+        "infoAndRules": {
+            "header": "Information and Rules",
+            "text1": "Registration is open to everyone.",
+            "text2": "Matches will be held online."
+        },
+        "registration": {
+            "header": "Tournament Registration",
+            "text": "Registration is available until the start of the tournament."
+        },
+        "schedule": {
+            "header": "Match Schedule",
+            "text": "The schedule will be published a week before the start."
+        },
+        "contacts": {
+            "header": "Contact Information",
+            "text": "For questions, please contact by mail: example@example.com"
+        },
+        "info_and_rules": {
+            "header": "Rules",
+            "text": "For questions, please contact by mail: example@example.com"
+        },
+        "guests": {
+            "header": "Tournament Guests",
+            "organizers": "Organizers",
+            "commentators": "Commentators",
+            "observers": "Observers"
+        },
+        "password": {
+            "placeholder": "Enter password",
+            "submit": "Submit",
+            "error": "Incorrect password"
+        }
+    },
     "DisclaimerBanner.1": " - is a fan site and database developed by the community dedicated to the game ",
     "DisclaimerBanner.2": "This site is not an official resource of ",
     "DisclaimerBanner.3": ", and all materials remain the property of their original owners.",
     "DisclaimerBanner.confirm": "GOT IT",
     "LoadingAnimation":{
         "text":"Loading",
-        "delay":"We are experiencing high server load; the wait will take a little longer."
+        "tooltip": "Try to reload the page.",
+        "delay1":"morj is considering what to say to you....",
+        "delay2": "Please wait a bit, Ritsy is looking for how to launch the site...",
+        "delay3": "Sir Alonne is doing a TierList rework...",
+        "delay4":"Please wait a little, we are writing a funny joke.",
+        "delay5":"Rumor has it that Sir Alone will rework the tier list... Someday... Maybe...",
+        "delay6":"Found a bug in the gifts? You better call Reki.",
+        "delay7":"Please wait we... Zzz... Zzz...",
+        "delay8":"Please, while you're still here, help! This site isn't what it seems, oh no, they're close, and... a... AAA...",
+        "delay9":"Loading, loading, loading, loading, loading, loading, loading, loading, loading, loading.",
+        "delay10":"When Abnormality «GLL Site» loads, Clerks logged into the «Status» tab will panic.",
+        "delay11":"«GLL Site» (FC-07-403) is an Abnormality taking the form of a Internet Site and make people argue about Tier List",
+        "delay12":"Wanna advice? Close this site © [Fired employee №57]",
+        "delay13":"There is Nothing There...",
+        "delay14":"Blue Star has sucked up all the data, we are trying to get it back."
     },
     "ErrorInfo":{
         "header":"Error",
@@ -274,11 +356,14 @@
     "EntityFullInfoEGO":{
         "statuses":"Statuses",
         "res":"Resistances",
-        "cost":"Cost"
+        "cost":"Cost",
+        "switchImage1":"Awakening",
+        "switchImage2":"Corrosion"
     },
     "EntityFullInfoSkillEGO": {
         "baseValue": "Base Value",
-        "corrosion": "CORROSION",
+        "corrosion": "Corrosion",
+        "awakening": "Awakening",
         "coinGain": "Base Coin Gain",
         "guardType": "Guard Type",
         "damageType": "Damage Type",
@@ -286,13 +371,14 @@
         "sanity": "Sanity Cost",
         "maxCoin": "Maximum Coin Value (Base)",
         "coinCondition": "Maximum Coin Value considering Skill and Combat Passive conditions",
-        "weightBase": "Number of slots hit by the skill (Base)",
-        "weight": "Number of slots hit by the skill considering buffs"
+        "weightBase": "Number of slots hit by the Skill (Base)",
+        "weight": "Number of slots hit by the Skill considering buffs",
+        "offenseLevel": "offense Level"
     },
     "EntityFullInfoSkill": {
         "skill": "Skill",
         "defSkill": "Defensive Skill",
-        "count": "Count in rotation of 6 skills",
+        "count": "Count in rotation of 6 Skills",
         "baseValue": "Base Value",
         "coinGain": "Base Coin Gain",
         "guardType": "Guard Type",
@@ -300,12 +386,12 @@
         "sin": "Sin",
         "maxCoin": "Maximum Coin Value (Base)",
         "coinCondition": "Maximum Coin Value considering Skill and Combat Passive conditions [In Clash]",
-        "defenceLevel": "Defence Level",
-        "offenceLevel": "Offence Level",
-        "minPotencial": "Minimum Potential Damage of the skill (calculations by Sir Alonne)",
-        "maxPotencial": "Maximum Potential Damage of the skill (calculations by Sir Alonne)",
-        "weightBase": "Number of slots hit by the skill (Base)",
-        "weight": "Number of slots hit by the skill considering buffs"
+        "defenseLevel": "defense Level",
+        "offenseLevel": "offense Level",
+        "minPotencial": "Minimum Potential Damage of the Skill (calculations by Sir Alonne)",
+        "maxPotencial": "Maximum Potential Damage of the Skill (calculations by Sir Alonne)",
+        "weightBase": "Number of slots hit by the Skill (Base)",
+        "weight": "Number of slots hit by the Skill considering buffs"
     },
     "EntityFullInfoIdentity": {
         "info": "Info",
@@ -322,7 +408,6 @@
             "w-10":"Walpurgis Night X",
             "w-11":"Walpurgis Night XI",
             "w-12":"Walpurgis Night XII",
-            "s-b":"",
             "s-0":"Standard Fare",
             "s-1":"Season 1 - Orientation",
             "s-2":"Season 2 - Reminiscence",
@@ -336,24 +421,36 @@
             "s-10":"Season 10 - *",
             "s-11":"Season 11 - *",
             "s-12":"Season 12 - *",
-            "e-1":"Season 1 - Orientation [Event]",
-            "e-2":"Season 2 - Reminiscence [Event]",
-            "e-3":"Season 3 - Bon Voyage [Event]",
-            "e-4":"Season 4 - Clear All Cathy [Event]",
-            "e-5":"Season 5 - Oblivion [Event]",
-            "e-6":"Season 6 - * [Event]",
-            "e-7":"Season 7  - * [Event]",
-            "e-8":"Season 8 - * [Event]",
-            "e-9":"Season 9 - * [Event]",
-            "e-10":"Season 10 - * [Event]",
-            "e-11":"Season 11  - * [Event]",
-            "e-12":"Season 12 - * [Event]"
+            "i-1":"Hell's Chicken",
+            "i-2":"S.E.A.",
+            "i-3.1":"Miracle in District 20",
+            "i-3.2":"Yield My Flesh to Claim Their Bones",
+            "i-4.1":"Timekilling Time",
+            "i-4.2":"Murder on the WARP Express",
+            "i-5.1":"LCB Regular Check-up",
+            "i-5.2":"Nocturnal Sweeping",
+            "i-6.1":"*",
+            "i-6.2":"*",
+            "i-7.1":"*",
+            "i-7.2":"*",
+            "i-8.1":"*",
+            "i-8.2":"*",
+            "i-9.1":"*",
+            "i-9.2":"*",
+            "i-10.1":"*",
+            "i-10.2":"*",
+            "i-11.1":"*",
+            "i-11.2":"*",
+            "i-12.1":"*",
+            "i-12.2":"*"
         },
         "release":"Release: ",
         "statuses": "Statuses",
         "stagger": "Stagger Threshold",
         "stats": "Stats",
-        "res": "Resistances"
+        "res": "Resistances",
+        "switchImage1":"Tier I-II",
+        "switchImage2":"Tier III-IV"
     },
     "EntityFullInfoPassive":{
         "res":" Res.",
@@ -394,8 +491,17 @@
         "[turnend]" : "[Turn End] ",
         "[skillend]" : "[Skill End] ",
         "[oncritkill]": "[On Crit Kill] ",
-        "[beforeuse]":"[Before Use]",
-        "[clashablecounter]":"[Clashable Counter]",
+        "[beforeuse]":"[Before Use] ",
+        "[clashablecounter]":"[Clashable Counter] ",
+        "[onallykill]":"[On Ally Kill] ",
+        "[onallykillfail]":"[On Ally Crit Kill Fail] ",
+        "[onhitwithoutcracking]":"[On Hit without cracking] ",
+        "[ontargetkill]":"[On Target Kill] ",
+        "[encounterstart]":"[Encounter Start] ",
+        "[turnstart]":"[Turn Start] ",
+        "[beforegettinghit]":"[Before Getting Hit] ",
+        "[reuseonhit]" : "[Reuse - On Hit] ",
+        "[onunopposedattack]" : "[On Unopposed Attack] ",
         "fc" : " Final Power",
         "bc" : " Base Power",
         "cg" : " Coin Power",
@@ -411,7 +517,7 @@
         "ryoshu":"Ryoshu",
         "mersault":"Mersault",
         "honglu":"Hong Lu",
-        "heathcliff":"Hethcliff",
+        "heathcliff":"Heathcliff",
         "ishmael":"Ishmael",
         "rodion":"Rodion",
         "sinclair":"Sinclair",
@@ -444,7 +550,7 @@
         "ryoshu":"Ryoshu",
         "mersault":"Mersault",
         "hong lu":"Hong Lu",
-        "heathcliff":"Hethcliff",
+        "heathcliff":"Heathcliff",
         "ishmael":"Ishmael",
         "rodion":"Rodion",
         "sinclair":"Sinclair",
@@ -462,12 +568,58 @@
         "sloth":"Sloth",
         "gloom":"Gloom",
         "pride":"Pride",
-        "envy":"Envy"
-
+        "envy":"Envy",
+        "w-1":"Walpurgis Night I",
+        "w-2":"Walpurgis Night II",
+        "w-3":"Walpurgis Night III",
+        "w-4":"Walpurgis Night IV",
+        "w-5":"Walpurgis Night V",
+        "w-6":"Walpurgis Night VI",
+        "w-7":"Walpurgis Night VII",
+        "w-8":"Walpurgis Night VIII",
+        "w-9":"Walpurgis Night IX",
+        "w-10":"Walpurgis Night X",
+        "w-11":"Walpurgis Night XI",
+        "w-12":"Walpurgis Night XII",
+        "s-0":"Standard Fare",
+        "s-1":"Season 1 - Orientation",
+        "s-2":"Season 2 - Reminiscence",
+        "s-3":"Season 3 - Bon Voyage",
+        "s-4":"Season 4 - Clear All Cathy",
+        "s-5":"Season 5 - Oblivion",
+        "s-6":"Season 6 - *",
+        "s-7":"Season 7 - *",
+        "s-8":"Season 8 - *",
+        "s-9":"Season 9 - *",
+        "s-10":"Season 10 - *",
+        "s-11":"Season 11 - *",
+        "s-12":"Season 12 - *",
+        "i-1":"Hell's Chicken",
+        "i-2":"S.E.A.",
+        "i-3.1":"Miracle in District 20",
+        "i-3.2":"Yield My Flesh to Claim Their Bones",
+        "i-4.1":"Timekilling Time",
+        "i-4.2":"Murder on the WARP Express",
+        "i-5.1":"LCB Regular Check-up",
+        "i-5.2":"Nocturnal Sweeping",
+        "i-6.1":"*",
+        "i-6.2":"*",
+        "i-7.1":"*",
+        "i-7.2":"*",
+        "i-8.1":"*",
+        "i-8.2":"*",
+        "i-9.1":"*",
+        "i-9.2":"*",
+        "i-10.1":"*",
+        "i-10.2":"*",
+        "i-11.1":"*",
+        "i-11.2":"*",
+        "i-12.1":"*",
+        "i-12.2":"*"
     },
     "FiltersSectionMd.header":"Keywords",
     "MirrorDungeonNav":{
-        "rest-stops":"Rest Stop",
+        "rest-stops":"EGO Gift Fusion",
         "gifts":"EGO Gifts",
         "events":"Events"
     },
@@ -479,6 +631,7 @@
     "GiftsHeader":{
         "description":"Selected EGO Gift Description",
         "obtain":"Way to Obtain:",
+        "obtainSinFragment":"All Fragments:",
         "buy":"Buying Cost:",
         "sell":"Selling Cost:",
         "craft":"Used to Craft:",
@@ -499,7 +652,7 @@
         "no_gifts":"None"
     },
     "MirrorDungeonPage":{
-        "title_rs":"Rest Stops Mirror Dungeon",
+        "title_rs":"Shop Mirror Dungeon",
         "title_events":"Events Mirror Dungeon",
         "title_gifts":"EGO Gifts Mirror Dungeon",
         "header":"Mirror Dungeon"

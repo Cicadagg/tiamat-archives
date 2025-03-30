@@ -26,8 +26,15 @@ export const GiftsHeader:React.FC = () => {
   const usedToCraft:string[] = (selectedGiftId && gifts )
   ? gifts.reduce((acc:string[],curr)=>{
     const {id,obtainEN} = curr;
-    if(obtainEN.includes(`#${selectedGiftId}#`)) 
-    acc.push(`#${id}#`);
+    const specialIds = ["#gift_105#", "#gift_110#", "#gift_116#", "#gift_121#", "#gift_126#", "#gift_131#", "#gift_136#"];
+    if(specialIds.includes(`#${selectedGiftId}#`)) {
+      if(id === selectedGiftId) {
+        return [...acc, "#gift_100#"];
+      }
+    } else {
+      if(obtainEN.includes(`#${selectedGiftId}#`)) 
+      acc.push(`#${id}#`);
+    }
     return acc;
   },[])
   : []
@@ -54,7 +61,8 @@ export const GiftsHeader:React.FC = () => {
     "ru":{
       upgrades:[gift?.grade1RU||null,gift?.grade2RU||null,gift?.grade3RU||null],
       name:gift?.nameRU || "",
-      obtain:gift?.obtainRU || "",
+      obtain:gift?.obtainRU || '',
+      //obtain:(gift?.obtainRU === 'Магазин и Событие' || gift?.obtainRU === 'Магазин') ? gift?.obtainRU : `Тема "${gift?.obtainRU}" и Магазин` || "",
       cost:(gift) ? Number(gift.cost) : NaN
 
     }
@@ -83,36 +91,55 @@ export const GiftsHeader:React.FC = () => {
         {
           gift 
           ? <>
-            <span >
-              <span className='GiftsHeader-highlight-text'>
-                {t("GiftsHeader.obtain")} 
+            {
+              (gift.id == 'gift_0') ? <span>
+                <span className='GiftsHeader-highlight-text'>
+                  {t("GiftsHeader.obtainSinFragment")} 
+                </span>
+                <MDFormatedText text={`${giftData[i18n.language].obtain}`||''}/>
               </span>
-              <MDFormatedText text={`${giftData[i18n.language].obtain}`||''}/>
-            </span>
+              : <span>
+                <span className='GiftsHeader-highlight-text'>
+                  {t("GiftsHeader.obtain")} 
+                </span>
+                <MDFormatedText text={`${giftData[i18n.language].obtain}`||''}/>
+              </span>
+            }
             {
               !!giftEvents.length && giftEvents.map(g=>{
                 return <MDFormatedTextEvent eventID={g} key={g}/>
               })
             }
-          { giftData[i18n.language].cost &&<>
-            {!giftData[i18n.language].obtain.includes("#gift") &&
+            { (giftData[i18n.language].cost !== 0) ? giftData[i18n.language].cost && <>
+              {(!giftData[i18n.language].obtain.includes("#gift") || gift.id == 'gift_100') && !giftData[i18n.language].obtain.includes("Duplicate Tier") && !giftData[i18n.language].obtain.includes("Дубликат") &&
+                <span>
+                  <span className='GiftsHeader-highlight-text'>
+                    {t("GiftsHeader.buy")}
+                  </span>
+                  {
+                    (giftData[i18n.language].cost == 1) ? "?" : giftData[i18n.language].cost
+                  } 
+                </span>
+              }
               <span>
                 <span className='GiftsHeader-highlight-text'>
-                  {t("GiftsHeader.buy")}
+                  {t("GiftsHeader.sell")}
                 </span>
                 {
-                  (giftData[i18n.language].cost == 1) ? "?" : giftData[i18n.language].cost
+                (giftData[i18n.language].cost == 1) ? "?" : Math.ceil(giftData[i18n.language].cost/2)
                 } 
               </span>
-            }
-            <span>
-              <span className='GiftsHeader-highlight-text'>
-                {t("GiftsHeader.sell")}
-              </span>
               {
-              (giftData[i18n.language].cost == 1) ? "?" : Math.ceil(giftData[i18n.language].cost/2)
-              } 
-            </span>
+                !!usedToCraft.length &&
+                <span >
+                  <span className='GiftsHeader-highlight-text'>
+                    {t("GiftsHeader.craft")}
+                  </span>
+                  <MDFormatedText text={` ${usedToCraft.join()}`||''}/>
+                </span>
+              }
+            </>
+            : giftData[i18n.language].cost == 0 && <>
             {
               !!usedToCraft.length &&
               <span >
@@ -122,8 +149,8 @@ export const GiftsHeader:React.FC = () => {
                 <MDFormatedText text={` ${usedToCraft.join()}`||''}/>
               </span>
             }
-          </>
-          }
+            </>
+            }
           </>
           : <span className='GiftsHeader-centered'>  
           {t("GiftsHeader.additionalInfo")} 

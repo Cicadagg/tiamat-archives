@@ -1,17 +1,17 @@
 import {md_giftsApiKey1, md_giftsApiKey2 } from "../constants/apiKeys";
 import { useQuery, QueryClient } from "react-query";
-import { fetchAndValidateData } from "../tools/fetchAndValidateData";
 import { md_giftsKeys } from "../constants/md-giftsKeys";
+import { fetchAndValidateData } from "../tools/fetchAndValidateData";
 
-const SPREADSHEET_ID = '1ULZr-gE3AZBLrYvvuvqy3ycfqfSiwD9Zrhp5BT92k0w';
-const RANGE = 'Gifts'; 
+const SPREADSHEET_ID = '15Xs3ug0kgC9pmABwryljNfPKL7vF6GokmxpoOi5hMdQ'; // старое
+const RANGE = 'md_gifts_db_rows'; // старое
 const API_KEY1 = md_giftsApiKey1;
 const API_KEY2 = md_giftsApiKey2;
 const apiUrl1 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY1}`;
 const apiUrl2 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY2}`;
 
 const CACHE_KEY = 'md-gifts_cache';
-const CACHE_TIME = 2 * 60 * 1000; // 2 minutes in milliseconds
+const CACHE_TIME = 35 * 60 * 1000; // 5 minutes in milliseconds
 
 const getDataFromCache = () => {
   const cachedData = localStorage.getItem(CACHE_KEY);
@@ -32,15 +32,17 @@ const setDataToCache = (data: any) => {
   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
 };
 
-const useFetchGiftsAction = async () => {
+const useFetchGiftsAction = () => {
   const cachedData = getDataFromCache();
   if (cachedData) {
     return cachedData;
   }
 
-  const result = await fetchAndValidateData([apiUrl1, apiUrl2], md_giftsKeys);
-  setDataToCache(result);
-  return result;
+  const result = fetchAndValidateData([apiUrl1,apiUrl2],md_giftsKeys).then(result => {
+    setDataToCache(result);
+    return result;
+  });
+  return result; 
 };
 
 export const useFetchMDGifts = () => {
@@ -72,7 +74,7 @@ export const createQueryClient = () => {
   if (typeof window !== 'undefined') {
     const cachedData = getDataFromCache();
     if (cachedData) {
-      queryClient.setQueryData("identities", cachedData);
+      queryClient.setQueryData("md-gifts", cachedData);
     }
   }
 

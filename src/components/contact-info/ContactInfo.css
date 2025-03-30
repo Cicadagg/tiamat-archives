@@ -1,175 +1,129 @@
-.contact-info{
-    color:white;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.contact-info {
+  color: white;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Добавлено для равномерного распределения элементов */
+  padding: 20px; /* Добавлен отступ для улучшения восприятия */
 }
-.contacts-rusLink{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    transition: 0.5s;
-    will-change: scale , opacity;
-    color: #fff;
-    opacity: 0.8;
-    font-size: 24px;
+
+.contacts-rusLink,
+.contacts-questionnaire {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Увеличен зазор для лучшего восприятия */
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s; /* Упрощена анимация */
+  color: #fff;
+  opacity: 0.9; /* Немного увеличена непрозрачность */
+  font-size: 24px;
 }
-.contacts-rusLink svg{
-    width: 18px;
-    height: 18px;
+
+.contacts-rusLink:hover,
+.contacts-questionnaire:hover {
+  transform: scale(1.05); /* Эффект увеличения при наведении */
 }
-.contacts-rusLink svg path{
-    stroke: #fff;
+
+.contacts-rusLink svg,
+.contacts-questionnaire svg {
+  width: 20px; /* Увеличен размер иконок */
+  height: 20px;
 }
-.contacts-questionnaire{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    transition: 0.5s;
-    will-change: scale , opacity;
-    color: #fff;
-    opacity: 0.8;
-    font-size: 24px;
+
+.contact-info h1,
+.contact-info h2 {
+  margin-top: 20px; /* Уменьшен верхний отступ для более компактного вида */
+  margin-bottom: 20px; /* Уменьшен нижний отступ */
 }
-.contacts-questionnaire:hover{
-    transform: scale(1.05);
-    opacity: 1;
-}
-.contacts-questionnaire svg{
-    width: 18px;
-    height: 18px;
-}
-.contacts-questionnaire svg path{
-    stroke: #fff;
-}
-.contact-info h1{
-    font-size: 46px;
-    margin-top: 28px;
-    margin-bottom: 28px;
-}
+
 .color-blue {
-    color:#3AA1FF;
+  color: #3AA1FF;
 }
-.contact-info h2{
-    font-size: 32px;
-    margin-top: 28px;
-    margin-bottom: 28px;
-   
+
+.contacts-honorable-list,
+.colleagues-contacts-honorable-list {
+  display: flex;
+  flex-direction: column; /* Изменено направление на колонку для лучшего восприятия */
+  margin-left: 0; /* Убрано лишнее смещение */
 }
-.discord{
-    position: relative;
+
+.contacts-honorable-list h2,
+.colleagues-contacts-honorable-list h2 {
+  font-size: 36px; /* Уменьшен размер заголовков для лучшего баланса */
 }
-.contacts-honorable-list{
-    margin-left: 75px;
-    display: flex;
-    flex-direction: row;
+
+.contacts-honorable-list h3,
+.colleagues-contacts-honorable-list h3 {
+  font-size: 28px; /* Уменьшен размер подзаголовков */
 }
-.colleagues-contacts-honorable-list{
-    display: flex;
-    flex-direction: row;
+
+.contacts-honorable-list li,
+.colleagues-contacts-honorable-list li {
+  font-size: 24px; /* Уменьшен размер текста в списке */
+  margin-top: 5px;
 }
-.colleagues-contacts-honorable-list h2{
-    font-size: 46px;
-    margin-top: 28px;
-}
-.colleagues-contacts-honorable-list h3{
-    font-size: 32px;
-    margin-top: 28px;
-}
-.colleagues-contacts-honorable-list li{
-    font-size: 26px;
-    margin-top: 5px;
-    font-weight: 500;
-}
-.contacts-honorable-list h2{
-    font-size: 46px;
-    margin-top: 28px;
-}
-.contacts-honorable-list h3{
-    font-size: 32px;
-    margin-top: 28px;
-}
-.contacts-honorable-list li{
-    font-size: 26px;
-    margin-top: 5px;
-    font-weight: 500;
-}
+
 .librarian-patron li {
-    font-weight: 700;
+  font-weight: bold; /* Сделан текст более выразительным */
 }
+
 .text-librarian-patron li {
-    font-weight: 500;
-    list-style: none;
+  font-weight: normal; /* Стандартный вес шрифта для обычного текста */
 }
+
 .lost-book-and-sp {
-    margin-top: 80.9px;
-    margin-left: 75px;
+  margin-top: 40px; /* Уменьшен верхний отступ */
 }
-@media (max-width:1900px){
-    .contact-info{
-        flex-direction: column;
-    }
-    .contacts-honorable-list{
-        margin-left: 0px;
-    }
+
+
+
+.contact-info button {
+  height: 60px; /* Уменьшен размер кнопки для лучшего соответствия дизайну */
+  width: 60px;
+  transition: transform 0.3s, opacity 0.3s;
 }
-@media (max-width:1300px){
-    .contacts-honorable-list{
-        flex-direction: column;
-        margin-left: 0px;
-    }
-    .lost-book-and-sp {
-        margin-top: 0;
-        margin-left: 0;
-    }
+
+.contact-info button:hover {
+  transform: scale(1.1); /* Эффект увеличения при наведении на кнопку */
 }
-@keyframes dissappear {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-}
+
 .contact-tooltip {
-    display: flex;
-    position: absolute;
-    text-align: center;
-    width: fit-content;
-    background-color: #333;
-    color: #fff;
-    font-size: 14.4px;
-    padding: 4px;
-    border-radius: 4px;
-    z-index: 1000;
-    top: -1.6px;
-    transform: translate(0, -100%);
-    font-weight: 500;
-    opacity: 0;
+  display: flex;
+  position: absolute;
+  text-align: center;
+  width: fit-content;
+  background-color: #333;
+  color: #fff;
+  font-size: 14.4px;
+  padding: 4px;
+  border-radius: 4px;
+  z-index: 1000;
+  top: -1.6px;
+  transform: translate(0, -100%);
+  font-weight: 500;
+  opacity: 0;
 }
 
 .contact-tooltip--active {
-    opacity: 1;
+  opacity: 1;
 }
-  
+
 .contact-info button {
-    height: 75px;
-    width: 75px;
-    opacity: 0.8;
-    transition: 0.4s;
-    position: relative;
-    margin-right: 50px;
-    opacity: 1;
+  height: 75px;
+  width: 75px;
+  opacity: 0.8;
+  transition: 0.4s;
+  position: relative;
+  margin-right: 50px;
+  opacity: 1;
 }
 .contact-info button:hover {
-    opacity: 1;
-    transform: scale(1.2);
+  opacity: 1;
+  transform: scale(1.2);
 }
 .contact-info button svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

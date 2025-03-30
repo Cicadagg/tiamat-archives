@@ -8,3 +8,10 @@ import {validationToString} from "./validations"; // Убедитесь, что 
   
   export { tagsKeys };
   
+// export const normalizeKeys = (data: any): any => {
+//   return {
+//       Id: data.Id,
+//       nameRu: data.nameRu,
+//       nameEn: data.nameEn,
+//   };
+// };

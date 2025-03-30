@@ -11,12 +11,14 @@ export const TextPercentComponent: React.FC<TextPercentComponentProps> = ({ text
 
   return (
     <div className='TextPercentComponent-wrapper'>
-      {splittedText.map((part, index) => (
-        <React.Fragment key={index}>
-          {Mapper ? <Mapper text={part} /> : part}
-          {index < splittedText.length - 1 && <span className='perCent-special-font'>%</span>}
-        </React.Fragment>
-      ))}
+      <span>
+        {splittedText.map((part, index) => (
+          <React.Fragment key={index}>
+            {Mapper ? <Mapper text={part} /> : part}
+            {index < splittedText.length - 1 && <span className='perCent-special-font'>%</span>}
+          </React.Fragment>
+        ))}
+      </span>
     </div>
   );
 };

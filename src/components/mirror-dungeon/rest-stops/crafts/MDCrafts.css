@@ -14,23 +14,23 @@
     font-size: 45px;
     display: flex;
     align-items: center;
-
+    
 }
 .MDcrafts-line{
     display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
     background-color: #131319;
     padding: 30px 50px;
     border-radius: 12px;
     box-sizing: border-box;
-    flex-wrap: wrap;
 }
 
 .MDcrafts-req{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 15px;
 
 }
@@ -69,6 +69,7 @@
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     transition: 0.3s;
+    z-index: 3;
 }
 .GiftItem-img-wrapper{
     position: relative;
@@ -78,6 +79,7 @@
     will-change: scale,transform;
     border-radius: 14px;
     overflow: hidden;
+    z-index: 4;
 }
 .GiftItem-img-wrapper:hover .GiftItem-shadow{
     background-color: rgba(0, 0, 0, 0.5);
@@ -87,7 +89,6 @@
     display: flex;
     align-items: center;
     top:0;
-    left: 0;
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -101,6 +102,12 @@
     transform: scale(0);
     transition: 0.3s;
     will-change: scale transform;
+}
+.GiftItem-info--en{
+    left: 0;
+}
+.GiftItem-info--ru{
+    left: -8px;
 }
 .GiftItem-img-wrapper:hover .GiftItem-info{
     transform: scale(1);
@@ -132,6 +139,9 @@
 }
 .GiftItem-bar--envy{
     background-color: var(--envy-frame-color);
+}
+.GiftItem-bar--none{
+    background-color: var(--none-frame-color);
 }
 .GiftItem-img-wrapper .gift-keyword-img{
     position: absolute;

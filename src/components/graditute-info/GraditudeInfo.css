@@ -23,6 +23,23 @@
     height: 18px;
 }
 
+.specific-list-content {
+    max-height: 350px; /* Установите желаемую высоту */
+    overflow-y: auto; /* Добавляет полосу прокрутки при необходимости */
+    padding: 10px; /* Отступы внутри контейнера */
+    border-radius: 5px; /* Закругленные углы */
+}
+
+
+.pagination {
+    margin-top: 10px;
+}
+
+.pagination button {
+    margin: 0 5px;
+}
+
+
 .graditude-rusLink svg path{
     stroke: #fff;
 }

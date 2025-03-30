@@ -1,114 +1,143 @@
-import { useEffect, useRef, useState } from "react"
-import { useTranslation } from "react-i18next"
-import { Link } from "react-router-dom"
-import { H1Component } from "../h1-component/H1Component"
-import { LanguageDisclaimer } from "../language-disclaimer/LanguageDisclaimer"
-import { DiscordIconSVG } from "../svg/DiscordIcon"
-import { ExcelIconSVG } from "../svg/ExcelIcon"
-import { ExternalLinkSVG } from "../svg/ExternalLinkSVG"
-import "./ContactInfo.css"
-export const ContactInfo:React.FC = () =>{
-    const {t,i18n} = useTranslation();
-    const [tooltip, setTooltip] = useState([{
-        id:1,
-        link:"ritsy.",
-        triggered:false,
-    },{
-        id:2,
-        link:"ritsy.",
-        triggered:false,
-    }]);
-    const [timer , setTimer] = useState<NodeJS.Timeout|null>(null);
-    const copyTextToClipboard = (id:number) =>{
-        const textArea = document.createElement('textarea');
-        const ds = tooltip.find(t => t.id === id);
-        if(!ds) return;
-        textArea.value = ds.link;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-      }
-    useEffect(() => {
-        if(timer) clearTimeout(timer);
-        const timeout = setTimeout(() => {
-            setTooltip(prevTooltip => prevTooltip.map(t => ({ ...t, triggered: false })));
-        }, 1000); 
-        setTimer(timeout)
-        return () => {
-            if(timer) clearTimeout(timer);
-        }
-    }, [tooltip]);
-    return <section className="contact-info">
-    <div>
-        <h1> {t("ContactInfo.header")}  </h1>
-        <article>
-            <h2 className="color-blue">{t("ContactInfo.originalAuthor")}  </h2>
-            <button className="discord" onClick={()=>{
-                const targetID = 1;
-                copyTextToClipboard(targetID);
-                setTooltip(prevTooltip => prevTooltip.map(t => t.id === targetID ? { ...t, triggered: true } : t));
-            }}>
-                <div className={`contact-tooltip ${tooltip.find(t => t.id === 1)?.triggered && "contact-tooltip--active"}`}>{t("ContactInfo.copied")}  </div>
-                <DiscordIconSVG/>
-            </button>
-            <button>
-            <Link to="https://docs.google.com/spreadsheets/d/18pJE1GyNezWQQIvC06iCNtrdV3oTvsSgjYIAwqKBed4/edit?pli=1#gid=0" target="_blank">
-                <ExcelIconSVG/>
-            </Link>
-            </button>
-        </article>
-        {
-        i18n.language === "ru" && <h1>{t("ContactInfo.colleagues.header")}</h1>
-        }
-        {
-        i18n.language === "ru" && <article className="colleagues-contacts-honorable-list">
-            <div className="site-workers">
-                <ul>
-                    {i18n.language === "ru" && <li>{t("ContactInfo.colleagues.1")}</li>}
-                    <ul>
-                        {
-                        i18n.language === "ru" && <li>
-                            <a href={"https://github.com/Crescent-Corporation/LimbusCompanyBusRUS"} className="contacts-rusLink" target="_blank">
-                                {"GitHub"} <ExternalLinkSVG/> 
-                            </a>
-                        </li>
-                        }
-                        {
-                        i18n.language === "ru" && <li>
-                            <a href={"https://vk.com/limbus_company_ru"} className="contacts-rusLink" target="_blank">
-                                {"ВКонтакте"} <ExternalLinkSVG/> 
-                            </a>
-                        </li>
-                        }
-                    </ul>
-                    {i18n.language === "ru" && <li>{t("ContactInfo.colleagues.2")}</li>}
-                    <ul>
-                        {
-                        i18n.language === "ru" && <li>
-                            <a href={"https://vk.com/projmoon"} className="contacts-rusLink" target="_blank">
-                                {"ВКонтакте"} <ExternalLinkSVG/> 
-                            </a>
-                        </li>
-                        }
-                    </ul>
-                    {i18n.language === "ru" && <li>{t("ContactInfo.colleagues.3")}</li>}
-                    <ul>
-                        {
-                        i18n.language === "ru" && <li>
-                            <a href={"https://t.me/limbuscomp"} className="contacts-rusLink" target="_blank">
-                                {"Telegram"} <ExternalLinkSVG/> 
-                            </a>
-                        </li>
-                        }
-                    </ul>
-                </ul>
-            </div>
-        </article>
-        }
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { EmailIconSVG } from "../svg/EmailIconSVG"; // Импорт EmailIconSVG
+import { ExternalLinkSVG } from "../svg/ExternalLinkSVG";
+import "./ContactInfo.css";
 
-    </div>
-    <article className="contacts-honorable-list">
+export const ContactInfo: React.FC = () => {
+  const { t, i18n } = useTranslation();
+  const [tooltip, setTooltip] = useState([
+    {
+      id: 1,
+      link: "ritsy.",
+      triggered: false,
+    },
+    {
+      id: 2,
+      link: "ritsy.",
+      triggered: false,
+    },
+  ]);
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const [copySuccess, setCopySuccess] = useState(false); // Состояние для отображения всплывающего сообщения
+
+  useEffect(() => {
+    if (timer) clearTimeout(timer);
+    const timeout = setTimeout(() => {
+      setTooltip((prevTooltip) =>
+        prevTooltip.map((t) => ({ ...t, triggered: false }))
+      );
+    }, 1000);
+    setTimer(timeout);
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [tooltip]);
+
+  const copyEmailToClipboard = () => {
+    navigator.clipboard
+      .writeText("gll-fun@mail.ru")
+      .then(() => {
+        setCopySuccess(true);
+        setTimeout(() => {
+          setCopySuccess(false);
+        }, 2000); // Скрыть сообщение через 2 секунды
+      })
+      .catch((err) => {
+        console.error("Failed to copy email: ", err);
+      });
+  };
+
+  return (
+    <section className="contact-info">
+      <div>
+        <h1>{t("ContactInfo.header")}</h1>
+        <article>
+          <div>
+            <button onClick={copyEmailToClipboard}>
+              <EmailIconSVG />
+            </button>
+            {copySuccess && (
+              <div className="copy-success-message">
+                {t("ContactInfo.emailCopied")} {/* "Почта скопирована!" */}
+              </div>
+            )}
+          </div>
+        </article>
+        {i18n.language === "ru" && (
+          <h1>{t("ContactInfo.colleagues.header")}</h1>
+        )}
+        {i18n.language === "ru" && (
+          <article className="colleagues-contacts-honorable-list">
+            <div className="site-workers">
+              <ul>
+                <li>{t("ContactInfo.colleagues.1")}</li>
+                <ul>
+                  <li>
+                    <a
+                      href={
+                        "https://github.com/Crescent-Corporation/LimbusCompanyBusRUS"
+                      }
+                      className="contacts-rusLink"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {"GitHub"} <ExternalLinkSVG />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"https://vk.com/limbus_company_ru"}
+                      className="contacts-rusLink"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {"ВКонтакте"} <ExternalLinkSVG />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={"https://discord.com/invite/PG7PDrdjey"}
+                      className="contacts-rusLink"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {"Дискорд"} <ExternalLinkSVG />
+                    </a>
+                  </li>
+                </ul>
+                <li>{t("ContactInfo.colleagues.2")}</li>
+                <ul>
+                  <li>
+                    <a
+                      href={"https://vk.com/projmoon"}
+                      className="contacts-rusLink"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {"ВКонтакте"} <ExternalLinkSVG />
+                    </a>
+                  </li>
+                </ul>
+                <li>{t("ContactInfo.colleagues.3")}</li>
+                <ul>
+                  <li>
+                    <a
+                      href={"https://t.me/limbuscomp"}
+                      className="contacts-rusLink"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {"Telegram"} <ExternalLinkSVG />
+                    </a>
+                  </li>
+                </ul>
+              </ul>
+            </div>
+          </article>
+        )}
+      </div>
+      <article className="contacts-honorable-list">
         <div className="site-workers">
             <h2>{t("ContactInfo.workers.header")}</h2>
             <h3 className="color-blue">{t("ContactInfo.workers1.header")}</h3>
@@ -130,6 +159,7 @@ export const ContactInfo:React.FC = () =>{
                 <li>{t("ContactInfo.workers2.patron3")}
                     <ul className="text-librarian-patron">
                         <li>{t("ContactInfo.workers2.3")}</li>
+                        <li>{t("ContactInfo.workers2.12")}</li>
                     </ul>
                 </li>
                 {/* <li>{t("ContactInfo.workers2.patron4")}
@@ -157,11 +187,11 @@ export const ContactInfo:React.FC = () =>{
                         <li>{t("ContactInfo.workers2.8")}</li>
                     </ul>
                 </li>
-                {/* <li>{t("ContactInfo.workers2.patron9")}
+                <li>{t("ContactInfo.workers2.patron9")}
                     <ul className="text-librarian-patron">
-                        <li>{t("ContactInfo.workers2.9")}</li>
+                        <li>{t("ContactInfo.workers2.11")}</li>
                     </ul>
-                </li> */}
+                </li>
                 <li>{t("ContactInfo.workers2.patron10")}
                     <ul className="text-librarian-patron">
                         <li>{t("ContactInfo.workers2.10.1")}</li>
@@ -171,36 +201,54 @@ export const ContactInfo:React.FC = () =>{
             </ul>
         </div>
         <div className="lost-book-and-sp">
-            <h3 className="color-blue">{t("ContactInfo.workers3.header")}</h3>
+          <h3 className="color-blue">{t("ContactInfo.workers3.header")}</h3>
+          <ul>
+            <li>{t("ContactInfo.workers3.1")}</li>
+            <li>{t("ContactInfo.workers3.2")}</li>
+            <li>{t("ContactInfo.workers3.3")}</li>
+            <li>{t("ContactInfo.workers3.4")}</li>
+            <li>{t("ContactInfo.workers3.5")}</li>
+            <li>{t("ContactInfo.workers3.6")}</li>
+            <li>{t("ContactInfo.workers3.7")}</li>
+          </ul>
+          <h3 className="color-blue">{t("ContactInfo.workers4.header")}</h3>
+          <ul>
+            <li>{t("ContactInfo.workers4.1")}</li>
             <ul>
-                <li>{t("ContactInfo.workers3.1")}</li>
-                <li>{t("ContactInfo.workers3.2")}</li>
-                <li>{t("ContactInfo.workers3.3")}</li>
-                <li>{t("ContactInfo.workers3.4")}</li>
-                <li>{t("ContactInfo.workers3.5")}</li>
+              <li>
+                <a
+                  href={"https://www.youtube.com/@CHACHENWAGENTV"}
+                  className="contacts-rusLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {"YouTube"} <ExternalLinkSVG />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={"https://www.twitch.tv/devochkavolshebnicayufule"}
+                  className="contacts-rusLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {"Twitch"} <ExternalLinkSVG />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={"https://t.me/chachenwagentv"}
+                  className="contacts-rusLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {"Telegram"} <ExternalLinkSVG />
+                </a>
+              </li>
             </ul>
-            <h3 className="color-blue">{t("ContactInfo.workers4.header")}</h3>
-            <ul>
-                <li>{t("ContactInfo.workers4.1")}</li>
-                <ul>
-                    <li>
-                        <a href={"https://www.youtube.com/@CHACHENWAGENTV"} className="contacts-rusLink" target="_blank">
-                            {"YouTube"} <ExternalLinkSVG/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href={"https://www.twitch.tv/devochkavolshebnicayufule"} className="contacts-rusLink" target="_blank">
-                            {"Twitch"} <ExternalLinkSVG/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href={"https://t.me/chachenwagentv"} className="contacts-rusLink" target="_blank">
-                            {"Telegram"} <ExternalLinkSVG/>
-                        </a>
-                    </li>
-                </ul>
-            </ul>
+          </ul>
         </div>
-    </article>
+      </article>
     </section>
-}
+  );
+};

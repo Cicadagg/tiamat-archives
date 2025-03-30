@@ -17,7 +17,7 @@ export const ItemEGOInfo:React.FC<ItemEGOInfoInterface> = ({entity}) => {
                 {
                     dmgType.map((dt,index) =>{
                         return  <div  key={index} className="item-ego-info-sin">
-                        <img src={`${process.env.PUBLIC_URL}/images/dmg-type/${dt}.png`} alt={dt}/>
+                        <img src={`${process.env.PUBLIC_URL}/images/dmg-type/${dt}.webp`} alt={dt}/>
                         <div className={`item-ego-info-line ${egoSin}-sin-color`}/>
                     </div>
                     })
@@ -30,7 +30,7 @@ export const ItemEGOInfo:React.FC<ItemEGOInfoInterface> = ({entity}) => {
                     if(!entity[sin]) return null
                     return (
                         <div key={`${sin}`} className="item-ego-info-sin">
-                            <img src={`${process.env.PUBLIC_URL}/images/sins/${sin}.png`} alt={sin}/>
+                            <img src={`${process.env.PUBLIC_URL}/images/sins/${sin}.webp`} alt={sin}/>
                             {"x"+entity[sin]}
                             <div className={["item-ego-info-line", `${sin}-sin-color`].join(" ")}/>
                         </div>

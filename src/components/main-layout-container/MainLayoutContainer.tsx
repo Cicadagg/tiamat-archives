@@ -6,7 +6,7 @@ import { ErrorInfo } from "../error-info/ErrorInfo";
 import "./MainLayoutContainer.css"
 export const MainLayoutContainer:React.FC<{children:ReactNode|ReactNode[]}> = ({children})=>{
     const leftMenuState = useTypedSelector(store => store.leftMenuReducer);
-    const {t,i18n} = useTranslation();
+    const {t} = useTranslation();
 
     return <main className={`main-layout-container ${leftMenuState && "main-layout-container--minimized"}`}>
         <ErrorBoundary fallbackComponent={<ErrorInfo error={t("MainLayoutContainer.ErrorBoundary.ErrorInfo")}/>}>

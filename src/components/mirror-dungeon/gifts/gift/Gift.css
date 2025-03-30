@@ -133,6 +133,9 @@
 .gift-bar--envy{
     background-color: var(--envy-frame-color);
 }
+.gift-bar--none{
+    background-color: var(--none-frame-color);
+}
 .gift-keyword-img{
     position: absolute;
     width: 80px;

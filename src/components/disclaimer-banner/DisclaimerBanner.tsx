@@ -17,7 +17,7 @@ export const DisclaimerBanner:React.FC = () => {
         <p>
         <span>Great Limbus Library</span>{t("DisclaimerBanner.1")}<span>Limbus Company</span>.
         <br/>
-        {t("DisclaimerBanner.2")} <span>Project Moon</span>{t("DisclaimerBanner.3")}
+        {t("DisclaimerBanner.2")} <span> Project Moon </span>{t("DisclaimerBanner.3")}
         </p>
         <button onClick={() => handleAgreement()}>{t("DisclaimerBanner.confirm")}</button>
     </section>

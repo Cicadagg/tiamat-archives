@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
 import { useLocation } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { isEventFilterMatching } from '../../../tools/isEventFilterMatching';
 import { MDEvent } from '../../../types/md-event-interface';
 import { Search } from '../../search/Search';
-import { MDEventOption, Option } from './option/MDEventOption';
+import { MDEventOption } from './option/MDEventOption';
 import { createGiftList } from '../formated-text-gift/MDFormatedText';
 import './MDEvents.css';
 

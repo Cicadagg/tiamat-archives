@@ -1,11 +1,15 @@
+import { ownerType } from "../../constants/types";
+
 export interface StatusesInterface{
-    ref: StatusesInterface | undefined;
+    ref: StatusesInterface | undefined,
     id:string,
     nameRU:string,
     descriptionRU:string,
-    unit:string
     nameEN:string,
     descriptionEN:string,
+    owners:ownerType[]|null,
+    fuse_statuses:string|null,
+    tip: string;
 }
 
 export enum StatusesActionTypes {

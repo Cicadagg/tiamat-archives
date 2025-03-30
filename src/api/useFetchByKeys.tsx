@@ -1,27 +1,36 @@
 import { UseQueryResult } from "react-query";
-import { useFetchEgo } from "./useFetchEgo";
+import { useFetchEgos } from "./useFetchEgo";
+import { useFetchEventsList } from "./useFetchEventsList";
 import { useFetchIds } from "./useFetchIds";
 import { useFetchMDEvents } from "./useFetchMDEvents";
 import { useFetchMDGifts } from "./useFetchMDGifts";
 import { useFetchStatuses } from "./useFetchStatuses";
 import { useFetchGuides } from "./useFetchGuides";
+import { useFetchTags } from "./useFetchTags";
+import { useFetchNewsList } from "./useFetchNewsList";
 
 type FetchHooksMap = {
-  ego: typeof useFetchEgo;
+  ego: typeof useFetchEgos;
   identities: typeof useFetchIds;
   guides: typeof useFetchGuides,
   statuses: typeof useFetchStatuses;
+  tags: typeof useFetchTags;
   "md-gifts": typeof useFetchMDGifts;
   "md-events": typeof useFetchMDEvents;
+  "events_list": typeof useFetchEventsList;
+  "news_list": typeof useFetchNewsList;
 };
 
 const fetchHooksMap: FetchHooksMap = {
-  ego: useFetchEgo,
+  ego: useFetchEgos,
   identities: useFetchIds,
   guides: useFetchGuides,
   statuses: useFetchStatuses,
+  tags: useFetchTags,
   "md-gifts": useFetchMDGifts,
-  "md-events": useFetchMDEvents
+  "md-events": useFetchMDEvents,
+  "events_list": useFetchEventsList,
+  "news_list": useFetchNewsList
 };
 
 export const useFetchByKeys = (keys: string[]): UseQueryResult<unknown[], unknown>[] => {

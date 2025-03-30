@@ -1,25 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { IdentityInterface } from "../../store/reducers/ids-reducer";
 import { searchChangeTargetRefAction } from "../../store/reducers/search-reducer";
-import { isFilterMatching } from "../../tools/isFilterMatching";
-import { ItemEntity } from "../item-entity/ItemEntity";
-import { ListSinnerBar } from "../list-sinner-bar/ListSinnerBar";
+import { useQueryClient } from "react-query";
 import "./ListGuides.css";
-import { GuideInterface } from "../../store/reducers/guides-reducer";
 import { ItemGuide } from "../item-guide/ItemGuide";
-import { isGuide } from "../../tools/isguide";
-import { TagsState } from "../../store/reducers/guides-tags-reducer";
+import { GuideTagInterface, TagsState } from "../../store/reducers/guides-tags-reducer";
+import { TagsFiltersSection } from "../filters/filters-section/TagsFiltersSection";
+import { GuideInterface } from "../../store/reducers/guides-reducer";
 
-export const ListGuides:React.FC = () => {
+type listGuidesProps = {
+    onChangeCount: Function
+}
+
+export const ListGuides:React.FC<listGuidesProps> = ({onChangeCount}) => {
     const containerRef = useRef(null);
 
     const dispatch = useDispatch();
-
-    const guides = useQueryClient().getQueryData("guides") as any[];
+    const guides = useQueryClient().getQueryData("guides") as GuideInterface[]|null;
+    const tags = useQueryClient().getQueryData("tags") as GuideTagInterface[];
 
     const tagsReducer = useTypedSelector(state => state.tagsReducer) as TagsState;
     const searchState = useTypedSelector(state => state.searchReducer);
@@ -46,67 +46,74 @@ export const ListGuides:React.FC = () => {
         "outis":[],
         "gregor":[],
     };
-
+    
     let totalCount = 0;
 
     if(guides){
-        console.log(tagsReducer)
-        console.log(tagsReducer.selectedTags)
         for(let i = guides.length - 1 ; i >= 0 ;i--){
             const currentID = guides[i];
-            const { isNew ,imgUrl ,sinner} = currentID;
-   
+
             if (searchState.value){
-                if (!currentID.nameRu.toLowerCase().includes(searchState.value.toLowerCase())){
-                    continue
+                if (i18n.language === "ru"){
+                    if (!currentID.nameRu.toLowerCase().includes(searchState.value.toLowerCase())){
+                        continue
+                    }
+                }
+                else if (i18n.language === "en"){
+                    if (!currentID.nameEn.toLowerCase().includes(searchState.value.toLowerCase())){
+                        continue
+                    }
                 }
             }
             
-            if (tagsReducer.selectedTags.length > 0){
-                let tagMatch = false;
-                for (let tag of tagsReducer.selectedTags){
-                    if (currentID.tagsId.includes(tag)){
-                        tagMatch = true;
-                    }
-                }
-                if (!tagMatch){
-                    continue
+            let tagMatch = true;
+            for (let tag of tagsReducer.selectedTags){
+                if (!currentID.tagsId.includes(tag)){
+                    tagMatch = false;
                 }
             }
+            if (!tagMatch){
+                continue
+            }
 
-            let guideTags = [];
-
-            for (let tagId of currentID.tagsId.split(", ")){
-                for (let tag of tagsReducer.allTags){
-                    if (tag.Id === tagId){
-                        guideTags.push(tag)
+            let guideTags = [] as GuideTagInterface[];
+            
+            if (tags){
+                for (let tagId of currentID.tagsId.split(", ")){
+                    for (let tag of tags){
+                        if (tag.Id === tagId){
+                            guideTags.push(tag)
+                        }
                     }
                 }
             }
-
-            console.log(guideTags)
 
             idMap.new.push(<ItemGuide animationDelay={500} tags={guideTags} entity={currentID} />);
             totalCount++;
         }
+
+    }
+    onChangeCount(totalCount);
+
+    const filter =
+    {
+        type:"tags",
+        data: tags,
+        visible:true,
+        header:t("FiltersList.header.tags")
     }
 
     return (
-        <section ref={containerRef} className={"list-ids"}>
-        <span className={"list-ids-span"}>{`${t("ListGuides.header")} (${totalCount})`}</span>
-        {
-           totalCount !== 0 ? <>
-                {
-                    idMap.new.map((entry)=>{
-                        return entry; 
-                    })
+        <div className="guide-info-container">
+            <TagsFiltersSection filter={filter}/>
+            <ul className="guide-info-list">
+                {idMap.new.length > 0 ? (
+                    idMap.new.map(itemGuide => itemGuide)
+                ): (
+                    <p className="empty">{t("ListGuides.empty")}</p>
+                )
                 }
-            </>
-            : <p>
-                {t("ListGuides.empty")}
-            </p>
-        }
-        </section>
+            </ul>
+        </div>
     )
-
 }

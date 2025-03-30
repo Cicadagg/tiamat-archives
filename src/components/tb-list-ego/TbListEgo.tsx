@@ -1,10 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { EGOInterface } from "../../store/reducers/ego-reducer";
-import { isFilterMatching } from "../../tools/isFilterMatching";
-import { TbItem } from "../tb-item/TbItem";
+
 interface ITbListEGO {
     jsxElementsNew:React.ReactNode[],
     jsxElements:React.ReactNode[],

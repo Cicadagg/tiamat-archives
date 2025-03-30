@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { IdentityInterface } from '../../../../store/reducers/ids-reducer';
 import { ISkill } from '../EntityFullInfoSkills';
 import "./EntityFullInfoSkill.css"
@@ -16,11 +16,22 @@ interface IEntityFullInfoProps {
     maxLvlIdentity:number;
 }
 export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,skill,maxLvlIdentity}) => {
-    const {imgUrl,countCoin,basicCoin,weightCoin,growthPerCoin,damage,maxCoinValue,fullMaxCoinValue,maxPossibleDmg,minPossibleDmg} = identity;
+    const {imgUrl,countCoin,basicCoin,weightCoin,growthPerCoin,damage,maxCoinValue,fullMaxCoinValue,maxPossibleDmg,minPossibleDmg,skillsOrder} = identity;
     const {t,i18n} = useTranslation();
     
     const nameSkillKey = `nameSkill${i18n.language.toUpperCase()}` as keyof typeof identity;
     const nameSkill = identity[nameSkillKey] as string[];
+    const [tooltipVisible, setTooltipVisible] = useState(false);
+
+    const handleMouseEnter = () => {
+        if (nameSkill[skill.index].length > 20) {
+            setTooltipVisible(true);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setTooltipVisible(false);
+    };
 
     const descriptionCoinKey = `descriptionCoin${i18n.language.toUpperCase()}` as keyof typeof identity;
     const descriptionCoin = identity[descriptionCoinKey] as string;
@@ -34,33 +45,40 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
     const unbreakableCoinBuff = getUnbreakableCoinBonusFromDescription(testDescription,countCoin[skill.index]);
     const dispatch = useDispatch();
 
-    const damageGuardType = ((skill.index === 3 && skill.type === `guard`) || (skill.index === 4 && skill.type === `guard`)) && t("EntityFullInfoSkill.guardType") || t("EntityFullInfoSkill.damageType");
-    const damageGuardTypeImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${skill.dmgType}.png`} alt={`${skill.dmgType}`}/>;
-    
+    const damageOrGuardType = ((skill.index === 3 && skill.type === `guard`) || (skill.index === 4 && skill.type === `guard`)) && t("EntityFullInfoSkill.guardType") || t("EntityFullInfoSkill.damageType");
+    const [beforeKey, afterKey] = skill.skillType.split('|').map(s => s.trim());
+    const damageOrGuardTypeImgHTML = <img src={`${process.env.PUBLIC_URL}/images/guard-type/${beforeKey}.webp`} alt={`${beforeKey}`}/>;
+    const guardDamageType = t("EntityFullInfoSkill.damageType");
+    const guardDamageTypeImgHTML = afterKey ? <img src={`${process.env.PUBLIC_URL}/images/general/${afterKey}.webp`} alt={`${afterKey}`}/> : null;
+
     const sinType = t("EntityFullInfoSkill.sin");
-    const sinTypeImgHTML = <img src={`${process.env.PUBLIC_URL}/images/sins/${skill.sin}.png`} alt={`${skill.sin}`}/>;
+    const sinTypeImgHTML = <img src={`${process.env.PUBLIC_URL}/images/sins/${skill.sin}.webp`} alt={`${skill.sin}`}/>;
     
     const maxCoinBaseValue = Math.sign(growthPerCoin[skill.index]) === -1 ? basicCoin[skill.index] : basicCoin[skill.index] + growthPerCoin[skill.index]*countCoin[skill.index];
     const maxCoinTooltip = t("EntityFullInfoSkill.maxCoin");
-    const maxCoinImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.png`} alt={`${imgUrl}`}/>;
+    const maxCoinImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinBefore.webp`} alt={`${imgUrl}`}/>;
 
     const maxCoinWithConditionValue = maxCoinValue[skill.index];
     const fullMaxCoinWithConditionValue = fullMaxCoinValue[skill.index];
     const maxCoinWithConditionTooltip = t("EntityFullInfoSkill.coinCondition");
-    const maxCoinWithConditionImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinCondition.png`} alt={`max coin with condition`}/>;
+    const maxCoinWithConditionImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/coinCondition.webp`} alt={`max coin with condition`}/>;
 
     const attackDefLevelValue = maxLvlIdentity + damage[skill.index];
-    const attackDefLevelTooltip = ((skill.index === 3 && skill.type === `guard`) || (skill.index === 4 && skill.type === `guard`)) && t("EntityFullInfoSkill.defenceLevel") || t("EntityFullInfoSkill.offenceLevel");
-    const attackDefLevelImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${ ((skill.index !== 3 && skill.type !== `guard`) || (skill.index !== 4 && skill.type !== `guard`)) && `damage` || `evadeDef1`}.png`} alt={`attack/defence level`}/>;
+    const attackDefLevelTooltip = ((skill.index === 3 && skill.type === `guard`) || (skill.index === 4 && skill.type === `guard`)) && t("EntityFullInfoSkill.defenseLevel") || t("EntityFullInfoSkill.offenseLevel");
+    const attackDefLevelImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/${ ((skill.index !== 3 && skill.type !== `guard`) || (skill.index !== 4 && skill.type !== `guard`)) && `damage` || `evadeDef1`}.webp`} alt={`attack/defense level`}/>;
 
     const minPossibleDmgValue = minPossibleDmg[skill.index];
     const minPossibleDmgTooltip = t("EntityFullInfoSkill.minPotencial");
-    const minPossibleDmgImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/damageMin.png`} alt={`damageMin`}/>;
+    const minPossibleDmgImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/damageMin.webp`} alt={`damageMin`}/>;
 
     const maxPossibleDmgValue = maxPossibleDmg[skill.index];
     const maxPossibleDmgTooltip = t("EntityFullInfoSkill.maxPotencial");
-    const maxPossibleDmgImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/maximumDamage.png`} alt={`damageMax`}/>;
+    const maxPossibleDmgImgHTML = <img src={`${process.env.PUBLIC_URL}/images/general/maximumDamage.webp`} alt={`damageMax`}/>;
 
+    const atkSkillsOrderValue = skillsOrder?.[skill.index]?.match(/\d+\.\d+/)?.[0] as string | undefined;
+    const defSkillsOrderValue = skillsOrder?.[skill.index]?.match(/\d+/)?.[0] as string | undefined;
+
+    
     const handleMobileTooltipClick = (tooltip:React.ReactNode) =>{
         if(window.innerWidth > mobileLayoutFrom) return;
         setMobileModalTrigger(
@@ -71,17 +89,43 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
     return (
         <article className={`${'entityFullInfo-skill'}`} >
                     <span className={`${'entityFullInfo-skill-index'}`} >
-                        {skill.type === "attack" 
-                        ? `${t("EntityFullInfoSkill.skill")} ${skill.index+1}`
-                        : skill.type[4] !== `attack` && skill.type[5] !== `attack` 
-                        ? (identity.guardType.length === 1 
-                            ? t("EntityFullInfoSkill.defSkill") 
-                            : `${t("EntityFullInfoSkill.defSkill")} ${skill.index+1-identity.skillsDmgType.length}`)
-                        : t("EntityFullInfoSkill.defSkill")}
+                        {
+                            (atkSkillsOrderValue && defSkillsOrderValue) 
+                            ? 
+                                (skill.type === "attack")
+                                ? `${t("EntityFullInfoSkill.skill")} ${atkSkillsOrderValue}`
+                                : skill.type[4] !== `attack` && skill.type[5] !== `attack`
+                                ? (identity.guardType.length === 1 
+                                    ? t("EntityFullInfoSkill.defSkill") 
+                                    : `${t("EntityFullInfoSkill.defSkill")} ${defSkillsOrderValue}`)
+                                : t("EntityFullInfoSkill.defSkill")
+                            :
+                                (skill.type === "attack")
+                                ? `${t("EntityFullInfoSkill.skill")} ${skill.index + 1}`
+                                : skill.type[4] !== `attack` && skill.type[5] !== `attack`
+                                ? (identity.guardType.length === 1 
+                                    ? t("EntityFullInfoSkill.defSkill") 
+                                    : `${t("EntityFullInfoSkill.defSkill")} ${skill.index + 1 - identity.skillsDmgType.length}`)
+                                : t("EntityFullInfoSkill.defSkill")
+                        }
                     </span>
+                    
                     <div className={`${'entityFullInfo-skill-r'}`}>
-                        <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",gap:"20px",marginBottom:"15px"}}>
-                            <p className={`${'skill-name'} ${skill.sin}-sin-color`} >{nameSkill[skill.index]}</p>
+                    <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "20px", marginBottom: "15px", position: "relative" }}>
+                        <p
+                            className={`skill-name ${skill.sin}-sin-color`}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {nameSkill[skill.index].length > 30 ? `${nameSkill[skill.index].substring(0, 30)}...` : nameSkill[skill.index]}
+                        </p>
+
+                        {/* Всплывающая подсказка */}
+                        {tooltipVisible && (
+                            <div className="tooltip">
+                                {nameSkill[skill.index]}
+                            </div>
+                        )}
 
                             <span onClick={
                                 ()=>{
@@ -125,7 +169,7 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
                                     {
                                     coins.map(
                                         (element,index)=>{
-                                            return (!unbreakableCoinBuff[index]) ? <img key={index} src={`${process.env.PUBLIC_URL}/images/general/coin.png`} alt={`coin`}/> : <img key={index} src={`${process.env.PUBLIC_URL}/images/general/unbreakableCoin.png`} alt={`unbreakableCoin`}/>;
+                                            return (!unbreakableCoinBuff[index]) ? <img key={index} src={`${process.env.PUBLIC_URL}/images/general/coin.webp`} alt={`coin`}/> : <img key={index} src={`${process.env.PUBLIC_URL}/images/general/unbreakableCoin.webp`} alt={`unbreakableCoin`}/>;
                                         }
                                     )
                                     }
@@ -137,17 +181,33 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
                             <div onClick={
                                 ()=>{
                                 handleMobileTooltipClick(<TooltipMobile 
-                                    image={damageGuardTypeImgHTML} 
-                                    text={damageGuardType} 
+                                    image={damageOrGuardTypeImgHTML} 
+                                    text={damageOrGuardType} 
                                     />
                                 )
                                 }
                             } 
                             className={`${'skill-atk'} tooltip-container`} >
-                                {damageGuardTypeImgHTML}
-                                <span className={`${'entityFullInfo-tooltip'}`} >{damageGuardType}</span>
+                                {damageOrGuardTypeImgHTML}
+                                <span className={`${'entityFullInfo-tooltip'}`} >{damageOrGuardType}</span>
                             </div>
 
+                            {
+                                (guardDamageTypeImgHTML) ? <div onClick={
+                                    ()=>{
+                                    handleMobileTooltipClick(<TooltipMobile 
+                                        image={guardDamageTypeImgHTML} 
+                                        text={guardDamageType} 
+                                        />
+                                    )
+                                    }
+                                } 
+                                className={`${'skill-atk'} tooltip-container`} >
+                                    {guardDamageTypeImgHTML}
+                                    <span className={`${'entityFullInfo-tooltip'}`} >{guardDamageType}</span>
+                                </div>
+                                : <></>
+                            }
                             <div onClick={
                                 ()=>{
                                     handleMobileTooltipClick(<TooltipMobile 
@@ -256,7 +316,7 @@ export const EntityFullInfoSkill:React.FC<IEntityFullInfoProps> = ({identity,ski
                                         />
                                         )
                                     }
-                                } className={`tooltip-container`} >
+                                } className={`tooltip-container ${'skill-weight'}`} >
                                     {new Array(weightCoin[skill.index]).fill(0).map((e,index)=><div key={index}/>) }
                                     <span className={`${'entityFullInfo-tooltip'}`} >{t("EntityFullInfoSkill.weightBase")}</span>
                                 </span>

@@ -1,19 +1,17 @@
-import { guidesApiKey1, guidesApiKey2 } from "../constants/apiKeys";
+import { tagsApiKey1, tagsApiKey2 } from "../constants/apiKeys";
 import { useQuery, QueryClient } from "react-query";
+import { tagsKeys } from "../constants/tagsKeys";
 import { fetchAndValidateData } from "../tools/fetchAndValidateData";
-import { validationToString, validationToDate } from "../constants/validations";
 
-
-const SPREADSHEET_ID = '1t6nX7l2ykkmkX5hNBHgiyB9gDoIYvJW76HcU2SbYQBw';
-const RANGE = 'Tags';
-const API_KEY1 = guidesApiKey1;
-const API_KEY2 = guidesApiKey2;
-
-export const apiUrl1 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY1}`;
+const SPREADSHEET_ID = '1yoswY6AtOIfSuA0wQhUInbuIdngkuFiYozWeiwm6oWY';
+const RANGE = 'guide_tags_db_rows'; // название листа в гугл таблице
+const API_KEY1 = tagsApiKey1;
+const API_KEY2 = tagsApiKey2;
+const apiUrl1 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY1}`;
 const apiUrl2 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY2}`;
 
 const CACHE_KEY = 'tags_cache';
-const CACHE_TIME = 2 * 60 * 1000; // 2 минуты
+const CACHE_TIME = 35 * 60 * 1000; // 5 minutes in milliseconds
 
 const getDataFromCache = () => {
   const cachedData = localStorage.getItem(CACHE_KEY);
@@ -34,26 +32,17 @@ const setDataToCache = (data: any) => {
   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
 };
 
-const tagsKeys = [
-  { key: "Id", validation:validationToString },
-  { key: 'nameRu', validation: validationToString },
-  { key: 'nameEn', validation: validationToString },
-];
-
-const useFetchTagsAction = async () => {
+const useFetchTagsAction = () => {
   const cachedData = getDataFromCache();
   if (cachedData) {
     return cachedData;
   }
 
-  try {
-    const result = await fetchAndValidateData([apiUrl1, apiUrl2], tagsKeys);
+  const result = fetchAndValidateData([apiUrl1,apiUrl2],tagsKeys).then(result => {
     setDataToCache(result);
     return result;
-  } catch (error) {
-    console.error("Error during fetchAndValidateData:", error);
-    throw error;
-  }
+  });
+  return result; 
 };
 
 export const useFetchTags = () => {
@@ -68,4 +57,25 @@ export const useFetchTags = () => {
       console.error("Error fetching tags:", error);
     },
   });
+};
+
+export const createQueryClient = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: CACHE_TIME,
+        cacheTime: Infinity,
+      },
+    },
+  });
+
+  // Hydrate the cache from localStorage on client-side
+  if (typeof window !== 'undefined') {
+    const cachedData = getDataFromCache();
+    if (cachedData) {
+      queryClient.setQueryData("tags", cachedData);
+    }
+  }
+
+  return queryClient;
 };

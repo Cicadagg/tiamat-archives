@@ -1,43 +1,85 @@
 @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+  0%, 100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.loading-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  flex-direction: column;
+  text-align: center;
+}
+.loading{
+  display: flex;
+  font-size: 64px;
+}
+.delay-info{
+  font-weight: 400;
+  font-size: 24px;
+}
+.dot {
+  animation: bounce 1s infinite;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.loading-container {
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+}
+
+.loading-image {
+  display: block; /* Убедитесь, что изображение отображается как блочный элемент */
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1;
   
-  .loading-container {
-    height: 100vh;
+  /* Позиционирование подсказки */
+  bottom: calc(100% + 5px); /* Расположите выше изображения с небольшим отступом */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  visibility: visible; /* Сделаем видимой только при наведении */
+}
+/* Добавьте медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+  .image-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-weight: bold;
-    color: white;
-    flex-direction: column;
-    text-align: center;
-  }
-  .loading{
-    display: flex;
-    font-size: 64px;
-  }
-  .delay-info{
-    font-weight: 400;
-    font-size: 24px;
-  }
-  .dot {
-    animation: bounce 1s infinite;
   }
   
-  .dot:nth-child(1) {
-    animation-delay: 0.1s;
+  .loading-image {
+    width: 70%; /* Уменьшите ширину изображения */
+    height: auto; /* Сохраните пропорции */
   }
-  
-  .dot:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  
-  .dot:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  
+}
+
+

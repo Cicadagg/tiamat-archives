@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { tagsIds } from "../../../constants/skillBasedTypes";
@@ -9,9 +8,15 @@ import { filterChangeTypeAction, filterClearSectionAction } from "../../../store
 import { StatusesInterface} from "../../../store/reducers/statuses-reducer";
 import { EraserSVG } from "../../svg/EraserSvg";
 import { FilterButton } from "../filter-button/FilterButton";
+import { useQueryClient } from "react-query";
+import { ownerType } from "../../../constants/types";
 
-export const FiltersSection2:React.FC = () => {
-    const statuses = useQueryClient().getQueryData("statuses") as StatusesInterface[]|null;
+type FiltersSection2Props = {
+    isIdentityTeamBuilder?: string;
+};
+
+export const FiltersSection2:React.FC<FiltersSection2Props> = ({ isIdentityTeamBuilder }) => {
+    const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const filterState = useTypedSelector(state => state.filterReducer);
     const location = useLocation().pathname;
     const [isAllFiltersShown,setIsAllFiltersShown] = useState(false);
@@ -23,15 +28,24 @@ export const FiltersSection2:React.FC = () => {
     let countActive = 0;
 
     useEffect(() => {
-        if (isAllFiltersShown && statuses){
-            const newStatuses = statuses.map((s) =>{
-                if(s.unit === "sinner") return s.id;
-            })
-            setFilterData(newStatuses);
-        } 
-        else setFilterData(tagsIds);
-      }, [isAllFiltersShown]);
+        const getStatusesByOwner = (owner: ownerType) => 
+            statuses?.filter(s => s.owners?.includes(owner))?.map(s => s.id) || [] as string[];
 
+        let newStatuses: string[] = tagsIds;
+        if (isAllFiltersShown) {
+            if (location.includes("/tierlist/identities") || location.includes("/identities")) {
+                newStatuses = getStatusesByOwner("sinner");
+            } else if (location.includes("/tierlist/ego") || location.includes("/ego")) {
+                newStatuses = getStatusesByOwner("ego");
+            } else if (location.includes("/teambuilder") && (isIdentityTeamBuilder === "identity")) {
+                newStatuses = getStatusesByOwner("sinner");
+            } else if (location.includes("/teambuilder") && (isIdentityTeamBuilder !== "identity")) {
+                newStatuses = getStatusesByOwner("ego");
+            }
+        }
+
+        setFilterData(newStatuses);
+    }, [isAllFiltersShown, location, statuses, isIdentityTeamBuilder]);
    
     const type = "tags";
     if(location.includes("/mirror-dungeon")) return null;
@@ -42,7 +56,7 @@ export const FiltersSection2:React.FC = () => {
         let isTypeActive = currentType[subtype as keyof typeof currentType];
         if(isTypeActive) countActive++;
         if (!subtype) return null;
-        const status = statuses?.find(s=>s.id === subtype);
+        const status = statuses?.find((s: StatusesInterface) => s.id === subtype);
 
         const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof status;
         const name = status ? status[nameKey] as string : "";

@@ -1,6 +1,6 @@
 {
   "homepage": "http://Cicadagg.github.io/",
-  "name": "gll",
+  "name": "c",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -38,8 +38,7 @@
     "deploy": "gh-pages -d build -r https://github.com/Cicadagg/gll.git",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "live-server public --host=0.0.0.0 --port=3000"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -61,5 +60,12 @@
   },
   "devDependencies": {
     "gh-pages": "^6.0.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "author": "",
+  "license": "ISC"
 }

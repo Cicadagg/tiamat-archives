@@ -2,18 +2,18 @@ import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useDispatch } from "react-redux";
-import { sinnerTypes } from "../../constants/skillBasedTypes";
-import { sinnerType } from "../../constants/types";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { EGOInterface } from "../../store/reducers/ego-reducer";
 import { searchChangeTargetRefAction } from "../../store/reducers/search-reducer";
 import { isFilterMatching } from "../../tools/isFilterMatching";
 import { ItemEntity } from "../item-entity/ItemEntity";
 import { ListSinnerBar } from "../list-sinner-bar/ListSinnerBar";
+import { StatusesInterface } from "../../store/reducers/statuses-reducer";
 import "./ListEgo.css";
 
 export const ListEgo:React.FC = () => {
     const ego = useQueryClient().getQueryData("ego") as EGOInterface[]|null;
+    const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const filterState = useTypedSelector(state => state.filterReducer);
     const searchState = useTypedSelector(state => state.searchReducer);
     const containerRef = useRef(null);
@@ -47,7 +47,7 @@ export const ListEgo:React.FC = () => {
         for(let i = ego.length - 1 ; i >= 0 ;i--){
             const currentEGO = ego[i] as EGOInterface;
             const { isNew ,imgUrl ,sinner} = currentEGO;
-            if (!isFilterMatching(filterState,searchState,currentEGO,i18n.language)) continue;
+            if (!isFilterMatching(filterState,searchState,currentEGO,i18n.language,statuses)) continue;
             if(!!(+isNew)) egoMap.new.push(<ItemEntity animationDelay={500} entity={currentEGO} key={imgUrl}/>);
             if(sinner in egoMap){
                 egoMap[sinner].push(<ItemEntity animationDelay={500} entity={currentEGO} key={imgUrl}/>);

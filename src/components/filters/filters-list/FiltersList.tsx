@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import { damageTypes, guardTypes, rarityIdentityTypes, sinnerTypes, sinTypes } from "../../../constants/skillBasedTypes";
+import { damageTypes, guardTypes, rarityIdentityTypes, sinnerTypes, sinTypes, seasonTypes, eventTypes } from "../../../constants/skillBasedTypes";
 import { rarityEGOType } from "../../../constants/types";
 import { FiltersSection } from "../filters-section/FiltersSection";
 
@@ -37,7 +37,7 @@ export const FiltersList:React.FC = () => {
         {
             type:"sin" ,
             imgsFolder:"sins",
-            imgExtension:".png",
+            imgExtension:".webp",
             data:sinTypes,
             visible:true,
             header:t("FiltersList.header.sin")
@@ -46,7 +46,7 @@ export const FiltersList:React.FC = () => {
         {
             type:"dmgType" ,
             imgsFolder:"dmg-type",
-            imgExtension:".png",
+            imgExtension:".webp",
             data:damageTypes,
             visible:!location.includes("/mirror-dungeon"),
             header:t("FiltersList.header.dmgType")
@@ -54,7 +54,7 @@ export const FiltersList:React.FC = () => {
         {
             type:"guardType" ,
             imgsFolder:"guard-type",
-            imgExtension:".png",
+            imgExtension:".webp",
             data:guardTypes,
             header:t("FiltersList.header.guardType"),
             visible:paramsType === "identities"||paramsType === "passives"||location.includes("/teambuilder")||location.includes("/identities")
@@ -63,7 +63,7 @@ export const FiltersList:React.FC = () => {
         {
             type:"rarityIdentity" ,
             imgsFolder:"id-rarity",
-            imgExtension:".png",
+            imgExtension:".webp",
             data:rarityIdentityTypes,
             header:t("FiltersList.header.rarity"),
             visible:paramsType === "passives"||paramsType === "identities"||location.includes("/teambuilder")||location.includes("/identities")
@@ -79,7 +79,7 @@ export const FiltersList:React.FC = () => {
 
         },
         {
-            type:"sinner" ,
+            type:"sinner",
             imgsFolder:"sinners-icons",
             imgExtension:".webp",
             data:sinnerTypes,
@@ -87,7 +87,22 @@ export const FiltersList:React.FC = () => {
             visible:!location.includes("/mirror-dungeon")
 
         },
-       
+       {
+           type:"season",
+           imgsFolder:"season-icons",
+           imgExtension:".webp",
+           data:seasonTypes,
+           header:t("FiltersList.header.season"),
+           visible:paramsType === "identities"||location.includes("/teambuilder")||location.includes("/identities")||location.includes("/ego")
+       },
+       {
+           type:"event",
+           imgsFolder:"season-icons",
+           imgExtension:".webp",
+           data:eventTypes,
+           header:t("FiltersList.header.event"),
+           visible:paramsType === "identities"||location.includes("/teambuilder")||location.includes("/identities")||location.includes("/ego")
+       },
        
     ];
     return (

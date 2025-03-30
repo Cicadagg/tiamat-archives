@@ -1,183 +1,136 @@
-.item-entity-container {
-    width: 138.4px;
-    height: 167.2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transform: translateX(-16px);
-    opacity: 0;
-    cursor: pointer;
-    border-radius: 3.2px 3.2px 0px 0px;
-    position: relative;
-    z-index: 5;
-}
-.item-entity-container--animated {
-    transform: translateX(0);
-    opacity: 0.8;
-}
-.item-entity-container:hover {
-    opacity: 1;
-    z-index: 6;
-}
-.item-entity-container:hover .item-ego-info-container,
-.item-entity-container:hover .item-identity-info-container{
-    animation: info_in_animation 0.5s forwards ;
-    display: flex;
+:root {
+    font-size: 16px; /* Базовый размер шрифта для определения rem */
 }
 
-@keyframes info_in_animation{
-    100%{
-        transform: translate(-50%, -102%) ;
-        opacity: 1;
-    }
-}
-.item-entity-container:hover .item-entity-image{
-    transform: scale(1.05);
-}
-.item-entity-image{
-    width:  100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    position: relative; 
-    border-radius: 6.4px 6.4px;
-    transition: 0.48s;
-    will-change: transform;
+.guide-info-container {
+    width: 90%; /* Установлено на 90% */
+    padding: 0;
+    margin: 0rem auto 0; /* Верхний отступ 20px = 1.25rem и центровка */
+    box-sizing: border-box; /* Учитывать отступы и границ в ширине контейнера */
 }
 
-.item-entity-container .shadow {
+.guide-info-container .search {
     width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6.4px 6.4px;
+    box-sizing: border-box;
+}
+
+.guide-info-container .search input {
+    width: 80%;
+}
+
+.guide-info-container .search .btn-clear {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.guide-info-container .search .btn-search {
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+
+.guide-info-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Используем flexbox для раскладки плиток */
+    flex-wrap: wrap; /* Перенос плиток на новую строку при недостаточной ширине */
+    gap: 0.9375rem; /* Отступ между плитками: 15px = 0.9375rem */
+    margin: 20; /* Убедитесь, что нет большого отступа слева или справа */
+}
+
+.guide-info-item {
+    background-color: #25272d; /* Цвет фона плитки */
+    border-radius: 0.75rem; /* Закруглённые углы плитки */
+    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.2); /* Более заметная тень */
+    padding: 0.9375rem; /* Внутренние отступы */
+    max-width: 22.5rem; /* Максимальная ширина плитки */
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-height: 1.5rem; /* Минимальная высота плитки: 200px = 12.5rem */
+    box-sizing: border-box; /* Учитывать отступы и границы в ширине плитки */
+}
+
+.guide-info-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.guide-info-content {
+    position: relative; /* Для позиционирования */
+}
+
+.guide-info-date {
+    font-size: 16px; /* Размер шрифта для даты */
+    color: #aaaaaa; /* Светло-серый цвет для даты */
+    margin-bottom: 5px; /* Отступ снизу для отделения от заголовка */
+}
+
+.guide-info-title {
+    font-weight: bold;
+    color: #ffffff; /* Цвет для названия */
+    font-size: 32px; /* Увеличиваем размер шрифта для заголовка */
+    margin: 1px; /* Убираем отступы */
+}
+
+.guide-info-image-wrapper {
+    aspect-ratio: 16/9; /* Соотношение сторон */
     overflow: hidden;
-}
-.item-entity-new{
-    position: absolute;
-    right: 3.84px;
-    top: 3.84px;
-    width: fit-content;
-    padding: 2px 6px;
-    box-sizing: border-box;
-    background-color: rgb(255, 57, 57);
-    color: white;
-    border-radius: 4px;
+    border-radius: 8px; /* Закругляем углы изображения */    
 }
 
-
-.item-entity-rarity {
-    position: absolute;
-    z-index: 102;
-    width: fit-content;
-    height: fit-content;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    box-sizing: border-box;
-    font-style: normal;
-    font-weight: 400;
-    border-radius: 3.2px;
-    background: rgba(0, 0, 0, 0.40);
-    padding: 1.6px 5.12px 1.6px;
-    margin: 3.84px 0px 0px 3.84px;
-    font-size: 16px;
-    color: var(--O-color);
-}
-
-.item-entity-frame {
+.guide-info-image {
     width: 100%;
-    height: 2.4px;
-    position: absolute;
-    bottom: 0;
-    z-index: 102;
+    transition: transform 0.3s ease-in-out;
+    object-fit: cover; /* Увеличивает или уменьшает изображение, сохраняя пропорции, чтобы заполнить контейнер */
 }
 
-.item-entity-frame--OOO {
-    background: var(--OOO-frame-color);
+.guide-info-image-wrapper:hover .guide-info-image {
+    transform: scale(1.05); /* Увеличение изображения при наведении */
 }
 
-.item-entity-frame--OO {
-    background: var(--OO-frame-color);
+.no-guides-message {
+    color: #eaeaea;
+    text-align: center;
+    font-size: 18px;
 }
 
-.item-entity-frame--O {
-    background: var(--O-frame-color);
+.spacer {
+    height: 20px; /* Высота отступа между заголовком и плитками */
 }
 
-
-.item-entity-name {
-    color: #FFF;
-    font-size: 19px;
-    margin-bottom: 7.68px;
-    box-sizing: border-box;
-    text-align: left;
-    padding: 0px 9.6px 0px 9.6px;
-    position: absolute;
-    bottom: 0;
-    z-index: 102;
-    font-weight: 600;
+.guide-tags {
+    display: flex; /* Используем flexbox для отображения тегов */
+    flex-wrap: wrap; /* Позволяет тегам переноситься на новую строку */
+    gap: 0.5rem; /* Отступ между тегами */
 }
 
-@media (max-width: 1039.5px) {
-    .item-entity-container {
-        width: 124.56px;
-        height: 150.48px;
-    }
-    .item-entity-name {
-        font-size: 14.4px; 
-        padding: 0px 8.64px 0px 8.64px;
-        margin-bottom: 6.9px;
-    }
-    
-    .item-entity-rarity {
-        padding: 1.44px 4.608px 1.44px;
-        margin: 3.456px 0px 0px 3.456px;
-        font-size: 14.4px;
-    }
-    
-}
-@media (max-width: 810px) {
-    .item-entity-container {
-        width: 106.568px; 
-        height: 128.744px;
-    }
-    
-    .item-entity-name {
-        font-size: 12.32px; 
-        padding: 0px 7.392px 0px 7.392px; 
-        margin-bottom: 5.72px; 
-    }
-    
-    .item-entity-rarity {
-        padding: 1.232px 3.9424px 1.232px;
-        margin: 2.9576px 0px 0px 2.9576px; 
-        font-size: 12.32px;
-    }
-    .item-entity-new{
-        padding: 1px 4px;
-        font-size: 12px;
+@media (max-width: 56.25rem) { /* 900px = 56.25rem */
+    .guide-info-item {
+        max-width: 21.5rem; /* Максимальная ширина плитки */
     }
 }
-@media (max-width: 380px) {
-    .item-entity-container {
-        width: 88.60776px;
-        height: 106.60208px; 
+@media (max-width: 50rem) { /* 800px = 50rem */
+    .guide-info-item {
+        max-width: 20.5rem; /* Максимальная ширина плитки */
     }
-    
-    .item-entity-name {
-        font-size: 10.2324px; 
-        padding: 0px 6.12456px 0px 6.12456px; 
-        margin-bottom: 4.8464px; 
+}
+@media (max-width: 46.875rem) { /* 750px = 46.875rem */
+    .guide-info-item {
+        max-width: 17rem; /* Максимальная ширина плитки */
     }
-    
-    .item-entity-rarity {
-        padding: 1.02844px 3.351168px 1.02844px; 
-        margin: 2.514672px 0px 0px 2.514672px; 
-        font-size: 10.2324px; 
+}
+@media (max-width: 38.875rem) { /* 622px = 38.875rem */
+    .guide-info-item {
+        max-width: 33.5rem; /* Максимальная ширина плитки */
     }
-   
-    
+}
+@media (max-width: 37.5rem) { /* 600px = 37.5rem */
+    .guide-info-list{
+        flex-direction: column;
+    }
+    .guide-info-item {
+        max-width: 22.5rem; /* Максимальная ширина плитки */
+    }
 }

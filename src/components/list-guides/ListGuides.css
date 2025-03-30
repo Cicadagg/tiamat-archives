@@ -1,46 +1,187 @@
-.list-ids{
-    display: flex;
-    width:90%;
-    flex-direction: column;
-    color:white;
+:root {
+    font-size: 16px; /* Базовый размер шрифта для определения rem */
+}
 
+.guide-info-container {
+    width: 90%; /* Установлено на 90% */
+    padding: 0;
+    margin: 0rem auto 0; /* Верхний отступ 20px = 1.25rem и центровка */
+    box-sizing: border-box; /* Учитывать отступы и границ в ширине контейнера */
 }
-.list-ids-span{
-    font-size: 30px;
-    margin-top:0 ;
-    margin-bottom: 20px;
-    font-weight: 600;
+
+.guide-info-container .search {
+    width: 100%;
+    box-sizing: border-box;
 }
-.list-ids h2{
-    font-size: 30px;
-    margin-top:0 ;
-    font-weight: 600;
+
+.guide-info-container .search input {
+    width: 80%;
 }
-.list-ids p{
-    font-size: 24px;
-    font-weight: 400;
+
+.guide-info-container .search .btn-clear {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translate(0,-50%);
 }
-.list-ids-content {
-    width:100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 138.4px);
-    row-gap: 16px;
-    column-gap: 9.6px;
-    justify-content: space-between;
+
+.guide-info-container .search .btn-search {
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
 }
-@media (max-width: 1039.5px) {
-    .list-ids-content{
-        grid-template-columns: repeat(auto-fill, 124.56px);
+
+.guide-info-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Используем flexbox для раскладки плиток */
+    flex-wrap: wrap; /* Перенос плиток на новую строку при недостаточной ширине */
+    gap: 0.9375rem; /* Отступ между плитками: 15px = 0.9375rem */
+    margin: 0; /* Убедитесь, что нет большого отступа слева или справа */
+}
+
+.guide-info-item {
+    background-color: #25272d; /* Цвет фона плитки */
+    border-radius: 0.75rem; /* Закруглённые углы плитки */
+    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.2); /* Более заметная тень */
+    padding: 0.9375rem; /* Внутренние отступы */
+    max-width: 22.5rem; /* Максимальная ширина плитки */
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-height: 1.5rem; /* Минимальная высота плитки: 200px = 12.5rem */
+    box-sizing: border-box; /* Учитывать отступы и границы в ширине плитки */
+}
+
+.guide-info-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.guide-info-content {
+    position: relative; /* Для позиционирования */
+}
+
+.guide-info-date {
+    font-size: 16px; /* Размер шрифта для даты */
+    color: #aaaaaa; /* Светло-серый цвет для даты */
+    margin-bottom: 5px; /* Отступ снизу для отделения от заголовка */
+}
+
+.guide-info-title {
+    font-weight: bold;
+    color: #ffffff; /* Цвет для названия */
+    font-size: 32px; /* Увеличиваем размер шрифта для заголовка */
+    margin: 1px; /* Убираем отступы */
+}
+
+.guide-info-image-wrapper {
+    aspect-ratio: 16/9; /* Соотношение сторон */
+    overflow: hidden;
+    border-radius: 8px; /* Закругляем углы изображения */    
+}
+
+.guide-info-image {
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+    object-fit: cover; /* Увеличивает или уменьшает изображение, сохраняя пропорции, чтобы заполнить контейнер */
+}
+
+.guide-info-image-wrapper:hover .guide-info-image {
+    transform: scale(1.05); /* Увеличение изображения при наведении */
+}
+
+.no-guides-message {
+    color: #eaeaea;
+    text-align: center;
+    font-size: 18px;
+}
+
+.spacer {
+    height: 20px; /* Высота отступа между заголовком и плитками */
+}
+
+/* Новые стили для тегов */
+.tag-list {
+    display: flex; /* Упрощаем для горизонтального отображения */
+    flex-wrap: nowrap;
+    gap: 0.5rem; /* Отступы между тегами */
+    margin: 0 0 1rem 0; /* Отступы сверху и снизу */
+}
+
+.tag-item {
+    display: flex;
+    background-color: #101113; /* Темный цвет фона для тегов */
+    color: white;
+    border-radius: 50px;
+    border: 1px solid #101113; /* Темный цвет при наведении */
+    padding: 0.3rem 0.75rem; /* Уменьшение внутренних отступов */
+    cursor: pointer;
+    text-align: center; /* Централизуйте текст, можно настроить */
+    align-items: center; /* Централизуйте текст, можно настроить */
+}
+.tag-item:hover {
+    border: 1px solid white; /* Темный цвет при наведении */
+}
+/* Стиль для активных тегов */
+.tag-item.active {
+    display: flex;
+    background-color: #007bff; /* Цвет фона для активного тега */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень для выделения */
+    border: 1px solid #007bff; /* Темный цвет при наведении */
+}
+.tag-item.active:hover {
+    border: 1px solid white; /* Темный цвет при наведении */
+}
+.guide-tags {
+    display: flex; /* Используем flexbox для отображения тегов */
+    flex-wrap: wrap; /* Позволяет тегам переноситься на новую строку */
+    gap: 0.5rem; /* Отступ между тегами */
+}
+
+@media (max-width: 75rem) { /* 1200px = 75rem */
+    .tag-item {
+        font-size: 14px;
+    }
+    .dropdown-tag-item
+    {
+        font-size: 14px;
     }
 }
-@media (max-width: 810px) {
-    .list-ids-content{
-        grid-template-columns: repeat(auto-fill, 106.568px);
+@media (max-width: 56.25rem) { /* 900px = 56.25rem */
+    .guide-info-item {
+        max-width: 21.5rem; /* Максимальная ширина плитки */
+    }
+    .tag-item:hover {
+        border:none;
+    }
+    .tag-item.active:hover {
+        border:none;
     }
 }
-@media (max-width: 380px) {
-    .list-ids-content{
-        justify-content: space-evenly;
-        grid-template-columns: repeat(auto-fill, 88.60776px);
+@media (max-width: 50rem) { /* 800px = 50rem */
+    .guide-info-item {
+        max-width: 20.5rem; /* Максимальная ширина плитки */
     }
+}
+@media (max-width: 46.875rem) { /* 750px = 46.875rem */
+    .guide-info-item {
+        max-width: 17rem; /* Максимальная ширина плитки */
+    }
+}
+@media (max-width: 38.875rem) { /* 622px = 38.875rem */
+    .guide-info-item {
+        max-width: 33.5rem; /* Максимальная ширина плитки */
+    }
+}
+@media (max-width: 37.5rem) { /* 600px = 37.5rem */
+    .guide-info-list{
+        flex-direction: column;
+    }
+    .guide-info-item {
+        max-width: 22.5rem; /* Максимальная ширина плитки */
+    }
+}
+
+p.empty{
+    color: white;
 }

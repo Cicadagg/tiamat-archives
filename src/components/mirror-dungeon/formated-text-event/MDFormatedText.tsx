@@ -1,9 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { searchChangeValueAction } from '../../../store/reducers/search-reducer';
 import { MDEvent } from '../../../types/md-event-interface';
 import './MDFormatedText.css';
 

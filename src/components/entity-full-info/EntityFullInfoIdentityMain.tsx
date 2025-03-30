@@ -16,28 +16,13 @@ export const EntityFullInfoIdentityMain = () =>{
     const entity = entities.find(id => id.imgUrl === identityId);
   
     if(!entity) return null;
-    const {sinner} = entity;
 
     const nameKey = `name${i18n.language.toUpperCase()}` as keyof typeof entity;
     const name = entity[nameKey] as string;
 
-    const sinnersNamesMap:{[key:string]:string} = {
-        "faust" : "Faust",
-        "yi sang": "Yi Sang",
-        "gregor":"Gregor",
-        "mersault":"Mersault",
-        "don quixote":"Don Quixote",
-        "rodion":"Rodion",
-        "ryoshu":"Ryoushu",
-        "hong lu":"Hong Lu",
-        "heathcliff":"Heathcliff",
-        "ishmael":"Ishmael",
-        "sinclair":"Sinclair",
-        "outis":"Outis",
-    }
     return (
         <>
-        <SEOHelmet titleText={`${name} | ${sinnersNamesMap[sinner]} | Great Limbus Library`} descriptionText=""/>
+        <SEOHelmet titleText={`${name} | Great Limbus Library`} descriptionText=""/>
         <h1 className="entity-info-header" >{name} <LanguageDisclaimer/></h1>
         <div className={"entityFullInfo"}>
             <EntityFullInfoIdentity  identity={entity} maxLvlIdentity={maxLvlIdentity}/>

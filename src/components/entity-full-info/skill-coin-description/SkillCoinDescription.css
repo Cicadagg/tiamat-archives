@@ -90,7 +90,18 @@
   opacity: 1;
   cursor: pointer;
 }
-
+.status-name2{
+  text-decoration: underline;
+  color:rgb(255, 215, 36);
+  opacity: 1;
+  cursor: pointer;
+}
+.status-name3{
+  text-decoration: underline;
+  color:rgb(159, 106, 58);
+  opacity: 1;
+  cursor: pointer;
+}
 @media (max-width:1000px){
   .status-name .entityFullInfo-tooltip{
     display: none;
@@ -117,12 +128,4 @@
 .status-name--sinking{
   color:rgb(0, 102, 255);
 }
-.status-name--fragile{
-  color:rgb(149, 0, 255);
-}
-.status-name--paralyze{
-  color:rgb(255, 208, 0);
-}
-.status-name--haste{
-  color:orange;
-}
+

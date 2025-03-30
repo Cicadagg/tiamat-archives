@@ -12,6 +12,26 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.image-swap-button {
+    /* Position the button above the tier */
+    position: absolute;
+    top: 380px; /* Adjust as needed */
+    left: 20px;
+    z-index: 2; /* Ensure it's above other elements */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Добавляет небольшое закругление */
+    outline: 1px solid white; /* Добавляет белую обводку */
+}
+
+.entityFullInfo-img {
+    position: relative; /*  Needed for absolute positioning of button  */
+}
+  
 @media (max-width:1000px) {
     .statuses-list li .entityFullInfo-tooltip{
        display: none;
@@ -101,6 +121,9 @@
 }
 .entityFullInfo-tier-C{
     background-color: var(--C-color);
+}
+.entityFullInfo-tier-Test{
+    background-color: var(--Test-color);
 }
 .entityFullInfo-season{
     width: 90%;
@@ -273,6 +296,19 @@
     .statuses-list .tooltip-container  {
         position: static;
     }
+    .image-swap-button {
+        /* Position the button above the tier */
+        position: absolute;
+        top: 425px; /* Adjust as needed */
+        left: 270px;
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* Добавляет небольшое закругление */
+        }
    
 }
 @media (max-width:420px) {
@@ -280,4 +316,36 @@
         height: 400px; 
         width: 300px;
     }
+    .image-swap-button {
+        /* Position the button above the tier */
+        position: absolute;
+        top: 320px; /* Adjust as needed */
+        left: 15px;
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* Добавляет небольшое закругление */
+        }
+}
+@media (max-width:930px) {
+    .entityFullInfo-img{
+        height: 400px; 
+        width: 300px;
+    }
+    .image-swap-button {
+        /* Position the button above the tier */
+        position: absolute;
+        top: 100px; /* Adjust as needed */
+        left: 15px;
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* Добавляет небольшое закругление */
+        }
 }

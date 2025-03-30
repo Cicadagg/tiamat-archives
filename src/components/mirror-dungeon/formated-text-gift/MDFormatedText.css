@@ -125,6 +125,11 @@
     text-decoration-color:rgb(173, 0, 173);   
 
 }
+.MDFormatedText--none{
+    color: rgba(159, 105, 58, 1);
+    text-decoration: underline;
+    text-decoration-color: rgba(159, 105, 58, 1);
+}
 .description-weight{
     text-decoration: underline;
     color:rgb(241, 211, 77);

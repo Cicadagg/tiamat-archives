@@ -1,10 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { IdentityInterface } from "../../store/reducers/ids-reducer";
-import { isFilterMatching } from "../../tools/isFilterMatching";
-import { TbItem } from "../tb-item/TbItem";
 
 interface ITbListIds {
     jsxElementsNew:React.ReactNode[],

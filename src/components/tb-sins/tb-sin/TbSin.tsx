@@ -78,7 +78,7 @@ export const TbSin:React.FC <TbSinInterface> = ({sin,energy}) =>{
     return(
     <div ref={refItem} onClick={()=>handleClick()} className={["tb-sins-sin" , slotHoverInfo.visible ? "tb-sins-sin--active" : ""].join(" ")} key={sin}>
         { (reqCount !== 0 || count !== 0 ) && window.innerWidth > mobileLayoutFrom && HoverComponent}
-        <img src={`${process.env.PUBLIC_URL}/images/sins/${sin}.png`} className="tb-sins-img" alt={sin}/>
+        <img src={`${process.env.PUBLIC_URL}/images/sins/${sin}.webp`} className="tb-sins-img" alt={sin}/>
         <span>{count}{ (!!slotHoverInfo.pres) && <span className={"tb-sins-pres"} >{`(${slotHoverInfo.pres})`}</span>}/{reqCount}{ (!!slotHoverInfo.req) && <span className={"tb-sins-req"}>{`(${slotHoverInfo.req})`}</span>}</span>
     </div>
     )

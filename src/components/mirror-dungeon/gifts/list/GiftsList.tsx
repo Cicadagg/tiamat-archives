@@ -29,7 +29,7 @@ export const GiftsList:React.FC = () => {
     const dispatch = useDispatch();
     if(!gifts) return null;
     const giftsMapped:Record<string , MDGift[]> = gifts.reduce( (acc:Record<string , MDGift[]>,curr)=>{
-        const {sin,tier} = curr;
+        const {tier} = curr;
         try{
             if(isGiftFilterMatching(filterState, searchValue, curr, i18n.language))
                 acc[`${tier}`].push(curr);
@@ -62,7 +62,7 @@ export const GiftsList:React.FC = () => {
                         <div className={`GiftsList-content GiftsList-content--${sectionsVisibility[key] ? "":"hidden"}`}>
                             {
                                 value.map((gift)=>{
-                                    const {cost,nameEN,nameRU,sin,id} = gift;
+                                    const {nameEN,nameRU,sin,id} = gift;
                                     return <div className='GiftsList-item'>
                                         <figure>
                                             <div
@@ -85,7 +85,7 @@ export const GiftsList:React.FC = () => {
                                                     className='keyword-img'
                                                     src={
                                                     ["blunt","pierce","slash"].includes(gift.keyword)
-                                                    ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.png`
+                                                    ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.webp`
                                                     :`${process.env.PUBLIC_URL}/images/tags/${gift.keyword}.webp`
                                                     } 
                                                     alt={gift.keyword}/>
@@ -99,7 +99,12 @@ export const GiftsList:React.FC = () => {
                                             }
                                             
                                             </div>
-                                            <figcaption> {i18n.language === "ru" ? nameRU: nameEN} </figcaption>
+                                            <figcaption> 
+                                                {(() => {
+                                                    const name = i18n.language === "ru" ? nameRU : nameEN;
+                                                    return name.length > 9 ? `${name.slice(0, 9)}...` : name;
+                                                })()} 
+                                            </figcaption>
                                         </figure>
                                     </div>
                                 })

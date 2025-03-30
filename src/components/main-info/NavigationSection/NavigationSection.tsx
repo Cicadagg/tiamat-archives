@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver"
 import { ArrowsRightNavigateSVG } from "../../svg/ArrowsRightNavigate"
 import "./NavigationSection.css"
+
 export const NavigationSection: React.FC = () => {
     const { t , i18n} =  useTranslation();
     const quickStartLinks = [

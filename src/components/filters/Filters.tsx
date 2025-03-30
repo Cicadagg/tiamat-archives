@@ -18,7 +18,11 @@ import "./Filters.css";
 
 type TFilterVisibility = "hide" | "show";
 
-export const Filters:React.FC = () => {
+type FiltersProps = {
+    isIdentityTeamBuilder?: string;
+};
+
+export const Filters:React.FC<FiltersProps> = ({ isIdentityTeamBuilder }) => {
     const location =useLocation().pathname;
     const dispatch = useDispatch();
     const {t} = useTranslation();
@@ -58,7 +62,7 @@ export const Filters:React.FC = () => {
                 <button onClick={()=>{setMobileModalTrigger(dispatch,
                     <div className="filters-modal-wrapper">
                     <FiltersList/>
-                    <FiltersSection2/>
+                    <FiltersSection2 isIdentityTeamBuilder={isIdentityTeamBuilder}/>
                     {location.includes("/mirror-dungeon") && <FiltersSectionMd/>}
                     </div>)}} className="show-filters btn-filters">
                         <FilterSVG/>
@@ -67,11 +71,11 @@ export const Filters:React.FC = () => {
                 {!location.includes("/teambuilder") && <Search/>}
                 </div>
             </header>
-                
+
             {
             filterVisibility === "show" && <article className={"filters-main"}>
                 <FiltersList/>
-                <FiltersSection2/>
+                <FiltersSection2 isIdentityTeamBuilder={isIdentityTeamBuilder}/>
                 {location.includes("/mirror-dungeon") && <FiltersSectionMd/>}
             </article>
             }

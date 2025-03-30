@@ -31,7 +31,7 @@ export const MDFormatedText:React.FC<{text:string}> = ({text}) => {
                     className='big-img'
                     src={`${process.env.PUBLIC_URL}/images/md-gifts/${gift.id}.webp`} 
                     alt={name}/>
-                    <figcaption className={`MDFormatedText--${gift.sin}`}>{name}</figcaption>
+                    <figcaption className={`MDFormatedText--${(gift.id !== "gift_0") ? gift.sin : "none"}`}>{name}</figcaption>
                 </figure>
             </Link>)
             }

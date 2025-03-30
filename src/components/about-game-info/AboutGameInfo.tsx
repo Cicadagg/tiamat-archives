@@ -7,7 +7,7 @@ export const AboutGameInfo:React.FC = () =>{
     return <section className="about-game-info">
         <H1Component header={t("AboutGameInfo.header")}/>
     <p>
-    <span>Limbus Company </span>{t("AboutGameInfo.text.1")}  <span>Project Moon</span>{t("AboutGameInfo.text.2")}
+    <span>Limbus Company </span>{t("AboutGameInfo.text.1")}  <span> Project Moon </span>{t("AboutGameInfo.text.2")}
     </p>
     <h2> {t("AboutGameInfo.officialLinks")}</h2>
     <OfficialLinks/>

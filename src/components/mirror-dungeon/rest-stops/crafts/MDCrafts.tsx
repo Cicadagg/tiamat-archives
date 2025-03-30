@@ -34,9 +34,7 @@ const GiftItem: React.FC<{ gift: MDGift }> = ({ gift }) => {
                 <img
                     src={`${process.env.PUBLIC_URL}/images/md-gifts/${gift.id}.webp`}
                     alt={i18n.language === "ru" ? nameRU : nameEN} />
-                <div className={`GiftItem-shadow`} />
-                <div className={`GiftItem-info`} >{t(`GiftItem.info`)}  </div>
-                <div className={`GiftItem-bar GiftItem-bar--${sin}`} />
+                <div className={`GiftItem-bar GiftItem-bar--${(gift.id !== "gift_0") ? sin : "none"}`} />
                 {
                     !!gift && <span className='gift-tier'> {romanNumerals[gift.tier]} </span>
                 }
@@ -46,16 +44,25 @@ const GiftItem: React.FC<{ gift: MDGift }> = ({ gift }) => {
                     className='gift-keyword-img'
                     src={
                     ["blunt","pierce","slash"].includes(gift.keyword)
-                    ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.png`
+                    ?`${process.env.PUBLIC_URL}/images/dmg-type/${gift.keyword}.webp`
                     :`${process.env.PUBLIC_URL}/images/tags/${gift.keyword}.webp`
                     } 
                     alt={gift?.keyword}/>
                 }
+                <div className={`GiftItem-shadow`} />
+                <div className={`GiftItem-info GiftItem-info--${i18n.language}`} >{t(`GiftItem.info`)}</div>
+                
             </Link>
-            <caption> {i18n.language === "ru" ? nameRU : nameEN} </caption>
+            <caption> 
+                {(() => {
+                    const name = i18n.language === "ru" ? nameRU : nameEN;
+                    return name.length > 9 ? `${name.slice(0, 9)}...` : name;
+                })()} 
+            </caption>
         </picture>
     </div>
 }
+
 export const MDCrafts: React.FC = () => {
     const gifts = useQueryClient().getQueryData("md-gifts") as MDGift[] | null;
     const {i18n,t} = useTranslation();
@@ -64,6 +71,7 @@ export const MDCrafts: React.FC = () => {
 
     const crafts: Craft[] = gifts.reduce((acc: Craft[], curr) => {
         const { obtainEN, id } = curr;
+        if (id === "gift_0") return acc; // gift_0, не должен отображаться на вкладке крафтов, так как является пустым гифтом
         if (!obtainEN.includes("#")) return acc;
         const splitted = obtainEN.split("#");
         if (splitted.length % 2 != 1) return acc;
@@ -77,8 +85,7 @@ export const MDCrafts: React.FC = () => {
         })
         return acc;
     }, []);
-
-
+    
     return (
         <div className='MDcrafts-wrapper'>
             <h2> {t(`GiftItem.crafts`)} ({crafts.length})</h2>

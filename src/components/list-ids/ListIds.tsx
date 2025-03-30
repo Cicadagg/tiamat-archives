@@ -8,12 +8,14 @@ import { searchChangeTargetRefAction } from "../../store/reducers/search-reducer
 import { isFilterMatching } from "../../tools/isFilterMatching";
 import { ItemEntity } from "../item-entity/ItemEntity";
 import { ListSinnerBar } from "../list-sinner-bar/ListSinnerBar";
+import { StatusesInterface } from "../../store/reducers/statuses-reducer";
 import "./ListIds.css";
 
 export const ListIds:React.FC = () => {
     const containerRef = useRef(null);
     const dispatch = useDispatch();
     const ids = useQueryClient().getQueryData("identities") as IdentityInterface[]|null;
+    const statuses = useQueryClient().getQueryData('statuses') as StatusesInterface[];
     const filterState = useTypedSelector(state => state.filterReducer);
     const searchState = useTypedSelector(state => state.searchReducer);
     const {t,i18n} = useTranslation();
@@ -45,7 +47,7 @@ export const ListIds:React.FC = () => {
         for(let i = ids.length - 1 ; i >= 0 ;i--){
             const currentID = ids[i] as IdentityInterface;
             const { isNew ,imgUrl ,sinner} = currentID;
-            if (!isFilterMatching(filterState,searchState,currentID,i18n.language)) continue;
+            if (!isFilterMatching(filterState,searchState,currentID,i18n.language,statuses)) continue;
             if(!!(+isNew)) idMap.new.push(<ItemEntity animationDelay={500} entity={currentID} key={imgUrl}/>);
             if(sinner in idMap){
                 idMap[sinner].push(<ItemEntity animationDelay={500} entity={currentID} key={imgUrl}/>);

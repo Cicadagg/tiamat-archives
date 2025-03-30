@@ -1,6 +1,4 @@
-import { hover } from "@testing-library/user-event/dist/hover";
 import { Dispatch } from "react";
-import { sinType } from "../../constants/types";
 import { isIdentity } from "../../tools/isIdentity";
 import { EGOInterface } from "./ego-reducer";
 import { IdentityInterface } from "./ids-reducer";

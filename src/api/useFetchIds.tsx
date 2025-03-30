@@ -1,18 +1,19 @@
-import { identitiesApiKey1, identitiesApiKey2 } from "../constants/apiKeys";
+import { identitiesApiKey1, identitiesApiKey2, identitiesApiKey3 } from "../constants/apiKeys";
 import { useQuery, QueryClient } from "react-query";
 import { idsKeys } from "../constants/idsKeys";
 import { fetchAndValidateData } from "../tools/fetchAndValidateData";
 
-const SPREADSHEET_ID = '18-JZl9LlsJLT9sLH-ob1DEez4jYDcxJZYWCVQGmhL1o';
-const RANGE = 'Ids'; 
+const SPREADSHEET_ID = '1t9YpJUpNLO5VVzQKVmtpt-DKwyq9iG8VjpZMWJMtq1M'; // старое
+const RANGE = 'ids_db_rows'; // старое
 const API_KEY1 = identitiesApiKey1;
 const API_KEY2 = identitiesApiKey2;
-
+const API_KEY3 = identitiesApiKey3;
 const apiUrl1 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY1}`;
 const apiUrl2 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY2}`;
+const apiUrl3 = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?valueRenderOption=UNFORMATTED_VALUE&key=${API_KEY3}`;
 
 const CACHE_KEY = 'identities_cache';
-const CACHE_TIME = 2 * 60 * 1000; // 2 minutes in milliseconds
+const CACHE_TIME = 3600000; // 1 час в миллисекундах
 
 const getDataFromCache = () => {
   const cachedData = localStorage.getItem(CACHE_KEY);
@@ -25,7 +26,7 @@ const getDataFromCache = () => {
   return null;
 };
 
-const setDataToCache = (data: any) => {
+const setDataToCache = (data: any): void => {
   const cacheData = {
     data,
     timestamp: Date.now(),
@@ -33,15 +34,18 @@ const setDataToCache = (data: any) => {
   localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
 };
 
-const useFetchIdsAction = async () => {
+const useFetchIdsAction = () => {
   const cachedData = getDataFromCache();
   if (cachedData) {
     return cachedData;
   }
 
-  const result = await fetchAndValidateData([apiUrl1, apiUrl2], idsKeys);
-  setDataToCache(result);
-  return result;
+  const result = fetchAndValidateData([apiUrl1,apiUrl2,apiUrl3],idsKeys).then(result => {
+    console.log("Fetched identities:", result);
+    setDataToCache(result);
+    return result;
+  });
+  return result; 
 };
 
 export const useFetchIds = () => {
@@ -58,7 +62,6 @@ export const useFetchIds = () => {
   });
 };
 
-// Create a custom QueryClient to handle cache persistence
 export const createQueryClient = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -69,7 +72,6 @@ export const createQueryClient = () => {
     },
   });
 
-  // Hydrate the cache from localStorage on client-side
   if (typeof window !== 'undefined') {
     const cachedData = getDataFromCache();
     if (cachedData) {

@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { homePage } from "../../constants/homePage";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { EGOInterface } from "../../store/reducers/ego-reducer";
 import { IdentityInterface } from "../../store/reducers/ids-reducer";
@@ -44,17 +43,19 @@ export const TbItem:React.FC<TbItemInterface> = ({entity}) => {
         if(!modalTrigger) return;
         
         if(isIdentity){
-            if(modalTrigger.identity === entity) tbRemoveEntityAction(dispatch,entity,modalTrigger);
-            else tbAddEntityAction(dispatch,entity,modalTrigger);
+            if(modalTrigger.identity === entity) {
+                tbRemoveEntityAction(dispatch,entity,modalTrigger);
+            } else {
+                tbAddEntityAction(dispatch,entity,modalTrigger);
+            }
             return;
         }
 
-        if(modalTrigger.ego[entity.rarity] === entity){
+        if(modalTrigger.ego[entity.rarity] === entity) {
             tbRemoveEntityAction(dispatch,entity,modalTrigger);
-            return;
-        } 
-        tbAddEntityAction(dispatch,entity,modalTrigger);
-        
+        } else {
+            tbAddEntityAction(dispatch,entity,modalTrigger);
+        }
     }
     return (
         <div onClick={()=>handleItemClick()} className={"tb-item-container"}>

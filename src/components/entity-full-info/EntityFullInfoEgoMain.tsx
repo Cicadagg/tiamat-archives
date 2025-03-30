@@ -19,22 +19,22 @@ export const  EntityFullInfoEGOMain = () =>{
     const name = entity[nameKey] as string;
 
     const sinnersNamesMap:{[key:string]:string} = {
-        "faust" : "Faust",
-        "yi sang": "Yi Sang",
-        "gregor":"Gregor",
-        "mersault":"Mersault",
-        "don quixote":"Don Quixote",
-        "rodion":"Rodion",
-        "ryoshu":"Ryoushu",
-        "hong lu":"Hong Lu",
-        "heathcliff":"Heathcliff",
-        "ishmael":"Ishmael",
-        "sinclair":"Sinclair",
-        "outis":"Outis",
+        "faust" : i18n.language === "ru" ? "Фауст" : "Faust",
+        "yi sang": i18n.language === "ru" ? "И Сан" : "Yi Sang",
+        "gregor": i18n.language === "ru" ? "Грегор" : "Gregor",
+        "mersault": i18n.language === "ru" ? "Мерсо" : "Mersault",
+        "don quixote": i18n.language === "ru" ? "Дон Кихот" : "Don Quixote",
+        "rodion": i18n.language === "ru" ? "Родя" : "Rodion",
+        "ryoshu": i18n.language === "ru" ? "Рёшу" : "Ryoushu",
+        "hong lu": i18n.language === "ru" ? "Хон Лу" : "Hong Lu",
+        "heathcliff": i18n.language === "ru" ? "Хитклиф" : "Heathcliff",
+        "ishmael": i18n.language === "ru" ? "Измаил" : "Ishmael",
+        "sinclair": i18n.language === "ru" ? "Синклер" : "Sinclair",
+        "outis": i18n.language === "ru" ? "Отис" : "Outis",
     }
     return (
         <>
-        <SEOHelmet titleText={`${name} | ${sinnersNamesMap[sinner]} | Great Limbus Library`} descriptionText=""/>
+        <SEOHelmet titleText={`${name} | Great Limbus Library`} descriptionText=""/>
         <h1 className="entity-info-header" >{name} <LanguageDisclaimer/></h1>
         <div className={"entityFullInfo"}>
             <EntityFullInfoEGO ego={entity}/>
