@@ -1,31 +1,36 @@
-import { useEffect, useState, KeyboardEvent } from "react";
+import { useState, KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "./authUtils";
 import RegistrationForm from './RegistrationForm';
+import { BingoGame } from './BingoGame';
 import "./TurnamentInfo.css";
 
 /**
- * Компонент для отображения информации о турнире.
+ * Tournament information component with multiple tabs
  */
 export const TurnamentInfo: React.FC = () => {
-    // Получаем функции для перевода текста
     const { t, i18n } = useTranslation();
-
-    // Состояние для активной вкладки
     const [activeTab, setActiveTab] = useState('info');
-    
-    // Используем хук для авторизации
     const { isAuthorized, password, setPassword, handleCheckPassword, errorMessage, t: tAuth } = useAuth();
-    
+
     /**
-     * Функция для рендеринга контента в зависимости от активной вкладки.
+     * Handle Enter key press in password field
+     */
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleCheckPassword();
+        }
+    };
+
+    /**
+     * Render content based on active tab
      */
     const renderContent = () => {
         switch (activeTab) {
             case 'info':
                 return (
                     <div>
-                        <div className="info_title"> <h2>{t('TurnamentInfo.info.header')}</h2> </div>
+                        <div className="info_title"><h2>{t('TurnamentInfo.info.header')}</h2></div>
                         <ul>
                             <li>{t("TurnamentInfo.description.text1")}</li>
                             <li>{t("TurnamentInfo.description.text2")}</li>
@@ -33,7 +38,7 @@ export const TurnamentInfo: React.FC = () => {
                         </ul>
                     </div>
                 );
-                case 'registration':
+            case 'registration':
                 return (
                     <div>
                         <div className="info_title"><h2>{t('TurnamentInfo.registration.header')}</h2></div>
@@ -41,7 +46,6 @@ export const TurnamentInfo: React.FC = () => {
                         <RegistrationForm />
                     </div>
                 );
-                
             case 'schedule':
                 return (
                     <div>
@@ -49,24 +53,10 @@ export const TurnamentInfo: React.FC = () => {
                         <div className="discrip">{t('TurnamentInfo.schedule.text')}</div>
                     </div>
                 );
-            case 'contacts':
-                return (
-                    <div>
-                        <div className="info_title"><h2>{t('TurnamentInfo.contacts.header')}</h2></div>
-                        <div className="discrip">{t('TurnamentInfo.contacts.text')}</div>
-                    </div>
-                );
+            case 'bingo':
+                return <BingoGame />;
             default:
                 return null;
-        }
-    };
-
-    /**
-     * Обработчик нажатия клавиши Enter в поле пароля
-     */
-    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            handleCheckPassword();
         }
     };
 
@@ -80,31 +70,41 @@ export const TurnamentInfo: React.FC = () => {
                     <div className="tournament-info">
                         <div className="image-container2">
                             <div className="image-container">
-                                <img src="/images/cup-image.png" alt="Tournament Cup" style={{ width: '12rem', height: 'auto' }} />
-                                <p className="prize-text color-blue">{t('TurnamentInfo.prize.text')}</p>
+                                <img 
+                                    src="/images/cup-image.png" 
+                                    alt="Tournament Cup" 
+                                    style={{ width: '12rem', height: 'auto' }} 
+                                />
+                                <p className="prize-text color-blue">
+                                    {t('TurnamentInfo.prize.text')}
+                                </p>
                             </div>
                         </div>
                         
                         <div className="info-container">
-                            <div className="info_title"><h2>{t('TurnamentInfo.info.header')}</h2></div>
-                                <ul>
-                                    <li>{t("TurnamentInfo.description.text1")}</li>
-                                    <li>{t("TurnamentInfo.description.text2")}</li>
-                                    <li>{t("TurnamentInfo.description.text3")}</li>
-                                </ul>
+                            <div className="info_title">
+                                <h2>{t('TurnamentInfo.info.header')}</h2>
                             </div>
+                            <ul>
+                                <li>{t("TurnamentInfo.description.text1")}</li>
+                                <li>{t("TurnamentInfo.description.text2")}</li>
+                                <li>{t("TurnamentInfo.description.text3")}</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div className="button-container">
                         <nav className="button-list">
                             <ul>
-                                {['info', 'registration', 'schedule', 'contacts'].map((tab) => (
+                                {['info', 'registration', 'schedule', 'bingo'].map((tab) => (
                                     <li key={tab}>
                                         <button
                                             onClick={() => setActiveTab(tab)}
                                             className={activeTab === tab ? 'active' : ''}
                                         >
-                                            <div className="button-label">{t(`TurnamentInfo.${tab}.header`)}</div>
+                                            <div className="button-label">
+                                                {t(`TurnamentInfo.${tab}.header`)}
+                                            </div>
                                         </button>
                                         {activeTab === tab && <div className="button-list-line"/>}
                                     </li>
@@ -118,27 +118,27 @@ export const TurnamentInfo: React.FC = () => {
                         </div>
                         <div className="right-column">
                             <h3>{t('TurnamentInfo.guests.header')}</h3>
-                                    <div>
-                                        <h4>{t('TurnamentInfo.guests.organizers')}</h4>
-                                        <ul>
-                                            <li>Имя организатора 1</li>
-                                            <li>Имя организатора 2</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>{t('TurnamentInfo.guests.commentators')}</h4>
-                                        <ul>
-                                            <li>Имя комментатора 1</li>
-                                            <li>Имя комментатора 2</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4>{t('TurnamentInfo.guests.observers')}</h4>
-                                        <ul>
-                                            <li>Имя обсервера 1</li>
-                                            <li>Имя обсервера 2</li>
-                                        </ul>
-                                    </div>
+                            <div>
+                                <h4>{t('TurnamentInfo.guests.organizers')}</h4>
+                                <ul>
+                                    <li>Имя организатора 1</li>
+                                    <li>Имя организатора 2</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>{t('TurnamentInfo.guests.commentators')}</h4>
+                                <ul>
+                                    <li>Имя комментатора 1</li>
+                                    <li>Имя комментатора 2</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>{t('TurnamentInfo.guests.observers')}</h4>
+                                <ul>
+                                    <li>Имя обсервера 1</li>
+                                    <li>Имя обсервера 2</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </>
@@ -155,7 +155,9 @@ export const TurnamentInfo: React.FC = () => {
                             onKeyDown={handleKeyDown}
                             placeholder={tAuth('TurnamentInfo.password.placeholder')}
                         />
-                        <button onClick={handleCheckPassword}>{tAuth('TurnamentInfo.password.submit')}</button>
+                        <button onClick={handleCheckPassword}>
+                            {tAuth('TurnamentInfo.password.submit')}
+                        </button>
                     </div>
                     {errorMessage && <div className="auth-error">{errorMessage}</div>}
                 </div>

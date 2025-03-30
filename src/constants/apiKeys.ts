@@ -26,3 +26,5 @@ export const newsListApiKey2 = 'AIzaSyCDqUsvVY1w5FOpvR2OM4kKaSV-VBfYunk';
 
 export const tagsApiKey1 = 'AIzaSyBp18wmxybC5c9urSeggXc66JyrdzvqGtk';
 export const tagsApiKey2 = 'AIzaSyAEy5kYBRHCov4isdXQ_b4M3fkbdShmo5g';
+
+export const bingoApiKey1 = 'AIzaSyAwPkIo6RgjBPMVxfVGwSTiRAxaNTecnts';
