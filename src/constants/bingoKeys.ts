@@ -3,9 +3,9 @@ import { validationToString } from "./validations"; // Убедитесь, чт�
 
 const bingoKeys = [
     { key: "ids", validation:validationToString },
-    { key: 'name', validation: validationToString },
-    { key: 'Green', validation: validationToString },
-    { key: 'Red', validation: validationToString },
+    { key: 'name1', validation: validationToString },
+    { key: 'name2', validation: validationToString },
+    { key: 'name3', validation: validationToString },
   ];
 
   export { bingoKeys };

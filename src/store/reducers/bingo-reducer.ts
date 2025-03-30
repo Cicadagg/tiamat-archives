@@ -1,8 +1,8 @@
 export interface BingoInterface{
     ids: string;
-    name: string;
-    Green: string;
-    Red: string;
+    name1: string;
+    name2: string;
+    name3: string;
 
 }
 
