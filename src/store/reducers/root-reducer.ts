@@ -8,11 +8,11 @@ import { leftMenuReducer } from "./left-menu-reducer";
 import { searchReducer } from "./search-reducer";
 import { mobileModalReducer } from "./mobile-modal-reducer";
 import { mdReducer } from "./md-reducer";
-import tagsReducer from "./guides-tags-reducer";
+import { animationReducer } from '../slices/animationSlice';
 
 export const rootReducer = combineReducers({
+    animation: animationReducer,
     idsReducer,
-    tagsReducer,
     egoReducer,
     filterReducer,
     tbReducer,
