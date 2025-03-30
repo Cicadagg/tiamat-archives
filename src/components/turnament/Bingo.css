@@ -55,7 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Изменили на flex-start для выравнивания по верху */
-    gap: 60px; /* Увеличили отступ между кубиками и слайдером */
+    gap: 60px; 
 }
 
 .bingo-grid {
