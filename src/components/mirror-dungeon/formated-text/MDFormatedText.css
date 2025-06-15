@@ -1,0 +1,80 @@
+.MDFormatedText{
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    position: relative; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    max-width: 100%;
+    column-gap: 4px;
+}
+.MDFormatedText figure{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0;
+    position: relative;
+}
+.MDFormatedText figure:hover{
+   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.MDFormatedText .big-img{
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0,-150%);
+    transition: 0.3s;
+    opacity: 0;
+    pointer-events: none;
+    width: 90px;
+    height: 90px;
+    background: rgb(54, 54, 54);
+    border-radius: 6px;
+    border: 1px black solid;
+    box-sizing: border-box;
+}
+.MDFormatedText figure:hover .big-img{
+    transform: translate(0,-100%);
+    opacity: 1;
+ }
+.MDFormatedText .small-img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+.MDFormatedText figcaption{
+    text-decoration: underline;
+}
+
+.MDFormatedText--wrath{
+    color: var(--wrath-frame-color);
+}
+.MDFormatedText--lust{
+    color: var(--lust-frame-color);
+}
+.MDFormatedText--sloth{
+    color: var(--sloth-frame-color);
+}
+.MDFormatedText--glut{
+    color: var(--glut-frame-color);
+}
+.MDFormatedText--gloom{
+    color: var(--gloom-frame-color);
+}
+.MDFormatedText--pride{
+    color: var(--pride-frame-color);
+}
+.MDFormatedText--envy{
+    color: var(--envy-frame-color);
+}
+.MDFormatedText--none{
+    color: var(--none-frame-color);
+}

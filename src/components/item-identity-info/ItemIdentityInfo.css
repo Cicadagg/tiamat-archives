@@ -1,0 +1,186 @@
+.item-identity-info-container {
+    background-color: #4D4B4B;
+    display: flex;
+    flex-direction: column;
+    transition: 0.48s;
+    position: absolute;
+     left: 50%;
+    top: -10px; 
+    padding: 16px;
+    transform: translate(-50%, -115%);
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 101;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform , opacity;
+}
+
+.item-identity-info-skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.item-identity-info-sin {
+    background-color: #646262;
+    margin-right: 3.2px;
+    position: relative;
+}
+
+.item-identity-info-sin:last-of-type {
+    margin-right: 0px;
+}
+
+.item-identity-info-sin img {
+    width: 28px;
+    height: 28px;
+    padding: 6.4px;
+    object-fit: contain;
+}
+
+.item-identity-info-line {
+    width: 100%;
+    height: 2.56px;
+    position: absolute;
+    bottom: 0;
+}
+
+.item-identity-info-tiers {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4.8px;
+    min-width: 100%;
+}
+
+.item-identity-info-tier {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 3.2px;
+    min-width: 100%;
+    height: fit-content;
+    margin-bottom: 2.56px;
+}
+
+.item-identity-info-tier:last-of-type {
+    margin-bottom: 0px;
+}
+
+.item-identity-info-tier-description {
+    background-color: #646262;
+    width: 32px;
+    display: flex;
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 2.56px;
+    padding: 4.8px 4px;
+}
+
+.item-identity-info-tier-description img{
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.item-identity-info-tier-description span {
+    padding-top: 2.56px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.item-identity-info-tier-rank-container {
+    padding: 0 0 0 6px;
+    display: flex;
+    align-items: center;
+    background-color: #646262;
+    color: white;
+    width: calc(100% - 40px);
+    height: min(fit-content , 100%);
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.item-identity-info-sin--variation {
+    width: 50%; /* Half the width of a standard skill block */
+    margin: 0 2px;
+}
+
+.item-identity-info-sin--variation .item-identity-info-line {
+    height: 2px; /* Thinner line for variations */
+}
+
+.item-identity-info-tier-rank {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    width: 32px !important;
+    height: 14.4px;
+    color: rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
+    padding-bottom: 1px;
+}
+
+.item-identity-info-tier-rankID{
+    justify-content: center;
+    align-items: center;
+    display: flex;  
+    width: 100%;
+    font-size: 20px;
+    margin-top: 4.8px;
+    height: 16px;
+    color: rgba(0, 0, 0, 1);
+    opacity: 0.8;
+    box-sizing: border-box;
+    padding: 2px 0px;
+}
+
+.item-identity-info-tier-rank--SSS {
+    background-color: rgb(236, 24, 48);
+}
+
+.item-identity-info-tier-rank--SS {
+    background-color: rgba(255, 97, 74);
+}
+
+.item-identity-info-tier-rank--S {
+    background-color: rgba(255, 188, 58);
+}
+
+.item-identity-info-tier-rank--A {
+    background-color: rgb(143, 255, 58);
+}
+
+.item-identity-info-tier-rank--B {
+    background-color: rgb(58, 255, 166);
+}
+
+.item-identity-info-tier-rank--C {
+    background-color: rgb(58, 255, 248);
+}
+
+.item-identity-info-arrow {
+    width: 11.52px;
+    height: 11.52px;
+    transform: rotate(-45deg);
+    background: #4D4B4B;
+    position: absolute;
+    bottom: -5.76px;
+}
+@media(max-width:1000px){
+    .item-entity-info-container{
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 50%;
+    }
+    .item-identity-info-arrow {
+        display: none;
+    }
+}

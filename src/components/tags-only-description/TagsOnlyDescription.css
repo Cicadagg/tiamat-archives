@@ -1,0 +1,131 @@
+
+.skill-coin-description{
+  color:rgba(255, 255, 255, 0.9);
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  position: relative;
+}
+.caution-img{
+  width: 25px;
+  height: 25px;
+  object-position: center;
+  object-fit: contain;
+}
+.skill-coin-description .coin{
+  margin-right: 5px;
+}
+.description-weight{
+  text-decoration: underline;
+  color:rgb(241, 211, 77);
+}
+.condition{
+  color: rgb(37, 133, 37);
+}
+.coins-coditions{
+  text-decoration: underline;
+}
+.coins-coditions--fc{
+  color:#f1e451;
+}
+.coins-coditions--cg{
+  color:#ebbb84;
+}
+.coins-coditions--bc{
+  color:#bf8c52;
+}
+.coins-coditions--cp{
+  color:#f5a051;
+}
+.condition--onhit{
+  color:rgb(37, 133, 37);
+}
+.condition--clashwin{
+  color: orange;
+}
+.condition--clashablecounter{
+  color: orange;
+}
+.condition--combatstart{
+  color: rgb(37, 133, 37);
+}
+.condition--indiscriminate{
+  color: rgb(251, 44, 44);
+}
+.condition--clashlose{
+  color: rgb(251, 44, 44);
+}
+.condition--oncrit{
+  color: rgb(37, 133, 37);
+}
+.condition--onuse{
+  color: rgb(77, 77, 255);
+}
+.condition--onkill{
+  color: rgb(37, 133, 37);
+}
+.condition--onevade{
+  color: rgb(37, 133, 37);
+}
+.condition--afterattack{
+  color: rgb(37, 133, 37);
+}
+.condition--hitafterclashwin{
+  color: rgb(37, 133, 37);
+}
+.condition--headshit{
+  color: rgb(2, 185, 2);
+}
+.skill-coin-description img{
+  width: 25px;
+  height: 25px;
+  object-position: center;
+  object-fit: contain;
+  margin-bottom: -5px;
+}
+.status-name{
+  text-decoration: underline;
+  color:rgb(168, 0, 0);
+  opacity: 1;
+  cursor: pointer;
+}
+.status-name2{
+  text-decoration: underline;
+  color:rgb(255, 215, 36);
+  opacity: 1;
+  cursor: pointer;
+}
+.status-name3{
+  text-decoration: underline;
+  color:rgb(159, 106, 58);
+  opacity: 1;
+  cursor: pointer;
+}
+@media (max-width:1000px){
+  .status-name .entityFullInfo-tooltip{
+    display: none;
+  }
+}
+.status-name--bleed{
+  color:rgb(213, 0, 0);
+}
+.status-name--burn{
+  color:rgb(213, 46, 0);
+}
+.status-name--tremor{
+  color:rgb(255, 211, 117);
+}
+.status-name--poise{
+  color:rgb(138, 254, 235);
+}
+.status-name--rupture{
+  color:rgb(0, 255, 225);
+}
+.status-name--charge{
+  color:rgb(0, 217, 255);
+}
+.status-name--sinking{
+  color:rgb(0, 102, 255);
+}
+

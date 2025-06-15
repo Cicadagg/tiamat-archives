@@ -1,0 +1,40 @@
+.entityFullInfo-sanity{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #131319;
+    border-radius: 8px;
+    padding: 20px 40px 30px 20px;
+    box-sizing: border-box;
+}
+.entityFullInfo-sanity-header{
+    border: 2px solid white;
+    box-sizing: border-box;
+    color:white;
+    width: fit-content;
+    padding: 5px 10px;
+    font-size: 20px;
+}
+.entityFullInfo-sanity-header-0{
+    border: 2px solid rgb(0, 233, 254);
+    color:rgb(0, 233, 254);
+}
+.entityFullInfo-sanity-header-1{
+    border: 2px solid rgb(1, 103, 187);
+    color:rgb(1, 103, 187);
+}
+.entityFullInfo-sanity-header-2{
+    border: 2px solid rgb(190, 0, 0);
+    color:rgb(190, 0, 0);
+}
+.entityFullInfo-sanity-img{
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0.35;
+    object-fit: contain;
+}

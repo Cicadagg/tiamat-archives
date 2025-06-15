@@ -1,0 +1,183 @@
+.dropdown{
+    color:#AFAEB4;
+    padding: 31.2px ;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    font-size: 24px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: 0.4s;
+}
+.dropdown:hover{
+    color:white;
+}
+.dropdown:hover svg{
+    opacity: 1 ;
+}
+.LanguageSelect{
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+    padding:  0 !important;
+    padding-right:  5px !important;
+    transition: 0.5s;
+    box-sizing: border-box;
+    height: 0 ;
+    max-height: 150px ;
+    gap:4px;
+}
+.LanguageSelect--show{
+    height: 100px ;
+}
+.LanguageSelect li{
+    height: unset !important;
+    min-height: unset !important;
+    color:#AFAEB4;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #333;
+    margin: 0 !important;
+    padding: 10px 10px 10px 29.6px;
+    width: 100% !important;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: 0.4s;
+}
+.LanguageSelect li button{
+    display: flex;
+    gap: 5px;
+}
+.LanguageSelect li:hover{
+    color:white;
+}
+@media (max-height: 1200px) {
+    @media (max-width: 1000px) {
+        .dropdown{
+            position: absolute;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 32px;
+            padding: 41.2px;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
+    }
+    @media (max-width: 765px) {
+        .dropdown{
+            position: relative;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 30px;
+            padding: 41.2px;
+            padding-bottom: 0;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
+    }
+}
+@media (max-height: 700px) {
+        @media (max-width: 1000px) {
+        .dropdown{
+            position: absolute;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 32px;
+            padding: 41.2px;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
+    }
+    @media (max-width: 765px) {
+        .dropdown{
+            position: relative;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 26px;
+            padding: 41.2px;
+            padding-bottom: 0;
+            padding-bottom: 100px;
+        }
+        .dropdown span  svg{
+            width: 30px;
+            height: 30px;
+        }
+        .LanguageSelect svg {
+            width: 25px !important;
+            height: 25px !important;
+        }
+        .LanguageSelect{
+            position: absolute;
+            top: 0px;
+            width: 80vw !important;
+            transform-origin: bottom bottom;
+            z-index: 2;
+        }
+        .LanguageSelect--show{
+            top: -60px;
+        }
+        .LanguageSelect li:first-of-type{
+            display: flex !important;
+        }
+    }
+}

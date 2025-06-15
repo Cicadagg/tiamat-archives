@@ -1,0 +1,47 @@
+.entityFullInfo-passive{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #131319;
+    border-radius: 8px;
+    padding: 20px 20px 30px 20px;
+    gap:10px;
+    box-sizing: border-box;
+}
+.passive-name{
+    color:rgba(255, 255, 255, 0.9);
+    width: fit-content;
+    border-radius: 2px;
+    padding: 2px;
+    padding: 5px 10px;
+    font-size: 30px;
+    box-sizing: border-box;
+    -webkit-text-stroke: 0.1px black;
+    margin: 0 ;
+    font-weight: bold;
+}
+.entityFullInfo-passive-index{
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 30px;
+    position: absolute;
+    right: 20px;
+    top:10px;
+}
+.passive-atk{
+    color:rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap:2px;
+    cursor:pointer;
+    font-size: 25px;
+     font-weight: 500;
+     margin-top: 10px;
+}
+.passive-atk img{
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}

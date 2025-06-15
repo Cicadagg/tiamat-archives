@@ -1,0 +1,348 @@
+.ego-cost-list{
+    justify-content: center !important;
+}
+.entityFullInfo-stats{
+    width: 100%;
+}
+.entityFullInfo-stats ul{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    color:rgba(255, 255, 255, 0.9);
+    gap: 15px;
+    padding: 0;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+@media (max-width:1000px) {
+    .statuses-list li .entityFullInfo-tooltip{
+       display: none;
+   }
+}
+.statuses-list{
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+    column-gap: 10px;
+}
+.statuses-list li{
+    cursor: pointer;
+}
+.image-swap-button {
+    /* Position the button above the tier */
+    position: absolute;
+    top: 380px; /* Adjust as needed */
+    left: 17px;
+    z-index: 2; /* Ensure it's above other elements */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Добавляет небольшое закругление */
+    outline: 1px solid white; /* Добавляет белую обводку */
+    }
+
+.entityFullInfo-stats h2{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    color:rgba(255, 255, 255, 0.9);
+    column-gap: 15px;
+    padding: 2px 5px;
+    margin: 0;
+    font-size: 30px;
+    background-color: #131319;
+    border-radius: 6px;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.entityFullInfo-stats ul li{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 30px;
+}
+.entityFullInfo-stats ul img{
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.entityFullInfo-entity{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width:  320px;
+}
+
+.entityFullInfo-img{
+    width:  100%;
+    height: 460px;
+    position: relative;
+    display: flex;
+    margin-bottom: 15px;
+}
+.entityFullInfo-img .shadow {
+    width:  100%;
+    height: 100%;
+}
+.entityFullInfo-tier{
+    width: 90%;
+    justify-content: center;
+    position: absolute;
+    bottom: 12px;
+    left: 5%;
+    display: flex;
+    color: rgba(0, 0, 0, 0.803);
+    font-size: 28px;
+    border-radius: 6px;
+}   
+.entityFullInfo-tier-SSS{
+    background-color: var(--SSS-color);
+}
+.entityFullInfo-tier-SS{
+    background-color: var(--SS-color);
+}
+.entityFullInfo-tier-S{
+    background-color: var(--S-color);
+}
+.entityFullInfo-tier-A{
+    background-color: var(--A-color);
+}
+.entityFullInfo-tier-B{
+    background-color: var(--B-color);
+}
+.entityFullInfo-tier-C{
+    background-color: var(--C-color);
+}
+.entityFullInfo-tier-Test{
+    background-color: var(--Test-color);
+}
+.resistance--ineff{
+    color:rgba(255, 255, 255, 0.85);
+}
+.resistance--fatal{
+    color:#fe4141;
+}
+.resistance--normal{
+    color:#c8aa80;
+
+}
+.staggers .perCent-special-font {
+    font-size: 26px;
+    opacity: 1;
+}
+.staggers li:nth-of-type(1){
+    color:#e9ca67;
+}
+.staggers li:nth-of-type(2){
+    color:#ff0059;
+}
+.staggers li:nth-of-type(3){
+    color:#229248;
+}
+.entityFullInfo-sinner {
+    position: absolute;
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    object-fit: contain;
+    width: 45px;
+    height: 45px;
+    border-radius: 3.2px;
+    top: 7px;
+    right: 7px;
+}
+.entityFullInfo-rarity {
+    position: absolute;
+    z-index: 1;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 500;
+    border-radius: 3.2px;
+    background: rgba(0, 0, 0, 0.40);
+    padding: 2px 8px 2px 9px;
+    top: 7px;
+    left: 7px;
+    font-size: 36px;
+    color: var(--O-color);
+}
+.entityFullInfo-stats-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.entityFullInfo-season{
+    width: 90%;
+    position: relative;
+    margin: auto;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    color: rgba(0, 0, 0, 0.803);
+    font-size: 28px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.entityFullInfo-season-w{
+    background-color: var(--season-w-color);
+}
+.entityFullInfo-season-s-0{
+    background-color: var(--season-s-0-color);
+}
+.entityFullInfo-season-s-1{
+    background-color: var(--season-s-1-color);
+    color: rgba(255, 255, 255, 0.903);
+}
+.entityFullInfo-season-s-2{
+    background-color: var(--season-s-2-color);
+}
+.entityFullInfo-season-s-3{
+    background-color: var(--season-s-3-color);
+}
+.entityFullInfo-season-s-4{
+    background-color: var(--season-s-4-color);
+    color: rgba(255, 255, 255, 0.903);
+}
+.entityFullInfo-season-s-5{
+    background-color: var(--season-s-5-color);
+}
+.entityFullInfo-season-s-6{
+    background-color: var(--season-s-6-color);
+}
+.entityFullInfo-season-s-7{
+    background-color: var(--season-s-7-color);
+}
+.entityFullInfo-season-s-8{
+    background-color: var(--season-s-8-color);
+}
+.entityFullInfo-season-s-9{
+    background-color: var(--season-s-9-color);
+}
+.entityFullInfo-season-s-10{
+    background-color: var(--season-s-10-color);
+}
+.entityFullInfo-season-s-11{
+    background-color: var(--season-s-11-color);
+}
+.entityFullInfo-season-s-12{
+    background-color: var(--season-s-12-color);
+}
+.entityFullInfo-release{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    margin-top: 0.25rem;
+    padding: 0.25rem;
+    display: flex;
+    color: rgba(255, 255, 255, 0.903);
+    font-size: 28px;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:1200px) {
+    .entityFullInfo-entity{
+        flex-direction: row !important;
+        width: 100% !important;
+    }
+    .entityFullInfo-stats-container{
+       margin-left: 60px;
+    }
+    .entityFullInfo-img{
+        height: 505.5px; 
+        width: 351.652px;
+    }
+}
+@media (max-width:840px) {
+    .entityFullInfo-entity{
+       justify-content: center;
+       align-items: center;
+    }
+    .entityFullInfo-entity{
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .entityFullInfo-stats-container{
+       margin-left: 0px;
+    }
+}
+@media (max-width:600px) {
+    .entityFullInfo-stats{
+        position: relative;
+    }
+    .entityFullInfo-stats ul {
+        position: static;
+    }
+    .statuses-list .tooltip-container  {
+        position: static;
+    }
+    .image-swap-button {
+        /* Position the button above the tier */
+        position: absolute;
+        top: 425px; /* Adjust as needed */
+        left: 20px;
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* Добавляет небольшое закругление */
+        }
+   
+}
+@media (max-width:420px) {
+    .entityFullInfo-img{
+        height: 400px; 
+        width: 300px;
+    }
+    .image-swap-button {
+        /* Position the button above the tier */
+        position: absolute;
+        top: 320px; /* Adjust as needed */
+        left: 15px;
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* Добавляет небольшое закругление */
+        }
+}
+@media (max-width:930px) {
+    .entityFullInfo-img{
+        height: 400px; 
+        width: 300px;
+    }
+    .image-swap-button {
+        /* Position the button above the tier */
+        position: absolute;
+        top: 100px; /* Adjust as needed */
+        left: 15px;
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px; /* Добавляет небольшое закругление */
+        }
+}

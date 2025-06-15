@@ -1,0 +1,332 @@
+.left-menu {
+  width: 220px;
+ height: 100vh;
+  background-color: #131319;
+  position: fixed;
+  transition: 0.4s;
+  user-select: none;
+  overflow-Y: scroll;
+  z-index: 1;
+}
+
+.left-menu ul {
+  list-style: none; 
+  padding: 36px 16px 24px 16px;
+  margin: 0; 
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.left-menu li {
+  width: 188px;
+  min-height: 44px;
+}
+
+.left-menu li:first-of-type{
+margin-bottom: 27.2px;
+}
+
+.left-menu li:first-of-type a{
+  padding: 0;
+  color: white;
+  width: 188px;
+  height: 56px;
+}
+
+.left-menu a {
+  color: #AFAEB4; 
+  text-decoration: none; 
+  display: flex;
+  flex-direction: row;
+  gap: 9.6px;
+  align-items: center; 
+  padding: 10.4px 11.2px;
+  font-size: 19.2px;  
+  transition: 0.4s;
+  border-radius: 3.2px;
+  font-weight: 600;
+}
+
+.left-menu li:first-of-type a{
+  font-size: 24px; 
+}
+
+.left-menu a span span{
+  color: #3AA1FF;
+}
+
+.left-menu a:hover {
+  color: #fff; 
+}
+
+.left-menu svg{
+  transition: 0.4s;
+  opacity: 0.4;
+  width: 20.8px;
+  height: 20.8px;
+  will-change: opacity;
+}
+
+.left-menu li:nth-of-type(1) svg{
+  opacity: 1;
+  width: unset;
+  height: unset;
+}
+
+.left-menu a:hover svg{
+  opacity: 1;
+}
+
+.left-menu-route--active{
+  background: linear-gradient(97deg, #3AA1FF -139.58%, #211E29 25.72%) ;
+  color: #fff !important; 
+}
+
+.left-menu-route--active svg{
+  opacity: 1;
+}
+
+
+
+.left-menu--minimized .line3{
+  right: unset;
+}
+
+.left-menu--minimized .line2{
+  right: unset;
+}
+
+.left-menu--minimized .line1{
+  right: unset;
+  left: 0;
+}
+
+
+.left-menu--minimized  li:first-of-type {
+  margin-bottom: 12px; 
+  margin-top: 18px;
+}
+
+.left-menu--minimized  span {
+  font-size: 38.4px; 
+}
+
+.left-menu--minimized{
+  width: 64px;
+}
+
+.left-menu--minimized svg{
+  width: 32px;
+  height: 32px;
+}
+.left-menu--minimized a{
+  padding: 0;
+  background: none;
+  font-size: 0;
+}
+
+@media (max-height: 1200px) {
+  @media (max-width: 1000px) {
+    .left-menu{
+      width: 100%;
+      margin-top: 70px;
+      transition: 0s;
+      transform: translateX(-100%);
+      left: 0px;
+      min-height: 100vh;
+      z-index: 111;
+    }
+    .left-menu--minimized{
+      transition: 0.4s;
+    }
+    .first-render{
+      display: none;
+    }
+    .left-menu--maximized{
+      transform: translateX(0);
+      transition: 0.4s;
+    }
+    .left-menu--minimized a{
+      padding: 10.4px 11.2px;
+    }
+    .left-menu-route--active{
+      background: linear-gradient(97deg, #3AA1FF -139.58%, #211E29 25.72%) !important; 
+    }
+    .left-menu--minimized li{
+      /* opacity: 0; */
+    }
+    .left-menu ul{
+      padding-left: 30px;
+      padding-right: 30px;
+      width: 100%;
+    }
+    .left-menu li{
+      width: 100%;
+      height: fit-content;
+    }
+    .left-menu li a{
+      height: 25px;
+      font-size: 24px;
+    }
+    .left-menu li svg{
+      height: 30px;
+      width: 30px;
+    }
+    .left-menu li:first-of-type{
+      display: none;
+    }
+  }
+  @media (max-width: 700px) {
+    .left-menu{
+      width: 100%;
+      margin-top: 70px;
+      transition: 0s;
+      transform: translateX(-100%);
+      left: 0px;
+      min-height: 100vh;
+      z-index: 111;
+    }
+    .left-menu--minimized{
+      transition: 0.4s;
+    }
+    .first-render{
+      display: none;
+    }
+    .left-menu--maximized{
+      transform: translateX(0);
+      transition: 0.4s;
+    }
+    .left-menu--minimized a{
+      padding: 10.4px 11.2px;
+    }
+    .left-menu-route--active{
+      background: linear-gradient(97deg, #3AA1FF -139.58%, #211E29 25.72%) !important; 
+    }
+    .left-menu--minimized li{
+      /* opacity: 0; */
+    }
+    .left-menu ul{
+      padding-left: 30px;
+      padding-right: 30px;
+      width: 100%;
+    }
+    .left-menu li{
+      width: 100%;
+      height: fit-content;
+    }
+    .left-menu li a{
+      height: 25px;
+      font-size: 24px;
+    }
+    .left-menu li svg{
+      height: 30px;
+      width: 30px;
+    }
+    .left-menu li:first-of-type{
+      display: none;
+    }
+  }
+}
+
+@media (max-height: 700px) {
+  @media (max-width: 1000px) {
+    .left-menu{
+      width: 100%;
+      margin-top: 70px;
+      transition: 0s;
+      transform: translateX(-100%);
+      left: 0px;
+      min-height: 100vh;
+      z-index: 111;
+    }
+    .left-menu--minimized{
+      transition: 0.4s;
+    }
+    .first-render{
+      display: none;
+    }
+    .left-menu--maximized{
+      transform: translateX(0);
+      transition: 0.4s;
+    }
+    .left-menu--minimized a{
+      padding: 10.4px 11.2px;
+    }
+    .left-menu-route--active{
+      background: linear-gradient(97deg, #3AA1FF -139.58%, #211E29 25.72%) !important; 
+    }
+    .left-menu--minimized li{
+      /* opacity: 0; */
+    }
+    .left-menu ul{
+      padding-left: 30px;
+      padding-right: 30px;
+      width: 100%;
+    }
+    .left-menu li{
+      width: 100%;
+      height: fit-content;
+    }
+    .left-menu li a{
+      height: 25px;
+      font-size: 24px;
+    }
+    .left-menu li svg{
+      height: 30px;
+      width: 30px;
+    }
+    .left-menu li:first-of-type{
+      display: none;
+    }
+  }
+  @media (max-width: 700px) {
+    .left-menu{
+      width: 100%;
+      margin-top: 70px;
+      transition: 0s;
+      transform: translateX(-100%);
+      left: 0px;
+      min-height: 100vh;
+      z-index: 111;
+    }
+    .left-menu--minimized{
+      transition: 0.4s;
+    }
+    .first-render{
+      display: none;
+    }
+    .left-menu--maximized{
+      transform: translateX(0);
+      transition: 0.4s;
+    }
+    .left-menu--minimized a{
+      padding: 10.4px 11.2px;
+    }
+    .left-menu-route--active{
+      background: linear-gradient(97deg, #3AA1FF -139.58%, #211E29 25.72%) !important; 
+    }
+    .left-menu--minimized li{
+      /* opacity: 0; */
+    }
+    .left-menu ul{
+      padding-left: 30px;
+      padding-right: 30px;
+      width: 100%;
+    }
+    .left-menu li{
+      width: 100%;
+      height: fit-content;
+    }
+    .left-menu li a{
+      height: 25px;
+      font-size: 24px;
+    }
+    .left-menu li svg{
+      height: 30px;
+      width: 30px;
+    }
+    .left-menu li:first-of-type{
+      display: none;
+    }
+  }
+}

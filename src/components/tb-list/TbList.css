@@ -1,0 +1,49 @@
+.tb-list-container {
+
+    width: 100%;
+    color: white;
+    height: fit-content;
+}
+.tb-list-container p {
+    font-size: 20px;
+    font-weight: 400;
+}
+.tb-list-header {
+    font-size: 30.72px;
+    font-weight: 600;
+    background: #131319;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #AFAEB4;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.35s color;
+}
+.tb-list-header:hover{
+    color: #ffffff;
+}
+.tb-list-header--active{
+    background: linear-gradient(0deg, #3AA1FF -100.584%, #131319 25.72%);
+    color: #fff !important;
+}
+.tb-list-header-line{
+    width: 100%;
+    height: 1.6px;
+    background: #3AA1FF;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.tb-list-content {
+    display: grid;
+    row-gap: 16px;
+    column-gap: 3.2px;
+    grid-template-columns: repeat(auto-fill, 96px);
+    width: 100%;
+    text-align: center;
+    padding: 12.8px 0px 12.8px 0px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}

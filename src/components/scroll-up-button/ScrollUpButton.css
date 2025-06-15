@@ -1,0 +1,21 @@
+.scroll-up-button{
+    scale: 2.0;
+    position: fixed;
+    right: 40px;
+    bottom: 5vh;
+    transition: 0.5s;
+    opacity: 0;
+    cursor: default;
+    z-index: 110;
+}
+.scroll-up-button:hover{
+    scale: 2.2;
+}
+.scroll-up-button--visible{
+    opacity: 1;
+    cursor: pointer;
+}
+.scroll-up-button svg{
+    width: 4vw;
+    height: 4vh;
+}

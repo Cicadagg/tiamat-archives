@@ -1,0 +1,52 @@
+.guide-title-h2 {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 16px;
+    font-size: 1.5em;
+}
+
+.guide-title-h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: blue;
+}
+
+/* Стиль для заголовка h3 */
+.guide-title-h3 {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 12px;
+    font-size: 1.25em;
+}
+
+.guide-title-h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: blue;
+}
+
+/* Стиль для заголовка h4 */
+.guide-title-h4 {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 12px;
+    font-size: 1em;
+}
+
+.guide-title-h4::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: blue;
+}

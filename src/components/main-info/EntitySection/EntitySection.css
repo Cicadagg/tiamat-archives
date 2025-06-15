@@ -1,0 +1,104 @@
+.entity-section{
+  width: 100%;
+  row-gap: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+}
+.entity-section .item-entity-container {
+transition: 1s;
+}
+.entity-section .release-date{
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-bottom: 8px;
+}
+.entity-section .release-date hr {
+border: none; 
+border-top: 1px solid rgb(255, 255, 255); 
+margin: 10px 0;
+width: 0%; 
+}
+
+.entity-section h2{
+font-size: 42px;
+margin-bottom: 0;
+width: 100%;
+}
+.entity-section .release-date .date{
+  opacity: 0.9;
+  font-size: 20px;
+  font-weight: 400;
+  margin-right: 10px;
+}
+.entity-section-bar{
+  border-radius: 16px;
+  background: none;
+  padding: 20px;
+  padding-left: 0px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  opacity:0;
+ width: fit-content;
+ z-index: 5;
+
+}
+.entity-section-bar .entities-list{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+gap: 8px;
+width: fit-content;
+opacity: 0;
+}
+.entity-section-bar--animated{
+  opacity:1;
+}
+.entity-section-bar--animated .release-date .date{
+animation: slideLeftAnimationRDate 0.5s ease;
+}
+@keyframes slideLeftAnimationRDate {
+0% {
+  transform: translateX(-50px);
+    opacity:0;
+}
+100% {
+  transform: translateY(0);
+  opacity:1;
+}
+}
+.entity-section-bar--animated .release-date hr{
+animation: slideLeftAnimationHR 1s ease 0.5s forwards;
+}
+@keyframes slideLeftAnimationHR {
+0% {
+  width: 0%;
+  opacity:0;
+}
+100% {
+  width: 100%;
+  opacity:1;
+}
+}
+.entity-section-bar--animated .entities-list{
+animation: slideLeftAnimationEList 1s ease 0.5s forwards;
+}
+@keyframes slideLeftAnimationEList {
+  0% {
+    transform: translateX(-50px);
+    opacity:0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity:1;
+  }
+}
+.new-entity  {
+background-color: rgba(19, 19, 25, 0.8);
+padding: 10px; /* Добавьте отступы для визуального эффекта */
+border-radius: 5px; /* Слегка закруглите углы */
+}
+

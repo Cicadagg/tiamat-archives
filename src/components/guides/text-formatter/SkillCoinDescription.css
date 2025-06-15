@@ -1,0 +1,243 @@
+.caution-img{
+  width: 25px;
+  height: 25px;
+  object-position: center;
+  object-fit: contain;
+}
+.description-weight{
+  text-decoration: underline;
+  color:rgb(241, 211, 77);
+}
+.condition{
+  color: rgb(37, 133, 37);
+}
+.coins-coditions{
+  text-decoration: underline;
+}
+.coins-coditions--fc{
+  color:#f1e451;
+}
+.coins-coditions--cg{
+  color:#ebbb84;
+}
+.coins-coditions--bc{
+  color:#bf8c52;
+}
+.coins-coditions--cp{
+  color:#f5a051;
+}
+.condition--onhit{
+  color:rgb(37, 133, 37);
+}
+.condition--clashwin{
+  color: orange;
+}
+.condition--clashablecounter{
+  color: orange;
+}
+.condition--combatstart{
+  color: rgb(37, 133, 37);
+}
+.condition--indiscriminate{
+  color: rgb(251, 44, 44);
+}
+.condition--clashlose{
+  color: rgb(251, 44, 44);
+}
+.condition--oncrit{
+  color: rgb(37, 133, 37);
+}
+.condition--onuse{
+  color: rgb(77, 77, 255);
+}
+.condition--onkill{
+  color: rgb(37, 133, 37);
+}
+.condition--onevade{
+  color: rgb(37, 133, 37);
+}
+.condition--afterattack{
+  color: rgb(37, 133, 37);
+}
+.condition--hitafterclashwin{
+  color: rgb(37, 133, 37);
+}
+.condition--headshit{
+  color: rgb(2, 185, 2);
+}
+
+.status-name{
+  text-decoration: underline;
+  color:rgb(168, 0, 0);
+  opacity: 1;
+  cursor: pointer;
+}
+.status-name2{
+  text-decoration: underline;
+  color:rgb(255, 215, 36);
+  opacity: 1;
+  cursor: pointer;
+}
+.status-name3{
+  text-decoration: underline;
+  color:rgb(159, 106, 58);
+  opacity: 1;
+  cursor: pointer;
+}
+@media (max-width:1000px){
+  .status-name .entityFullInfo-tooltip{
+    display: none;
+  }
+}
+.status-name--bleed{
+  color:rgb(213, 0, 0);
+}
+.status-name--burn{
+  color:rgb(213, 46, 0);
+}
+.status-name--tremor{
+  color:rgb(255, 211, 117);
+}
+.status-name--poise{
+  color:rgb(138, 254, 235);
+}
+.status-name--rupture{
+  color:rgb(0, 255, 225);
+}
+.status-name--charge{
+  color:rgb(0, 217, 255);
+}
+.status-name--sinking{
+  color:rgb(0, 102, 255);
+}
+
+
+.guide-gift-item {
+  display: inline-block;
+}
+
+.guide-gift-item figure{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  gap: 4px;
+  margin: 0;
+}
+
+.guide-gift-wrapper {
+  position: relative;
+  width: 124px;
+  height: 124px;
+  background: #1C1E23;
+  transition: 0.3s;
+  will-change: scale,transform;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.guide-gift-shadow {
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s;
+}
+
+.guide-gift-wrapper:hover .guide-gift-shadow{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.guide-gift-wrapper:active{
+  transform: scale(0.9);
+}
+.guide-gift-wrapper svg{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 3;
+  transition: 0.3s;
+  transform: translate(-50%,-50%) scale(0);
+}
+.guide-gift-wrapper:hover svg{
+  transform: translate(-50%,-50%) scale(1);
+}
+
+.guide-gift-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.guide-gift-keyword {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 0px;
+  bottom: 0px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.guide-gift-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+.guide-gift-bar--wrath { background-color: #FF4136; }
+.guide-gift-bar--lust { background-color: #FF851B; }
+.guide-gift-bar--sloth { background-color: #FFDC00; }
+.guide-gift-bar--gluttony { background-color: #2ECC40; }
+.guide-gift-bar--greed { background-color: #0074D9; }
+.guide-gift-bar--pride { background-color: #B10DC9; }
+.guide-gift-bar--envy { background-color: #01FF70; }
+
+.guide-gift-item figcaption{
+  width: 124px;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  padding: 0px 5px;
+  font-weight: 500;
+  font-size: 24px;
+  color: white;
+}
+
+.gift-tier{
+  color:#fbc601;
+  text-shadow: 0px 0px 10px red;
+  font-size: 50px;
+  font-weight: bold;
+  position: absolute;
+  left: 15px;
+  top:0px;
+}
+
+.guide-page-content .guide-gift-item{
+  margin-bottom: 10px;
+}
+
+.st-content {
+  display: inline-block;
+}
+
+.st-content .coin{
+  margin-right: 5px;
+}
+
+.st-content img {
+  width: 25px;
+  height: 25px;
+  object-position: center;
+  object-fit: contain;
+  margin-bottom: -5px;
+}
